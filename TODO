@@ -2,11 +2,10 @@
 - DateField - widget
 - DateTimeField - widget
 - UIntField - widget
-- ImageField - widget
 - TimeField - widget
 - DateField - validation
 - DateTimeField - validation
 - UIntField - validation
 - ImageField - validation
 - TimeField - validation
-
+- inflate datetime

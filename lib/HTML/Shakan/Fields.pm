@@ -7,9 +7,15 @@ our @EXPORT = qw(
     TextField
     EmailField
     URLField
+
     PasswordField
+
     FileField
+    ImageField
+
     ChoiceField
+
+    DateField
 );
 
 # DateField
@@ -17,6 +23,12 @@ our @EXPORT = qw(
 # UIntField
 # ImageField
 # TimeField
+
+sub _push_constraints {
+    my ($field, $constraint) = @_;
+    push @{$field->{constraints}}, $constraint;
+    $field;
+}
 
 sub _base {
     my %args = @_;
@@ -35,15 +47,11 @@ sub TextField {
 }
 
 sub EmailField {
-    my $f = TextField(@_);
-    push @{$f->{constraints}}, 'EMAIL_LOOSE';
-    $f;
+    _push_constraints(TextField(@_), 'EMAIL_LOOSE');
 }
 
 sub URLField {
-    my $f = TextField(@_);
-    push @{$f->{constraints}}, 'HTTP_URL';
-    $f;
+    _push_constraints(TextField(@_), 'HTTP_URL');
 }
 
 sub PasswordField {
@@ -52,6 +60,10 @@ sub PasswordField {
 
 sub FileField {
     _input(type => 'file', @_);
+}
+
+sub ImageField {
+    _push_constraints(FileField(@_), 'VALID_IMAGE');
 }
 
 sub ChoiceField {
