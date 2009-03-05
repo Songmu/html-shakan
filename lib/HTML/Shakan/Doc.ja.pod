@@ -1,0 +1,14 @@
+=head1 CONCEPT
+
+英語かくのがつらいので日本語でコンセプトをしるす。
+
+- FormGeneration は必要だ。
+-- 工数を削減できる。
+- FormGenerator が validation を直接うけもつ必要はない
+-- FormValidator::Lite に delegate すればいい
+- 依存はすくなく
+- YAML からのフォーム生成もできるとよい
+- DSL による生成は必須
+- csrf 対策
+- imager 連携(optional)
+
