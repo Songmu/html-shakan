@@ -126,6 +126,7 @@ HTML::Shakan - form html generator/validator
     <? if ($form->has_error) ?><div class="error"><?= $form->error_message ?></div><? } ?>
     <form method="post" action="add">
     <?= $form->render() ?>
+    <p><input type="submit" value="add" /></p>
     </form>
 
 =head1 DESCRIPTION
