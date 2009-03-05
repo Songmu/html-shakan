@@ -1,4 +1,3 @@
-- fillin_form support(radio widget)
 - bind model(Data::Model)
 - DateField - widget
 - DateTimeField - widget
