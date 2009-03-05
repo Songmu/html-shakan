@@ -3,7 +3,7 @@ use Any::Moose;
 our $VERSION = '0.01';
 use HTML::Shakan::Renderer::HTML;
 use HTML::Shakan::Fields;
-use Any::Moose '::Util::TypeConstraints';
+use HTML::Shakan::Widgets::Default;
 use Carp ();
 
 sub import {
@@ -70,6 +70,15 @@ has fields => (
 has request => (
     is       => 'ro',
     isa      => 'Object',
+);
+
+has 'widgets' => (
+    is => 'ro',
+    isa => 'Object',
+    default => sub {
+        my $self = shift;
+        HTML::Shakan::Widgets::Default->new(form => $self);
+    },
 );
 
 no Any::Moose;

@@ -1,18 +1,11 @@
 package HTML::Shakan::Renderer::HTML;
 use Any::Moose;
-use HTML::Shakan::Widgets::Default;
 use HTML::Entities 'encode_entities';
 
 has 'id_tmpl' => (
     is => 'ro',
     isa => 'Str',
     default => 'id_%s',
-);
-
-has 'widgets' => (
-    is => 'ro',
-    isa => 'Object',
-    default => sub { HTML::Shakan::Widgets::Default->new },
 );
 
 sub render {
@@ -34,7 +27,7 @@ sub render {
 sub render_field {
     my ($self, $form, $field) = @_;
     my $widget = $field->{widget} or die 'missing widget info';
-    $self->widgets->render($widget, $form, $field );
+    $form->widgets->render($widget, $form, $field );
 }
 
 

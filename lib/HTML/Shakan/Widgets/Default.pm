@@ -1,20 +1,22 @@
 package HTML::Shakan::Widgets::Default;
 use Any::Moose;
+with 'HTML::Shakan::Role::Widgets';
 use HTML::Entities 'encode_entities';
 
 sub render {
-    my ($self, $type, $form, $field) = @_;
+    my ($self, $field) = @_;
+    my $type = $field->{widget} or die "invalid field: missing widget name";
     $self->can("widget_${type}")->(
-        $self, $form, $field
+        $self, $field
     );
 }
 
 sub widget_input {
-    my ($self, $form, $field) = @_;
+    my ($self, $field) = @_;
 
     my @t;
     push @t, sprintf(q{<input id="%s" type="%s" }, $field->{id}, $field->{type}||'');
-    if (my $value = $form->fillin_param($field->{name})) {
+    if (my $value = $self->form->fillin_param($field->{name})) {
         push @t, sprintf(q{value="%s" }, encode_entities($value));
     }
     push @t, "/>";
