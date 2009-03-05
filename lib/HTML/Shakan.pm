@@ -4,6 +4,7 @@ our $VERSION = '0.01';
 use HTML::Shakan::Renderer::HTML;
 use HTML::Shakan::Fields;
 use Any::Moose '::Util::TypeConstraints';
+use Carp ();
 
 sub import {
     HTML::Shakan::Fields->export_to_level(1);
@@ -11,13 +12,20 @@ sub import {
 
 has validator => (
     is => 'rw',
-    isa => 'FormValidator::Lite',
+    isa => 'Object',
     lazy => 1,
-    handles => [qw/is_valid/],
     default => sub {
-        FormValidator::Lite->new();
+        my $self = shift;
+        Any::Moose::load_class('HTML::Shakan::Validator::FVLite');
+        HTML::Shakan::Validator::FVLite->new(form => $self);
     },
 );
+sub is_valid {
+    my $self = shift;
+    Carp::croak('request is required for validation') unless $self->request;
+
+    $self->validator->is_valid($self);
+}
 
 has instance => (
     is => 'rw',

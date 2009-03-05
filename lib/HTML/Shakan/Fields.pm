@@ -20,7 +20,7 @@ sub TextField {
 
 sub EmailField {
     my $f = TextField(@_);
-    push @{$f->{constraints}}, 'EMAIL';
+    push @{$f->{constraints}}, 'EMAIL_LOOSE';
     $f;
 }
 
