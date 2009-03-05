@@ -116,7 +116,7 @@ sub cleaned_param {
     if ($self->is_valid) {
         $self->_filtered_param->param(@_);
     } else {
-        return undef;
+        return;
     }
 }
 

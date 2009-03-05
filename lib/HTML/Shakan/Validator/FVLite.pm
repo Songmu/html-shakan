@@ -7,7 +7,7 @@ has 'fvl' => (
     is => 'ro',
     isa => 'FormValidator::Lite',
     lazy => 1,
-    default => sub { FormValidator::Lite->new(shift->form->request) }
+    default => sub { FormValidator::Lite->new(shift->form->_filtered_param) }
 );
 
 sub is_valid {
