@@ -6,6 +6,7 @@ use base 'Exporter';
 our @EXPORT = qw(
     TextField
     EmailField
+    URLField
     PasswordField
     FileField
     ChoiceField
@@ -28,6 +29,12 @@ sub TextField {
 sub EmailField {
     my $f = TextField(@_);
     push @{$f->{constraints}}, 'EMAIL_LOOSE';
+    $f;
+}
+
+sub URLField {
+    my $f = TextField(@_);
+    push @{$f->{constraints}}, 'HTTP_URL';
     $f;
 }
 

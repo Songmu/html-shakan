@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use HTML::Shakan;
-use Test::More tests => 4;
+use Test::More tests => 6;
 use CGI;
 
 do {
@@ -43,6 +43,28 @@ do {
             ],
         );
         is $form->is_valid(), 1;
+    }
+
+    {
+        # check url-field
+        {
+            my $fields = [URLField(name => 'u')];
+            {
+                my $form = HTML::Shakan->new(
+                    request => CGI->new({u => 'm'}),
+                    fields => $fields,
+                );
+                is $form->is_valid(), 0;
+            }
+
+            {
+                my $form = HTML::Shakan->new(
+                    request => CGI->new({u => 'http://mixi.jp'}),
+                    fields => $fields,
+                );
+                is $form->is_valid(), 1;
+            }
+        }
     }
 };
 
