@@ -3,17 +3,21 @@ use strict;
 use warnings;
 use Lingua::JA::Regular::Unicode qw(
     hiragana2katakana
+    katakana2hiragana
     katakana_z2h
     katakana_h2z
 );
 
-sub init {
+sub filters {
     +{
         'KatakanaZ' => sub {
-            hiragana2katakana(katakana_h2z(shift))
+            $_ = hiragana2katakana(katakana_h2z($_))
         },
         'KatakanaH' => sub {
-            katakana_z2h(hiragana2katakana(shift))
+            $_ = katakana_z2h(hiragana2katakana($_))
+        },
+        'Hiragana' => sub {
+            $_ = katakana2hiragana($_)
         },
     };
 }

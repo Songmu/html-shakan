@@ -2,8 +2,8 @@ package HTML::Shakan::Filter::Default;
 use strict;
 use warnings;
 
-sub init {
-    +{
+sub filters {
+    {
         'WhiteSpace' => sub {
             s/^\s+//;
             s/\s+$//;
