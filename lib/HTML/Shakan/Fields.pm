@@ -8,8 +8,14 @@ our @EXPORT = qw(
     EmailField
     PasswordField
     FileField
-    SelectField
+    ChoiceField
 );
+
+# DateField
+# DateTimeField
+# UIntField
+# ImageField
+# TimeField
 
 sub _input {
     +{ widget => 'input', @_ };
@@ -33,7 +39,7 @@ sub FileField {
     _input(type => 'file', @_);
 }
 
-sub SelectField {
+sub ChoiceField {
     +{ widget => 'select', @_ };
 }
 
