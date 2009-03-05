@@ -18,8 +18,16 @@ our @EXPORT = qw(
 # ImageField
 # TimeField
 
+sub _base {
+    my %args = @_;
+    if (delete $args{required}) {
+        push @{$args{constraints}}, 'NOT_NULL';
+    }
+    \%args;
+}
+
 sub _input {
-    +{ widget => 'input', @_ };
+    _base( widget => 'input', @_ );
 }
 
 sub TextField {
@@ -47,7 +55,7 @@ sub FileField {
 }
 
 sub ChoiceField {
-    +{ widget => 'select', @_ };
+    _base( widget => 'select', @_ );
 }
 
 1;
