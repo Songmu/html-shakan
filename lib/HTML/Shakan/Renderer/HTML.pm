@@ -19,15 +19,9 @@ sub render {
                 sprintf( q{<label for="%s">%s</label>},
                 $field->{id}, encode_entities( $field->{label} ) );
         }
-        $res .= $self->render_field($form => $field);
+        $res .= $form->widgets->render( $field );
     }
     $res;
-}
-
-sub render_field {
-    my ($self, $form, $field) = @_;
-    my $widget = $field->{widget} or die 'missing widget info';
-    $form->widgets->render($widget, $form, $field );
 }
 
 

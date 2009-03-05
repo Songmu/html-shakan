@@ -10,4 +10,5 @@ my $form = HTML::Shakan->new(
 );
 is $form->widgets->render( EmailField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" type="text" />';
 is $form->widgets->render( TextField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" type="text" />';
+is $form->widgets->render( PasswordField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" type="password" />';
 
