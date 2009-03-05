@@ -24,7 +24,6 @@ sub render {
     $res;
 }
 
-
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
 __END__
