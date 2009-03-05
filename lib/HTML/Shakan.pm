@@ -1,12 +1,13 @@
 package HTML::Shakan;
 use Any::Moose;
 our $VERSION = '0.01';
+use Carp ();
+use Storable 'dclone';
+
 use HTML::Shakan::Renderer::HTML;
 use HTML::Shakan::Fields;
 use HTML::Shakan::Filters;
 use HTML::Shakan::Widgets::Default;
-use Carp ();
-use Storable 'dclone';
 
 sub import {
     HTML::Shakan::Fields->export_to_level(1);
