@@ -3,8 +3,10 @@ use Any::Moose;
 our $VERSION = '0.01';
 use HTML::Shakan::Renderer::HTML;
 use HTML::Shakan::Fields;
+use HTML::Shakan::Filters;
 use HTML::Shakan::Widgets::Default;
 use Carp ();
+use Storable 'dclone';
 
 sub import {
     HTML::Shakan::Fields->export_to_level(1);
@@ -20,12 +22,15 @@ has validator => (
         HTML::Shakan::Validator::FVLite->new(form => $self);
     },
 );
-sub is_valid {
-    my $self = shift;
-    Carp::croak('request is required for validation') unless $self->request;
-
-    $self->validator->is_valid($self);
-}
+has 'is_valid' => (
+    is => 'rw',
+    isa => 'Bool',
+    lazy => 1,
+    default => sub {
+        my $self = shift;
+        $self->validator->is_valid($self);
+    },
+);
 
 has instance => (
     is => 'rw',
@@ -56,8 +61,6 @@ sub fillin_param {
         return $self->model->fillin_param($key);
     } elsif ($self->request) {
         return $self->request->param($key);
-    } else {
-        return;
     }
 }
 
@@ -70,6 +73,7 @@ has fields => (
 has request => (
     is       => 'ro',
     isa      => 'Object',
+    required => 1,
 );
 
 has 'widgets' => (
@@ -80,6 +84,41 @@ has 'widgets' => (
         HTML::Shakan::Widgets::Default->new(form => $self);
     },
 );
+
+has '_filtered_param' => (
+    is => 'ro',
+    isa => 'HashRef',
+    lazy => 1,
+    default => sub {
+        my $self = shift;
+        my $req = dclone($self->request);
+        for my $field (@{$self->fields}) {
+            if (my $filter = $field->{filter}) {
+                my $name = $field->{name};
+                my @param = $req->param($name);
+                $req->param(
+                    $name,
+                    (map {
+                            HTML::Shakan::Filters->filter(
+                                $filter, $_
+                            )
+                         }
+                         $req->param($name))
+                );
+            }
+        }
+        $req;
+    },
+);
+
+sub cleaned_param {
+    my $self = shift;
+    if ($self->is_valid) {
+        $self->_filtered_param->param(@_);
+    } else {
+        return undef;
+    }
+}
 
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
