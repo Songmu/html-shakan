@@ -26,9 +26,9 @@ is $form->widgets->render( ChoiceField( name => 'foo', id => 'name_field', choic
 # choices-field + radio-widgets
 is $form->widgets->render( ChoiceField( widget => 'radio', name => 'foo', id => 'name_field', choices => ['a' => 1, 'b' => 2, 'c' => 3] ) ), trim(<<'...');
 <ul>
-<li><input type="radio" value="a" />1</li>
-<li><input type="radio" value="b" />2</li>
-<li><input type="radio" value="c" />3</li>
+<li><label><input type="radio" value="a" />1</label></li>
+<li><label><input type="radio" value="b" />2</label></li>
+<li><label><input type="radio" value="c" />3</label></li>
 </ul>
 ...
 

@@ -59,7 +59,7 @@ sub widget_radio {
     my @t;
     push @t, "<ul>";
     while (my ($a, $b) = splice @$choices, 0, 2) {
-        push @t, sprintf(q{<li><input type="radio" value="%s" />%s</li>}, $a, $b);
+        push @t, sprintf(q{<li><label><input type="radio" value="%s" />%s</label></li>}, $a, $b);
     }
     push @t, "</ul>";
     join "\n", @t;
