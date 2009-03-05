@@ -1,2 +1,13 @@
-- fillin_form support
-- bind model
+- fillin_form support(radio widget)
+- bind model(Data::Model)
+- DateField - widget
+- DateTimeField - widget
+- UIntField - widget
+- ImageField - widget
+- TimeField - widget
+- DateField - validation
+- DateTimeField - validation
+- UIntField - validation
+- ImageField - validation
+- TimeField - validation
+

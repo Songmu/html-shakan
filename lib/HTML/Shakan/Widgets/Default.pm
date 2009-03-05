@@ -39,10 +39,16 @@ sub widget_select {
 
     my $choices = delete $field->{choices};
 
+    my $value = $self->form->fillin_param($field->{name});
+
     my @t;
     push @t, sprintf(q{<select %s>}, _attr(%$field));
     while (my ($a, $b) = splice @$choices, 0, 2) {
-        push @t, sprintf(q{<option value="%s">%s</option>}, $a, $b);
+        push @t, sprintf(
+            q{<option value="%s"%s>%s</option>},
+            $a,
+            ($value && $value eq $a ? ' selected="selected"' : ''),
+            $b);
     }
     push @t, q{</select>};
     return join '', @t;
@@ -53,10 +59,17 @@ sub widget_radio {
 
     my $choices = delete $field->{choices};
 
+    my $value = $self->form->fillin_param($field->{name});
+
     my @t;
     push @t, "<ul>";
     while (my ($a, $b) = splice @$choices, 0, 2) {
-        push @t, sprintf(q{<li><label><input type="radio" value="%s" />%s</label></li>}, $a, $b);
+        push @t, sprintf(
+            q{<li><label><input type="radio" value="%s"%s />%s</label></li>},
+            $a,
+            ($value && $value eq $a ? ' checked="checked"' : ''),
+            $b
+        );
     }
     push @t, "</ul>";
     join "\n", @t;
