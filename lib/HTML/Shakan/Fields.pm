@@ -8,14 +8,15 @@ our @EXPORT = qw(
     EmailField
     PasswordField
     FileField
+    SelectField
 );
 
-sub _base {
-    +{ @_ };
+sub _input {
+    +{ widget => 'input', @_ };
 }
 
 sub TextField {
-    _base(type => 'text', @_);
+    _input(type => 'text', @_);
 }
 
 sub EmailField {
@@ -25,11 +26,15 @@ sub EmailField {
 }
 
 sub PasswordField {
-    _base(type => 'password', @_);
+    _input(type => 'password', @_);
 }
 
 sub FileField {
-    _base(type => 'file', @_);
+    _input(type => 'file', @_);
+}
+
+sub SelectField {
+    +{ widget => 'select', @_ };
 }
 
 1;

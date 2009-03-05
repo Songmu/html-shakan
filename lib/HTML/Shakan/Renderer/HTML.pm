@@ -1,5 +1,6 @@
 package HTML::Shakan::Renderer::HTML;
 use Any::Moose;
+use HTML::Shakan::Widgets::Default;
 use HTML::Entities 'encode_entities';
 
 has 'id_tmpl' => (
@@ -8,11 +9,23 @@ has 'id_tmpl' => (
     default => 'id_%s',
 );
 
+has 'widgets' => (
+    is => 'ro',
+    isa => 'Object',
+    default => sub { HTML::Shakan::Widgets::Default->new },
+);
+
 sub render {
     my ($self, $form) = @_;
 
     my $res = '';
     for my $field (@{$form->fields}) {
+        $field->{id} ||= sprintf($self->id_tmpl(), $field->{name});
+        if ($field->{label}) {
+            $res .=
+                sprintf( q{<label for="%s">%s</label>},
+                $field->{id}, encode_entities( $field->{label} ) );
+        }
         $res .= $self->render_field($form => $field);
     }
     $res;
@@ -20,20 +33,10 @@ sub render {
 
 sub render_field {
     my ($self, $form, $field) = @_;
-    my @t;
-    my $id = $field->{id} || sprintf($self->id_tmpl(), $field->{name});
-    if ($field->{label}) {
-        push @t,
-            sprintf( q{<label for="%s">%s</label>},
-            $id, encode_entities( $field->{label} ) );
-    }
-    push @t, sprintf(q{<input id="%s" type="%s" }, $id, $field->{type}||'');
-    if (my $value = $form->fillin_param($field->{name})) {
-        push @t, sprintf(q{value="%s" }, encode_entities($value));
-    }
-    push @t, "/>";
-    return join '', @t;
+    my $widget = $field->{widget} or die 'missing widget info';
+    $self->widgets->render($widget, $form, $field );
 }
+
 
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;

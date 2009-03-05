@@ -27,13 +27,13 @@ do {
         fields => [ ],
     );
     is $form->renderer->render_field(
-        $form, PasswordField( name => 'yay', label => 'foo' )
+        $form, PasswordField( name => 'yay', label => 'foo', id => 'id_yay' )
       ),
-      '<label for="id_yay">foo</label><input id="id_yay" type="password" />';
+      '<input id="id_yay" type="password" />';
     is $form->renderer->render_field(
-        $form, EmailField( name => 'yay', label => 'foo' )
+        $form, EmailField( name => 'yay', label => 'foo', id => 'id_yay' )
       ),
-      '<label for="id_yay">foo</label><input id="id_yay" type="text" />';
+      '<input id="id_yay" type="text" />';
 };
 
 do {
@@ -42,8 +42,8 @@ do {
         fields => [ ],
     );
     is $form->renderer->render_field(
-        $form, TextField( name => 'yay', label => 'foo<>')
+        $form, TextField( name => 'yay', label => 'foo<>', id => 'id_yay')
       ),
-      '<label for="id_yay">foo&lt;&gt;</label><input id="id_yay" type="text" value="hoge&lt;&gt;" />', 'fillin';
+      '<input id="id_yay" type="text" value="hoge&lt;&gt;" />', 'fillin';
 }
 

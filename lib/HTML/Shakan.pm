@@ -95,12 +95,14 @@ HTML::Shakan - form html generator/validator
     }
     sub edit {
         my $req = shift;
+        my $instance = $model->retrieve($req->param('id'));
         my $form = form(
             $req => (
                 TextField(name => 'name', label => 'Your name', filter => [qw/WhiteSpace/]),
                 EmailField(name => 'email', label => 'Your email'),
-            )
+            ),
         );
+        $form->model->instance;
         if ($req->submitted_and_valid) {
             $form->model->update;
             redirect('edit_thanks');
