@@ -18,6 +18,7 @@ sub _attr {
     my %attr = @_;
     my @ret;
     for my $key (sort keys %attr) {
+        next if $key =~ /^(?:constraints|label)$/;
         push @ret, sprintf(q{%s="%s"}, $key, encode_entities($attr{$key}));
     }
     join ' ', @ret;
@@ -26,15 +27,11 @@ sub _attr {
 sub widget_input {
     my ($self, $field) = @_;
 
-    my @t;
-    # TODO: id should be optional
-    # TODO: name=?
-    push @t, sprintf(q{<input id="%s" type="%s" }, $field->{id}, $field->{type}||'');
     if (my $value = $self->form->fillin_param($field->{name})) {
-        push @t, sprintf(q{value="%s" }, encode_entities($value));
+        $field->{value} = $value;
     }
-    push @t, "/>";
-    return join '', @t;
+
+    return '<input ' . _attr(%$field) . " />";
 }
 
 sub widget_select {

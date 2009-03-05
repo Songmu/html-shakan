@@ -18,6 +18,6 @@ do {
             TextField(name => 'yay', label => 'foo')
         ],
     );
-    is $form->render, '<label for="id_yay">foo</label><input id="id_yay" type="text" />';
+    is $form->render, '<label for="id_yay">foo</label><input id="id_yay" name="yay" type="text" />';
 };
 
