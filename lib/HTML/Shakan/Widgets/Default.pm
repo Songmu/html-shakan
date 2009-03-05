@@ -8,7 +8,8 @@ sub render {
 
     my %field = %$field;
     my $type = delete $field{widget} or die "invalid field: missing widget name";
-    $self->can("widget_${type}")->(
+    my $code = $self->can("widget_${type}") or die "unknown widget type: $type";
+    $code->(
         $self, \%field
     );
 }
@@ -37,7 +38,7 @@ sub widget_input {
 }
 
 sub widget_select {
-    my ($select, $field) = @_;
+    my ($self, $field) = @_;
 
     my $choices = delete $field->{choices};
 
@@ -48,6 +49,20 @@ sub widget_select {
     }
     push @t, q{</select>};
     return join '', @t;
+}
+
+sub widget_radio {
+    my ($self, $field) = @_;
+
+    my $choices = delete $field->{choices};
+
+    my @t;
+    push @t, "<ul>";
+    while (my ($a, $b) = splice @$choices, 0, 2) {
+        push @t, sprintf(q{<li><input type="radio" value="%s" />%s</li>}, $a, $b);
+    }
+    push @t, "</ul>";
+    join "\n", @t;
 }
 
 no Any::Moose;

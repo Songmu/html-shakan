@@ -2,7 +2,13 @@ use strict;
 use warnings;
 use CGI;
 use HTML::Shakan;
-use Test::More tests => 6;
+use Test::More tests => 7;
+
+sub trim {
+    local $_ = shift;
+    $_ =~ s/\n$//;
+    $_;
+}
 
 my $form = HTML::Shakan->new(
     request => CGI->new({}),
@@ -13,6 +19,16 @@ is $form->widgets->render( TextField( name => 'foo', id => 'name_field' ) ), '<i
 is $form->widgets->render( PasswordField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" type="password" />';
 is $form->widgets->render( FileField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" type="file" />';
 
+# choices-field + select-widgets
 is $form->widgets->render( ChoiceField( name => 'foo', id => 'name_field' ) ), '<select id="name_field" name="foo"></select>';
 is $form->widgets->render( ChoiceField( name => 'foo', id => 'name_field', choices => ['a' => 1, 'b' => 2, 'c' => 3] ) ), '<select id="name_field" name="foo"><option value="a">1</option><option value="b">2</option><option value="c">3</option></select>';
+
+# choices-field + radio-widgets
+is $form->widgets->render( ChoiceField( widget => 'radio', name => 'foo', id => 'name_field', choices => ['a' => 1, 'b' => 2, 'c' => 3] ) ), trim(<<'...');
+<ul>
+<li><input type="radio" value="a" />1</li>
+<li><input type="radio" value="b" />2</li>
+<li><input type="radio" value="c" />3</li>
+</ul>
+...
 
