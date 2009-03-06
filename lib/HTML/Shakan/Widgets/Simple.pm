@@ -1,4 +1,4 @@
-package HTML::Shakan::Widgets::Default;
+package HTML::Shakan::Widgets::Simple;
 use Any::Moose;
 with 'HTML::Shakan::Role::Widgets';
 use HTML::Entities 'encode_entities';

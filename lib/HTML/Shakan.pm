@@ -7,7 +7,7 @@ use Storable 'dclone';
 use HTML::Shakan::Renderer::HTML;
 use HTML::Shakan::Fields;
 use HTML::Shakan::Filters;
-use HTML::Shakan::Widgets::Default;
+use HTML::Shakan::Widgets::Simple;
 
 sub import {
     HTML::Shakan::Fields->export_to_level(1);
@@ -82,7 +82,7 @@ has 'widgets' => (
     isa => 'Object',
     default => sub {
         my $self = shift;
-        HTML::Shakan::Widgets::Default->new(form => $self);
+        HTML::Shakan::Widgets::Simple->new(form => $self);
     },
 );
 
