@@ -30,4 +30,4 @@ __END__
 
 =head1 DESCRIPTION
 
-simple html renderer for html::shakan.
+simple HTML renderer for HTML::Shakan.

@@ -188,7 +188,7 @@ THIS IS BETA.API WILL CHANGE.
 
 =head1 What's shakan
 
-Shakan is 左官 in japanese.
+Shakan is 左官 in Japanese.
 
 If you want to know about shakan, please see L<http://www.konuma-sakan.com/index2.html>
 
