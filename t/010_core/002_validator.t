@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use HTML::Shakan;
-use Test::More tests => 9;
+use Test::More tests => 13;
 use CGI;
 
 sub check {
@@ -46,6 +46,15 @@ check(
 check(
     [ UIntField( name => 'u' ) ],
     [ CGI->new( { u => '-1' } ), 0 ],
+    [ CGI->new( { u => 'abc' } ), 0 ],
+    [ CGI->new( { u => '3' } ), 1 ]
+);
+
+# IntField
+check(
+    [ IntField( name => 'u' ) ],
+    [ CGI->new( { u => '1.2' } ), 0 ],
+    [ CGI->new( { u => '-1' } ), 1 ],
     [ CGI->new( { u => 'abc' } ), 0 ],
     [ CGI->new( { u => '3' } ), 1 ]
 );

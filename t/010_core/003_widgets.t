@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use CGI;
 use HTML::Shakan;
-use Test::More tests => 10;
+use Test::More tests => 11;
 
 sub trim {
     local $_ = shift;
@@ -17,6 +17,7 @@ my $form = HTML::Shakan->new(
 is $form->widgets->render( EmailField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
 is $form->widgets->render( TextField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
 is $form->widgets->render( UIntField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
+is $form->widgets->render( IntField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
 is $form->widgets->render( URLField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
 is $form->widgets->render( PasswordField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="password" />';
 is $form->widgets->render( FileField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="file" />';
