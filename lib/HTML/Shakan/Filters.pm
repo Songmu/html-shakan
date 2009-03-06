@@ -1,26 +1,25 @@
 package HTML::Shakan::Filters;
 use strict;
 use warnings;
+use Scalar::Util 'blessed';
 
-my $filters = {};
-
-__PACKAGE__->install_filters('Default');
-
-sub install_filters {
-    my ($class, $pkg) = @_;
+sub _get_filter {
+    my $pkg = shift;
     $pkg = $pkg =~ s/^\+// ? $pkg : "HTML::Shakan::Filter::$pkg";
     Any::Moose::load_class($pkg);
-    $filters = +{ %$filters, %{$pkg->filters()} };
+    return $pkg->new();
 }
 
 sub filter {
     my ($class, $filter_ary, $val) = @_;
     $filter_ary = [$filter_ary] unless ref $filter_ary;
-    local $_ = $val;
     for my $filter (@$filter_ary) {
-        $filters->{$filter}->();
+        unless (blessed $filter) {
+            $filter = _get_filter($filter);
+        }
+        $val = $filter->filter($val);
     }
-    $_;
+    $val;
 }
 
 1;

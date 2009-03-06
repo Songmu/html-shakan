@@ -5,3 +5,5 @@
 - FileField - validation
 - rename validator/fvl.pm => validator.pm
 - inflate datetime
+- one filter class contains only one filter :P
+- add Filter::HTMLScrubber

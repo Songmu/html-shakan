@@ -13,3 +13,9 @@
 - imager 連携(optional)
 - TT には依存しない
 
+=head1 DESIGN ISSUE
+
+=head2 Filter は1クラス1フィルタにするか
+
+基本的には、1クラス1フィルタで、動的にロードすればいい。
+
