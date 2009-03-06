@@ -52,7 +52,7 @@ sub widget_select {
             $b);
     }
     push @t, q{</select>};
-    return join '', @t;
+    return join "\n", @t;
 }
 
 sub widget_radio {
