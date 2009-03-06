@@ -7,7 +7,7 @@ use Storable 'dclone';
 use HTML::Shakan::Renderer::HTML;
 use HTML::Shakan::Filters;
 use HTML::Shakan::Widgets::Simple;
-use HTML::Shakan::Validator::FVLite;
+use HTML::Shakan::Validator;
 use HTML::Shakan::Fields;
 use HTML::Shakan::Field::Input;
 use HTML::Shakan::Field::Date;
@@ -23,7 +23,7 @@ has validator => (
     lazy => 1,
     default => sub {
         my $self = shift;
-        HTML::Shakan::Validator::FVLite->new(form => $self);
+        HTML::Shakan::Validator->new(form => $self);
     },
 );
 has 'is_valid' => (

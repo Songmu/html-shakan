@@ -1,7 +1,12 @@
-package HTML::Shakan::Validator::FVLite;
+package HTML::Shakan::Validator;
 use Any::Moose;
 use FormValidator::Lite 'Email', 'URL';
-with 'HTML::Shakan::Role::Validator';
+
+has 'form' => (
+    is       => 'ro',
+    weak_ref => 1,
+    required => 1,
+);
 
 has 'fvl' => (
     is => 'ro',
