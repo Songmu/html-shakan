@@ -2,6 +2,7 @@ package HTML::Shakan::Widgets::Default;
 use Any::Moose;
 with 'HTML::Shakan::Role::Widgets';
 use HTML::Entities 'encode_entities';
+use List::MoreUtils qw/zip/;
 
 sub render {
     my ($self, $field) = @_;
@@ -72,6 +73,32 @@ sub widget_radio {
         );
     }
     push @t, "</ul>";
+    join "\n", @t;
+}
+
+sub widget_date {
+    my ($self, $field) = @_;
+    my $name = $field->{name} or die "missing name";
+    my $years = $field->{years} or die "missing years";
+
+    my $set = sub {
+        my ($choices, $suffix) = @_;
+        $self->widget_select({
+            name => "${name}_${suffix}",
+            choices => [zip(@$choices, @$choices)],
+        });
+    };
+
+    my @t;
+
+    push @t, '<span>';
+
+    push @t, $set->($years, 'year');
+    push @t, $set->([1..12], 'month');
+    push @t, $set->([1..31], 'day');
+
+    push @t, '</span>';
+
     join "\n", @t;
 }
 

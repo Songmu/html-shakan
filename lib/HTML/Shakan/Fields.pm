@@ -20,7 +20,6 @@ our @EXPORT = qw(
     DateField
 );
 
-# DateField
 # DateTimeField
 # ImageField
 # TimeField
@@ -33,6 +32,7 @@ sub _push_constraints {
 
 sub _base {
     my %args = @_;
+    $args{name} or die "missing name attribute for field";
     if (delete $args{required}) {
         push @{$args{constraints}}, 'NOT_NULL';
     }
@@ -77,6 +77,12 @@ sub ImageField {
 
 sub ChoiceField {
     _base( widget => 'select', @_ );
+}
+
+sub DateField {
+    my $f = _base( widget => 'date', @_ );
+    $f->{years} or die "missing years";
+    $f;
 }
 
 1;
