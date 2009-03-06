@@ -1,8 +1,5 @@
 - bind model(Data::Model)
-- DateTimeField - widget
-- TimeField - widget
 - DateField - validation
-- DateTimeField - validation
 - ImageField - validation
 - TimeField - validation
 - FileField - validation
