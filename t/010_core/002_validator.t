@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use HTML::Shakan;
-use Test::More tests => 6;
+use Test::More tests => 9;
 use CGI;
 
 sub check {
@@ -42,3 +42,10 @@ check(
     [ CGI->new( { u => 'http://mixi.jp' } ), 1 ]
 );
 
+# UIntField
+check(
+    [ UIntField( name => 'u' ) ],
+    [ CGI->new( { u => '-1' } ), 0 ],
+    [ CGI->new( { u => 'abc' } ), 0 ],
+    [ CGI->new( { u => '3' } ), 1 ]
+);

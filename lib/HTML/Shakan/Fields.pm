@@ -7,6 +7,7 @@ our @EXPORT = qw(
     TextField
     EmailField
     URLField
+    UIntField
 
     PasswordField
 
@@ -20,7 +21,6 @@ our @EXPORT = qw(
 
 # DateField
 # DateTimeField
-# UIntField
 # ImageField
 # TimeField
 
@@ -52,6 +52,10 @@ sub EmailField {
 
 sub URLField {
     _push_constraints(TextField(@_), 'HTTP_URL');
+}
+
+sub UIntField {
+    _push_constraints(TextField(@_), 'UINT');
 }
 
 sub PasswordField {
