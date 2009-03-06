@@ -3,6 +3,7 @@ name 'HTML-Shakan';
 all_from 'lib/HTML/Shakan.pm';
 
 requires 'FormValidator::Lite';
+requires 'List::MoreUtils' => 0.22;
 
 recommends 'Lingua::JA::Regular::Unicode';
 
