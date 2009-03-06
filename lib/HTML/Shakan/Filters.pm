@@ -12,7 +12,7 @@ sub _get_filter {
 
 sub filter {
     my ($class, $filter_ary, $val) = @_;
-    $filter_ary = [$filter_ary] unless ref $filter_ary;
+    $filter_ary = [$filter_ary] unless (ref $filter_ary||'') eq 'ARRAY';
     for my $filter (@$filter_ary) {
         unless (blessed $filter) {
             $filter = _get_filter($filter);
