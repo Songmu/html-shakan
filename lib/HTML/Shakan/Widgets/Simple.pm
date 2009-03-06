@@ -7,43 +7,44 @@ use List::MoreUtils qw/zip/;
 sub render {
     my ($self, $field) = @_;
 
-    my %field = %$field;
-    my $type = delete $field{widget} or die "invalid field: missing widget name";
+    my $type = $field->widget;
     my $code = $self->can("widget_${type}") or die "unknown widget type: $type";
     $code->(
-        $self, \%field
+        $self, $field
     );
 }
 
 sub _attr {
-    my %attr = @_;
+    my $attr = shift;
+
     my @ret;
-    for my $key (sort keys %attr) {
-        next if $key =~ /^(?:constraints|label)$/;
-        push @ret, sprintf(q{%s="%s"}, $key, encode_entities($attr{$key}));
+
+    for my $key (sort keys %$attr) {
+        push @ret, sprintf(q{%s="%s"}, encode_entities($key), encode_entities($attr->{$key}));
     }
     join ' ', @ret;
 }
+
 
 sub widget_input {
     my ($self, $field) = @_;
 
     if (my $value = $self->form->fillin_param($field->{name})) {
-        $field->{value} = $value;
+        $field->value($value);
     }
 
-    return '<input ' . _attr(%$field) . " />";
+    return '<input ' . _attr($field->attr) . " />";
 }
 
 sub widget_select {
     my ($self, $field) = @_;
 
-    my $choices = delete $field->{choices};
+    my $choices = $field->{choices};
 
     my $value = $self->form->fillin_param($field->{name});
 
     my @t;
-    push @t, sprintf(q{<select %s>}, _attr(%$field));
+    push @t, sprintf(q{<select %s>}, _attr($field->attr));
     while (my ($a, $b) = splice @$choices, 0, 2) {
         push @t, sprintf(
             q{<option value="%s"%s>%s</option>},
@@ -83,10 +84,12 @@ sub widget_date {
 
     my $set = sub {
         my ($choices, $suffix) = @_;
-        $self->widget_select({
-            name => "${name}_${suffix}",
-            choices => [zip(@$choices, @$choices)],
-        });
+        $self->widget_select(
+            HTML::Shakan::Field::Choice->new(
+                name => "${name}_${suffix}",
+                choices => [zip(@$choices, @$choices)],
+            )
+        );
     };
 
     my @t;

@@ -13,10 +13,18 @@ has 'fvl' => (
 sub is_valid {
     my $self = shift;
 
-    $self->fvl->check(
-        map { $_->{name} => $_->{constraints}||[] }
-        @{$self->form->fields}
-    );
+    my @c;
+    for my $field (@{ $self->form->fields }) {
+        my $rule = $field->{constraints};
+        if ($field->required) {
+            push @$rule, 'NOT_NULL';
+        }
+        push @c, (
+            $field->name => $rule,
+        );
+    }
+
+    $self->fvl->check(@c);
     $self->fvl->is_valid() ? 1 : 0;
 }
 

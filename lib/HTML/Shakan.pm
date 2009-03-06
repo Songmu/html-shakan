@@ -8,6 +8,7 @@ use HTML::Shakan::Renderer::HTML;
 use HTML::Shakan::Fields;
 use HTML::Shakan::Filters;
 use HTML::Shakan::Widgets::Simple;
+use HTML::Shakan::Validator::FVLite;
 
 sub import {
     HTML::Shakan::Fields->export_to_level(1);
@@ -19,7 +20,6 @@ has validator => (
     lazy => 1,
     default => sub {
         my $self = shift;
-        Any::Moose::load_class('HTML::Shakan::Validator::FVLite');
         HTML::Shakan::Validator::FVLite->new(form => $self);
     },
 );
@@ -94,18 +94,20 @@ has '_filtered_param' => (
         my $self = shift;
         my $req = dclone($self->request);
         for my $field (@{$self->fields}) {
-            if (my $filter = $field->{filter}) {
-                my $name = $field->{name};
-                my @param = $req->param($name);
-                $req->param(
-                    $name,
-                    (map {
-                            HTML::Shakan::Filters->filter(
-                                $filter, $_
-                            )
-                         }
-                         $req->param($name))
-                );
+            if (my $filters = $field->{filters}) {
+                for my $filter (@{$filters}) {
+                    my $name = $field->name;
+                    my @param = $req->param($name);
+                    $req->param(
+                        $name,
+                        (map {
+                                HTML::Shakan::Filters->filter(
+                                    $filter, $_
+                                )
+                            }
+                            $req->param($name))
+                    );
+                }
             }
         }
         $req;

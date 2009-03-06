@@ -2,6 +2,11 @@ package HTML::Shakan::Fields;
 use strict;
 use warnings;
 use base 'Exporter';
+use Params::Validate ':all';
+use HTML::Shakan::Field::Input;
+use HTML::Shakan::Field::Date;
+use HTML::Shakan::Field::Choice;
+use Carp ();
 
 our @EXPORT = qw(
     TextField
@@ -24,23 +29,8 @@ our @EXPORT = qw(
 # ImageField
 # TimeField
 
-sub _push_constraints {
-    my ($field, $constraint) = @_;
-    push @{$field->{constraints}}, $constraint;
-    $field;
-}
-
-sub _base {
-    my %args = @_;
-    $args{name} or die "missing name attribute for field";
-    if (delete $args{required}) {
-        push @{$args{constraints}}, 'NOT_NULL';
-    }
-    \%args;
-}
-
 sub _input {
-    _base( widget => 'input', @_ );
+    HTML::Shakan::Field::Input->new( @_ );
 }
 
 sub TextField {
@@ -48,19 +38,19 @@ sub TextField {
 }
 
 sub EmailField {
-    _push_constraints(TextField(@_), 'EMAIL_LOOSE');
+    TextField(@_)->add_constraint('EMAIL_LOOSE');
 }
 
 sub URLField {
-    _push_constraints(TextField(@_), 'HTTP_URL');
+    TextField(@_)->add_constraint('HTTP_URL');
 }
 
 sub UIntField {
-    _push_constraints(TextField(@_), 'UINT');
+    TextField(@_)->add_constraint('UINT');
 }
 
 sub IntField {
-    _push_constraints(TextField(@_), 'INT');
+    TextField(@_)->add_constraint('INT');
 }
 
 sub PasswordField {
@@ -72,17 +62,15 @@ sub FileField {
 }
 
 sub ImageField {
-    _push_constraints(FileField(@_), 'VALID_IMAGE');
+    FileField(@_)->add_constraint('IMAGE');
 }
 
 sub ChoiceField {
-    _base( widget => 'select', @_ );
+    HTML::Shakan::Field::Choice->new( @_ );
 }
 
 sub DateField {
-    my $f = _base( widget => 'date', @_ );
-    $f->{years} or die "missing years";
-    $f;
+    HTML::Shakan::Field::Date->new( @_ );
 }
 
 1;

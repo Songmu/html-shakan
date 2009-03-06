@@ -24,7 +24,7 @@ is $form->widgets->render( FileField( name => 'foo', id => 'name_field' ) ), '<i
 is $form->widgets->render( ImageField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="file" />';
 
 # choices-field + select-widgets
-is $form->widgets->render( ChoiceField( name => 'foo', id => 'name_field' ) ), qq{<select id="name_field" name="foo">\n</select>};
+is $form->widgets->render( ChoiceField( name => 'foo', id => 'name_field', choices => [] ) ), qq{<select id="name_field" name="foo">\n</select>};
 is $form->widgets->render( ChoiceField( name => 'foo', id => 'name_field', choices => ['a' => 1, 'b' => 2, 'c' => 3] ) ), trim(<<'...');
 <select id="name_field" name="foo">
 <option value="a">1</option>

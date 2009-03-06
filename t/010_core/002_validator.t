@@ -5,19 +5,19 @@ use Test::More tests => 13;
 use CGI;
 
 sub check {
-    my ($fields, @plan) = @_;
+    my ($type, $fields, @plan) = @_;
 
     for my $args (@plan) {
         my $form = HTML::Shakan->new(
             request => $args->[0],
             fields => $fields,
         );
-        is $form->is_valid, $args->[1];
+        is $form->is_valid, $args->[1], $type;
     }
 }
 
-# TextField
 check(
+    'TextField(required)',
     [
         TextField(
             name     => 'name',
@@ -28,30 +28,30 @@ check(
     [ CGI->new( { name => 'oo' } ), 1 ]
 );
 
-# EmailField
 check(
+    'EmailField',
     [ EmailField( name => 'email' ) ],
     [ CGI->new( { email => 'oo' } ),             0 ],
     [ CGI->new( { email => 'oo@example.com' } ), 1 ]
 );
 
-# URLField
 check(
+    'URLField',
     [ URLField( name => 'u' ) ],
     [ CGI->new( { u => 'm' } ), 0 ],
     [ CGI->new( { u => 'http://mixi.jp' } ), 1 ]
 );
 
-# UIntField
 check(
+    'UIntField',
     [ UIntField( name => 'u' ) ],
     [ CGI->new( { u => '-1' } ), 0 ],
     [ CGI->new( { u => 'abc' } ), 0 ],
     [ CGI->new( { u => '3' } ), 1 ]
 );
 
-# IntField
 check(
+    'IntField',
     [ IntField( name => 'u' ) ],
     [ CGI->new( { u => '1.2' } ), 0 ],
     [ CGI->new( { u => '-1' } ), 1 ],

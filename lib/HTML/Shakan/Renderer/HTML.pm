@@ -13,7 +13,9 @@ sub render {
 
     my $res = '';
     for my $field (@{$form->fields}) {
-        $field->{id} ||= sprintf($self->id_tmpl(), $field->{name});
+        unless ($field->id) {
+            $field->id(sprintf($self->id_tmpl(), $field->{name}));
+        }
         if ($field->{label}) {
             $res .=
                 sprintf( q{<label for="%s">%s</label>},
