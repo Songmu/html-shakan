@@ -30,7 +30,12 @@ do {
             ])
         ],
     );
-    is $form->render, '<select id="id_yay" name="yay"><option value="a">1</option><option value="b" selected="selected">2</option></select>';
+    is $form->render, trim(<<'...');
+<select id="id_yay" name="yay">
+<option value="a">1</option>
+<option value="b" selected="selected">2</option>
+</select>
+...
 };
 
 do {
