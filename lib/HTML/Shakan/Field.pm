@@ -79,4 +79,37 @@ sub add_constraint {
 
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
+__END__
+
+=head1 NAME
+
+HTML::Shakan::Field - base class for field object
+
+=head1 ATTRIBUTES
+
+=over 4
+
+=item id
+
+=item name
+
+=item value
+
+=item filters
+
+=item widget
+
+=item attr
+
+=item label
+
+=item required
+
+=item constraints
+
+=back
+
+=head1 AUTHORS
+
+tokuhirom
 
