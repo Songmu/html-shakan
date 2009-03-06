@@ -3,9 +3,6 @@ use strict;
 use warnings;
 use base 'Exporter';
 use Params::Validate ':all';
-use HTML::Shakan::Field::Input;
-use HTML::Shakan::Field::Date;
-use HTML::Shakan::Field::Choice;
 use Carp ();
 
 our @EXPORT = qw(

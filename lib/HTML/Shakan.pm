@@ -5,10 +5,13 @@ use Carp ();
 use Storable 'dclone';
 
 use HTML::Shakan::Renderer::HTML;
-use HTML::Shakan::Fields;
 use HTML::Shakan::Filters;
 use HTML::Shakan::Widgets::Simple;
 use HTML::Shakan::Validator::FVLite;
+use HTML::Shakan::Fields;
+use HTML::Shakan::Field::Input;
+use HTML::Shakan::Field::Date;
+use HTML::Shakan::Field::Choice;
 
 sub import {
     HTML::Shakan::Fields->export_to_level(1);
