@@ -6,9 +6,19 @@ use CGI;
 use Benchmark ':all';
 
 my $q = CGI->new;
+my $renderer = HTML::Shakan::Renderer::HTML->new();
+my $fields = [ TextField( name => 'foo' ) ];
 
 cmpthese(
     10000 => {
+        cached_shakan => sub {
+            my $form = HTML::Shakan->new(
+                request => $q,
+                fields => $fields,
+                rendeerer => $renderer,
+            );
+            '<form method="post">'.$form->render.'</form>';
+        },
         shakan => sub {
             my $form = HTML::Shakan->new(
                 request => $q,

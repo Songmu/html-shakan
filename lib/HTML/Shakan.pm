@@ -276,6 +276,10 @@ form generation
         formfu 1053/s     --   -77%
         shakan 4630/s   340%     --
 
+=head1 tips
+
+Please cache the 'fields' data. Fields instance creation uses a lot of CPU time!
+
 =head1 What's shakan
 
 Shakan is 左官 in Japanese.
