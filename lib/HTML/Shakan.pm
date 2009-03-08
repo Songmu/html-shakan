@@ -2,7 +2,6 @@ package HTML::Shakan;
 use Any::Moose;
 our $VERSION = '0.01';
 use Carp ();
-use Storable 'dclone';
 
 use FormValidator::Lite 'Email', 'URL', 'Date', 'File';
 
@@ -64,14 +63,14 @@ sub _inflate_values {
     }
 }
 
-has instance => (
-    is => 'rw',
-    isa => 'Object',
-);
-
 has model => (
     is => 'rw',
     isa => 'Object',
+    trigger => sub {
+        my ($self, $model) = @_;
+        $model->form($self);
+        $model;
+    },
 );
 
 has renderer => (
@@ -88,13 +87,24 @@ sub render {
 
 sub fillin_param {
     my ($self, $key) = @_;
-
-    if ($self->instance) {
-        return $self->model->fillin_param($key);
-    } elsif ($self->request) {
-        return $self->request->param($key);
-    }
+    $self->fillin_params->{$key};
 }
+has fillin_params => (
+    is => 'ro',
+    isa => 'HashRef',
+    lazy => 1,
+    default => sub {
+        my $self = shift;
+        my $fp = {};
+        for my $name ($self->request->param) {
+            my @v = $self->request->param($name);
+            if (@v) {
+                $fp->{$name} = @v==1 ? $v[0] : \@v;
+            }
+        }
+        $fp;
+    },
+);
 
 has fields => (
     is       => 'ro',

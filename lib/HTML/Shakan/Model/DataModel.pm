@@ -1,0 +1,62 @@
+package HTML::Shakan::Model::DataModel;
+use Any::Moose;
+with 'HTML::Shakan::Role::Model';
+
+sub fill {
+    my ($self, $row) = @_;
+    my $columns = $row->get_columns;
+    while (my ($k, $v) = each %$columns) {
+        $self->form->fillin_params->{$k} = $v;
+    }
+}
+
+sub create {
+    my ($self, $model, $name) = @_;
+    my $row = {};
+    for my $column ($model->get_schema($name)->column_names) {
+        $row->{$column} = $self->form->param($column);
+    }
+    $model->set($name => $row);
+}
+
+sub update {
+    my ($self, $row) = @_;
+    my $dat = {};
+    my $columns = $row->get_columns;
+    for my $column (keys %$columns) {
+        $row->$column($self->form->param($column));
+    }
+    $row->update();
+}
+
+no Any::Moose;
+__PACKAGE__->meta->make_immutable;
+__END__
+
+=head1 SYNOPSIS
+
+    # in edit form
+    my $form = HTML::Shakan->new(
+        model => 'DataModel'
+    );
+    my $row = $dm->lookup('any_table', 1);
+    if ($form->submitted_and_valid) {
+        $form->model->update( $row );
+        redirect('/to/anywhere');
+    } else {
+        $form->model->fill( $row );
+        render_template({form => $form, row => $row});
+    }
+
+    # add form
+    my $form = HTML::Shakan->new(
+        model => 'DataModel'
+    );
+    if ($form->submitted_and_valid) {
+        $form->model->create( $model, 'user' );
+        redirect('/to/anywhere');
+    } else {
+        $form->model->fill( $row );
+        render_template({form => $form, row => $row});
+    }
+
