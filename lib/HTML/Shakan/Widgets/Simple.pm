@@ -36,6 +36,15 @@ sub widget_input {
     return '<input ' . _attr($field->attr) . " />";
 }
 
+sub widget_textarea {
+    my ($self, $field) = @_;
+
+    my $value = $self->form->fillin_param($field->{name}) || '';
+    my $attr = $field->attr;
+    delete $attr->{type}; # textarea tag doesn't need this
+    return '<textarea ' . _attr($field->attr) . ">${value}</textarea>";
+}
+
 sub widget_select {
     my ($self, $field) = @_;
 
