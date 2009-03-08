@@ -272,13 +272,10 @@ THIS IS BETA.API WILL CHANGE.
 
 form generation
 
-                 Rate formfu shakan
-        formfu 1053/s     --   -77%
-        shakan 4630/s   340%     --
-
-=head1 tips
-
-Please cache the 'fields' data. Fields instance creation uses a lot of CPU time!
+                     Rate         formfu         shakan shakan_declare
+    formfu         1057/s             --           -77%           -84%
+    shakan         4695/s           344%             --           -31%
+    shakan_declare 6757/s           539%            44%             --
 
 =head1 What's shakan
 
