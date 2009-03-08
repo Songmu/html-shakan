@@ -4,3 +4,4 @@
 - support multiple value(test test test)
 -- filter
 -- validation
+- split datetime is the job of widget

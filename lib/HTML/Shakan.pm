@@ -143,9 +143,13 @@ sub _build_params {
     my $self = shift;
     my $params = {};
     for my $field (@{$self->fields}) {
-        if ($field->can('field_filter')) {
+        if ($self->widgets->can('field_filter')) {
             # e.g. DateField
-            $params = $field->field_filter($self, $params);
+            $self->widgets->field_filter($self, $field, $params);
+        }
+        if ($field->can('field_filter')) {
+            # e.g. FileField
+            $field->field_filter($self, $params);
         }
 
         my $name = $field->name;
