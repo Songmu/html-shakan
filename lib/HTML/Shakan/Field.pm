@@ -80,12 +80,12 @@ sub add_constraint {
 sub get_constraints {
     my $self = shift;
 
-    my $rule = $self->{constraints};
+    my @rule = @{$self->{constraints}};
     if ($self->required) {
-        push @$rule, 'NOT_NULL';
+        push @rule, 'NOT_NULL';
     }
     return (
-        $self->name => $rule,
+        $self->name => \@rule,
     );
 }
 

@@ -4,7 +4,7 @@ our $VERSION = '0.01';
 use Carp ();
 use Storable 'dclone';
 
-use FormValidator::Lite 'Email', 'URL';
+use FormValidator::Lite 'Email', 'URL', 'Date';
 
 use HTML::Shakan::Renderer::HTML;
 use HTML::Shakan::Filters;
@@ -110,11 +110,19 @@ has 'params' => (
 sub param {
     my $self = shift;
 
+    my $params = $self->params;
+
     # if they want the list of keys ...
-    return keys %{ $self->params } if scalar @_ == 0;
+    return keys %{ $params } if scalar @_ == 0;
 
     # if they want to fetch a particular key ...
-    return $self->params->{ $_[0] } if scalar @_ == 1;
+    if (scalar @_ == 1) {
+        if (exists $params->{$_[0]}) {
+            return $params->{$_[0]};
+        } else {
+            return; # this behavior is same as cgi.pm(iirc)
+        }
+    }
 
     ( ( scalar @_ % 2 ) == 0 )
       || confess "parameter assignment must be an even numbered list";
@@ -131,6 +139,11 @@ sub _build_params {
     my $self = shift;
     my $params = {};
     for my $field (@{$self->fields}) {
+        if ($field->can('field_filter')) {
+            # e.g. DateField
+            $params = $field->field_filter($self, $params);
+        }
+
         my $name = $field->name;
 
         my @val = $self->request->param($name);

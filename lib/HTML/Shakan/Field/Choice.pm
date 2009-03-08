@@ -16,7 +16,6 @@ override 'get_constraints' => sub {
     my $self = shift;
     my ($name, $constraints) = super();
 
-    # NOTE: don't break $constraints itself. this is a ref. to original rule.
     return (
         $name => [
             @$constraints,

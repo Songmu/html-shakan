@@ -1,8 +1,10 @@
 use strict;
 use warnings;
 use HTML::Shakan;
-use Test::More tests => 16;
+use Test::More tests => 18;
 use CGI;
+
+diag "FVL: $FormValidator::Lite::VERSION";
 
 sub check {
     my ($type, $fields, @plan) = @_;
@@ -65,4 +67,15 @@ check(
     [ CGI->new( { u => 'a' } ), 1 ],
     [ CGI->new( { u => 'd' } ), 0 ],
     [ CGI->new( { u => 'ad' } ), 0 ],
+);
+
+check(
+    'DateField',
+    [ DateField( name => 'birthdate', years => [2000..2004], required => 1 ) ],
+    [ CGI->new( { } ), 0 ],
+    [ CGI->new( {
+        'birthdate_year'    => 2004,
+        'birthdate_month'   => 10,
+        'birthdate_day'     => 3,
+    } ), 1 ],
 );
