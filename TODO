@@ -1,6 +1,4 @@
 - bind model(Data::Model)
-- inflate datetime
-- apply filter before run validators
 - support multiple value(test test test)
 -- filter
 -- validation
