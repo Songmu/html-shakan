@@ -76,10 +76,11 @@ has model => (
 has renderer => (
     is => 'rw',
     isa => 'Object',
-    default => sub {
-        HTML::Shakan::Renderer::HTML->new();
-    },
+    builder => '_build_renderer',
 );
+sub _build_renderer {
+    HTML::Shakan::Renderer::HTML->new();
+}
 sub render {
     my $self = shift;
     $self->renderer()->render($self);
@@ -121,11 +122,12 @@ has request => (
 has 'widgets' => (
     is => 'ro',
     isa => 'Object',
-    default => sub {
-        my $self = shift;
-        HTML::Shakan::Widgets::Simple->new(form => $self);
-    },
+    builder => '_build_widgets',
 );
+sub _build_widgets {
+    my $self = shift;
+    HTML::Shakan::Widgets::Simple->new(form => $self);
+}
 
 has 'params' => (
     is => 'rw',
