@@ -14,6 +14,12 @@ use HTML::Shakan::Field::Input;
 use HTML::Shakan::Field::Date;
 use HTML::Shakan::Field::Choice;
 use HTML::Shakan::Field::File;
+BEGIN {
+    if ($ENV{SHAKAN_DEBUG}) {
+        require Smart::Comments;
+        Smart::Comments->import;
+    }
+};
 
 sub import {
     HTML::Shakan::Fields->export_to_level(1);
@@ -36,9 +42,27 @@ has '_fvl' => (
 
         my $fvl = FormValidator::Lite->new($self);
         $fvl->check(@c);
+        if ($fvl->is_valid) {
+            $self->_inflate_values();
+        }
         return $fvl;
     }
 );
+
+sub _inflate_values {
+    my $self = shift;
+
+    # inflate values
+    my $params = $self->params;
+    for my $field (@{ $self->fields }) {
+        if (my $inf = $field->inflator) {
+            my $v = $params->{$field->name};
+            if (defined $v) {
+                $params->{$field->name} = $inf->inflate($v);
+            }
+        }
+    }
+}
 
 has instance => (
     is => 'rw',

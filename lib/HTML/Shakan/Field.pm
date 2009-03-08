@@ -65,6 +65,11 @@ has required => (
     default => 0,
 );
 
+has inflator => (
+    is  => 'ro',
+    isa => 'Object',
+);
+
 has constraints => (
     is  => 'ro',
     isa => 'ArrayRef',

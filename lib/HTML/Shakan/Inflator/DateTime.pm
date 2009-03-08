@@ -1,20 +1,25 @@
 package HTML::Shakan::Inflator::DateTime;
-use strict;
-use warnings;
+use Any::Moose;
 use DateTime;
 use DateTime::Format::HTTP;
 
+has 'time_zone' => (
+    is  => 'ro',
+    isa => 'Str',
+);
+
 sub inflate {
-    my ($self, $opt, $val) = @_;
+    my ($self, $val) = @_;
 
     my $dt = DateTime::Format::HTTP->parse_datetime($val);
-    if (my $tz = $opt->{time_zone}) {
+    if (my $tz = $self->time_zone) {
         $dt->set_time_zone($tz);
     }
     return $dt;
 }
 
-1;
+no Any::Moose;
+__PACKAGE__->meta->make_immutable;
 __END__
 
 =head1 NAME
