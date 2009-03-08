@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use HTML::Shakan;
-use Test::More tests => 13;
+use Test::More tests => 16;
 use CGI;
 
 sub check {
@@ -57,4 +57,12 @@ check(
     [ CGI->new( { u => '-1' } ), 1 ],
     [ CGI->new( { u => 'abc' } ), 0 ],
     [ CGI->new( { u => '3' } ), 1 ]
+);
+
+check(
+    'ChoiceField',
+    [ ChoiceField( name => 'u', choices => [qw/a b c/] ) ],
+    [ CGI->new( { u => 'a' } ), 1 ],
+    [ CGI->new( { u => 'd' } ), 0 ],
+    [ CGI->new( { u => 'ad' } ), 0 ],
 );

@@ -38,13 +38,7 @@ has 'is_valid' => (
 
         my @c;
         for my $field (@{ $self->fields }) {
-            my $rule = $field->{constraints};
-            if ($field->required) {
-                push @$rule, 'NOT_NULL';
-            }
-            push @c, (
-                $field->name => $rule,
-            );
+            push @c, $field->get_constraints();
         }
 
         $self->_fvl->check(@c);

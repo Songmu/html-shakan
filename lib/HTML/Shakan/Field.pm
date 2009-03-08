@@ -77,6 +77,18 @@ sub add_constraint {
     $self; # method chain
 }
 
+sub get_constraints {
+    my $self = shift;
+
+    my $rule = $self->{constraints};
+    if ($self->required) {
+        push @$rule, 'NOT_NULL';
+    }
+    return (
+        $self->name => $rule,
+    );
+}
+
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
 __END__
