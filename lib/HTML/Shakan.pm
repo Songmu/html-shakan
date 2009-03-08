@@ -219,26 +219,26 @@ HTML::Shakan - form html generator/validator
         my $req = shift;
         HTML::Shakan->new(
             fields => [ @_ ],
-            model => 'DataModel',
-            renderer => 'Default',
             request => $req,
+            model => 'DataModel',
         );
     }
     sub edit {
         my $req = shift;
-        my $instance = $model->retrieve($req->param('id'));
+        my $row = $model->get('user' => $req->param('id'));
         my $form = form(
             $req => (
                 TextField(name => 'name', label => 'Your name', filter => [qw/WhiteSpace/]),
                 EmailField(name => 'email', label => 'Your email'),
             ),
         );
-        $form->model->instance;
         if ($req->submitted_and_valid) {
-            $form->model->update;
+            $form->model->update($row);
             redirect('edit_thanks');
+        } else {
+            $form->model->fill($row);
+            render(form => $form);
         }
-        render(form => $form);
     }
     sub add {
         my $req = shift;
@@ -249,7 +249,7 @@ HTML::Shakan - form html generator/validator
             )
         );
         if ($req->submitted_and_valid) {
-            $form->model->insert;
+            $form->model->insert($model => 'user');
             redirect('edit_thanks');
         }
         render(form => $form);
