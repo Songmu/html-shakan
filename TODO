@@ -3,5 +3,4 @@
 - ImageField - validation
 - TimeField - validation
 - FileField - validation
-- rename validator/fvl.pm => validator.pm
 - inflate datetime
