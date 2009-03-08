@@ -15,5 +15,5 @@ my $form = HTML::Shakan->new(
     ],
 );
 is $form->is_valid(), 1;
-is $form->cleaned_param('f'), 'oo';
+is $form->param('f'), 'oo';
 

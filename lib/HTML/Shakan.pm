@@ -156,15 +156,6 @@ sub _build_params {
     $params;
 }
 
-sub cleaned_param {
-    my $self = shift;
-    if ($self->is_valid) {
-        $self->param(@_);
-    } else {
-        return;
-    }
-}
-
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
 __END__
