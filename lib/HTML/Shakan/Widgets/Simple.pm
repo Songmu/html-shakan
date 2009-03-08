@@ -1,16 +1,16 @@
 package HTML::Shakan::Widgets::Simple;
-use Any::Moose;
-with 'HTML::Shakan::Role::Widgets';
+use strict;
+use warnings;
 use HTML::Entities 'encode_entities';
 use List::MoreUtils qw/zip/;
 
 sub render {
-    my ($self, $field) = @_;
+    my ($self, $form, $field) = @_;
 
     my $type = $field->widget;
     my $code = $self->can("widget_${type}") or die "unknown widget type: $type";
     $code->(
-        $self, $field
+        $self, $form, $field
     );
 }
 
@@ -27,9 +27,9 @@ sub _attr {
 
 
 sub widget_input {
-    my ($self, $field) = @_;
+    my ($self, $form, $field) = @_;
 
-    if (my $value = $self->form->fillin_param($field->{name})) {
+    if (my $value = $form->fillin_param($field->{name})) {
         $field->value($value);
     }
 
@@ -37,20 +37,20 @@ sub widget_input {
 }
 
 sub widget_textarea {
-    my ($self, $field) = @_;
+    my ($self, $form, $field) = @_;
 
-    my $value = $self->form->fillin_param($field->{name}) || '';
+    my $value = $form->fillin_param($field->{name}) || '';
     my $attr = $field->attr;
     delete $attr->{type}; # textarea tag doesn't need this
     return '<textarea ' . _attr($field->attr) . ">${value}</textarea>";
 }
 
 sub widget_select {
-    my ($self, $field) = @_;
+    my ($self, $form, $field) = @_;
 
     my $choices = $field->{choices};
 
-    my $value = $self->form->fillin_param($field->{name});
+    my $value = $form->fillin_param($field->{name});
 
     my @t;
     push @t, sprintf(q{<select %s>}, _attr($field->attr));
@@ -66,11 +66,11 @@ sub widget_select {
 }
 
 sub widget_radio {
-    my ($self, $field) = @_;
+    my ($self, $form, $field) = @_;
 
     my $choices = delete $field->{choices};
 
-    my $value = $self->form->fillin_param($field->{name});
+    my $value = $form->fillin_param($field->{name});
 
     my @t;
     push @t, "<ul>";
@@ -87,13 +87,14 @@ sub widget_radio {
 }
 
 sub widget_date {
-    my ($self, $field) = @_;
+    my ($self, $form, $field) = @_;
     my $name = $field->{name} or die "missing name";
     my $years = $field->{years} or die "missing years";
 
     my $set = sub {
         my ($choices, $suffix) = @_;
         $self->widget_select(
+            $form,
             HTML::Shakan::Field::Choice->new(
                 name => "${name}_${suffix}",
                 choices => [zip(@$choices, @$choices)],
@@ -133,5 +134,4 @@ sub field_filter {
     }
 }
 
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
+1;

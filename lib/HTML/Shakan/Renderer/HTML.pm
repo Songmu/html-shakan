@@ -21,7 +21,7 @@ sub render {
                 sprintf( q{<label for="%s">%s</label>},
                 $field->{id}, encode_entities( $field->{label} ) );
         }
-        $res .= $form->widgets->render( $field );
+        $res .= $form->widgets->render( $form, $field );
     }
     $res;
 }

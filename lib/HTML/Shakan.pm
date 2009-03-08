@@ -121,13 +121,9 @@ has request => (
 
 has 'widgets' => (
     is => 'ro',
-    isa => 'Object',
-    builder => '_build_widgets',
+    isa => 'Str',
+    default => 'HTML::Shakan::Widgets::Simple',
 );
-sub _build_widgets {
-    my $self = shift;
-    HTML::Shakan::Widgets::Simple->new(form => $self);
-}
 
 has 'params' => (
     is => 'rw',
@@ -271,6 +267,14 @@ HTML::Shakan - form html generator/validator
 HTML::Shakan is yet another form generator.
 
 THIS IS BETA.API WILL CHANGE.
+
+=head1 benchmarking
+
+form generation
+
+                 Rate formfu shakan
+        formfu 1053/s     --   -77%
+        shakan 4630/s   340%     --
 
 =head1 What's shakan
 

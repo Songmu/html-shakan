@@ -14,19 +14,19 @@ my $form = HTML::Shakan->new(
     request => CGI->new({}),
     fields => [ ],
 );
-is $form->widgets->render( EmailField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
-is $form->widgets->render( TextField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
-is $form->widgets->render( UIntField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
-is $form->widgets->render( IntField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
-is $form->widgets->render( URLField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
-is $form->widgets->render( PasswordField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="password" />';
-is $form->widgets->render( FileField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="file" />';
-is $form->widgets->render( ImageField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="file" />';
-is $form->widgets->render( TextField( name => 'foo', id => 'name_field', widget => 'textarea' ) ), '<textarea id="name_field" name="foo"></textarea>';
+is $form->widgets->render( $form, EmailField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
+is $form->widgets->render( $form, TextField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
+is $form->widgets->render( $form, UIntField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
+is $form->widgets->render( $form, IntField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
+is $form->widgets->render( $form, URLField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
+is $form->widgets->render( $form, PasswordField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="password" />';
+is $form->widgets->render( $form, FileField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="file" />';
+is $form->widgets->render( $form, ImageField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="file" />';
+is $form->widgets->render( $form, TextField( name => 'foo', id => 'name_field', widget => 'textarea' ) ), '<textarea id="name_field" name="foo"></textarea>';
 
 # choices-field + select-widgets
-is $form->widgets->render( ChoiceField( name => 'foo', id => 'name_field', choices => [] ) ), qq{<select id="name_field" name="foo">\n</select>};
-is $form->widgets->render( ChoiceField( name => 'foo', id => 'name_field', choices => ['a' => 1, 'b' => 2, 'c' => 3] ) ), trim(<<'...');
+is $form->widgets->render( $form, ChoiceField( name => 'foo', id => 'name_field', choices => [] ) ), qq{<select id="name_field" name="foo">\n</select>};
+is $form->widgets->render( $form, ChoiceField( name => 'foo', id => 'name_field', choices => ['a' => 1, 'b' => 2, 'c' => 3] ) ), trim(<<'...');
 <select id="name_field" name="foo">
 <option value="a">1</option>
 <option value="b">2</option>
@@ -35,7 +35,7 @@ is $form->widgets->render( ChoiceField( name => 'foo', id => 'name_field', choic
 ...
 
 # choices-field + radio-widgets
-is $form->widgets->render( ChoiceField( widget => 'radio', name => 'foo', id => 'name_field', choices => ['a' => 1, 'b' => 2, 'c' => 3] ) ), trim(<<'...');
+is $form->widgets->render( $form, ChoiceField( widget => 'radio', name => 'foo', id => 'name_field', choices => ['a' => 1, 'b' => 2, 'c' => 3] ) ), trim(<<'...');
 <ul>
 <li><label><input type="radio" value="a" />1</label></li>
 <li><label><input type="radio" value="b" />2</label></li>
@@ -44,7 +44,7 @@ is $form->widgets->render( ChoiceField( widget => 'radio', name => 'foo', id => 
 ...
 
 # date field
-is $form->widgets->render( DateField( name => 'birthdate', years => [2000..2003] ) ), trim(<<'...');
+is $form->widgets->render( $form, DateField( name => 'birthdate', years => [2000..2003] ) ), trim(<<'...');
 <span>
 <select name="birthdate_year">
 <option value="2000">2000</option>
