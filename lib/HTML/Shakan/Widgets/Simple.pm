@@ -108,14 +108,12 @@ sub widget_date {
 sub field_filter {
     my ($self, $form, $field, $params) = @_;
 
-    # TODO: inflate here???
     if ($field->widget eq 'date') {
         my @c;
         for my $k (qw/year month day/) {
             my $key = $field->name . '_' . $k;
             my $v = $form->request->param($key);
             if (defined $v) {
-                $params->{$key} = $v;
                 push @c, $v;
             }
         }

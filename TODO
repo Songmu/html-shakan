@@ -3,4 +3,3 @@
 -- validation
 - textarea support
 - Widgets::jQueryUI(date selector)
-- widgets::simple don't fill *_year to params
