@@ -1,20 +1,20 @@
+=head1 NAME
+
+HTML::Shakan::Doc.ja.pod - 日本語でかいたドキュメント
+
 =head1 CONCEPT
+
+I cannot write long document in English.
+If you want to read this document, please use google-translate or other stuff.
 
 英語かくのがつらいので日本語でコンセプトをしるす。
 
-- FormGeneration は必要だ。
--- 工数を削減できる。
-- FormGenerator が validation を直接うけもつ必要はない
--- FormValidator::Lite に delegate すればいい
-- 依存はすくなく
-- YAML からのフォーム生成もできるとよい
-- DSL による生成は必須
-- csrf 対策
-- TT には依存しない
+Django の newforms みたいなライブラリが欲しい、というのが出発点でした。
+Django をみていて、フォームの HTML を生成することができる validation ライブラリが欲しくなったのでした。
 
-=head1 DESIGN ISSUE
+HTML::FormFu が存在することは前から知っていたのですが、「やたらとクラス数が多い」という点がまずひっかかりました。なぜフォームの生成/バリデーションのライブラリに Crypt::DESや Template-Toolkit や Locale::Maketext::Simple が必要なのか、と。軽量なライブラリ好きになっている自分としては、ちょっと許しがたい。また、ドキュメントが Catalyst 前提で、YAML をフォーム記述につかうのを前提にしている風なのがひっかかりました。YAML でフォーム記述なんてめんどくさい。そう思ってしまいました。
 
-=head2 Filter は1クラス1フィルタにするか
+今回実装上のポイントとしたのは、「可読性の高いコードで書く」ということと「高速であること」そして「拡張容易であること」といったところです。おおむねこれらの条件は満たされているのではないかとおもいます。
 
-基本的には、1クラス1フィルタで、動的にロードすればいい。
+Widgets というクラスにフォームの各フィールドの描画を分離することによって、見た目とフィールドの分離をおこなっています。これは Django を参考にしたやりかたです。
 
