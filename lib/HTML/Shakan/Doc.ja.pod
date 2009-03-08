@@ -10,7 +10,6 @@
 - YAML からのフォーム生成もできるとよい
 - DSL による生成は必須
 - csrf 対策
-- imager 連携(optional)
 - TT には依存しない
 
 =head1 DESIGN ISSUE

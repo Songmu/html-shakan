@@ -55,7 +55,7 @@ Currently, this library enhancements the datepicker only :)
 
 =head1 AUTHOR
 
-Tokurhio Matsuno
+Tokuhiro Matsuno
 
 =head1 SEE ALSO
 

@@ -23,3 +23,5 @@ shakan
 sakan
 attr
 DateTime
+jQueryUI
+datepicker
