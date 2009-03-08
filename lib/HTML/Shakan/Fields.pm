@@ -55,11 +55,11 @@ sub PasswordField {
 }
 
 sub FileField {
-    _input(type => 'file', @_);
+    HTML::Shakan::Field::File->new(@_);
 }
 
 sub ImageField {
-    FileField(@_)->add_constraint('IMAGE');
+    FileField(@_)->add_constraint(['FILE_MIME' => qr{image/.+}]);
 }
 
 sub ChoiceField {

@@ -4,7 +4,7 @@ our $VERSION = '0.01';
 use Carp ();
 use Storable 'dclone';
 
-use FormValidator::Lite 'Email', 'URL', 'Date';
+use FormValidator::Lite 'Email', 'URL', 'Date', 'File';
 
 use HTML::Shakan::Renderer::HTML;
 use HTML::Shakan::Filters;
@@ -13,6 +13,7 @@ use HTML::Shakan::Fields;
 use HTML::Shakan::Field::Input;
 use HTML::Shakan::Field::Date;
 use HTML::Shakan::Field::Choice;
+use HTML::Shakan::Field::File;
 
 sub import {
     HTML::Shakan::Fields->export_to_level(1);
@@ -98,6 +99,16 @@ has 'params' => (
     lazy => 1,
     builder => '_build_params',
 );
+
+has 'uploads' => (
+    is => 'rw',
+    isa => 'HashRef',
+    default => sub { +{} },
+);
+sub upload {
+    my ($self, $name) = @_;
+    $self->uploads->{$name};
+}
 
 # code taken from MooseX::Param
 sub param {

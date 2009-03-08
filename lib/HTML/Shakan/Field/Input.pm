@@ -10,11 +10,11 @@ has type => (
     is       => 'ro',
     isa      => 'Str',
     required => 1,
-    trigger => sub {
-        my ($self, $type) = @_;
-        $self->{attr}->{type} = $type;
-    },
 );
+sub BUILD {
+    my $self = shift;
+    $self->attr->{type} = $self->type;
+}
 
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
