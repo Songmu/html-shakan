@@ -22,30 +22,21 @@ has '_fvl' => (
     is => 'ro',
     isa => 'FormValidator::Lite',
     lazy => 1,
-    handles => [qw/has_error load_function_message get_error_messages is_error/],
+    handles => [qw/has_error load_function_message get_error_messages is_error is_valid/],
     weak_ref => 1,
     default => sub {
         my $self = shift;
         $self->params(); # build laziness data
-        FormValidator::Lite->new($self);
-    }
-);
-
-has 'is_valid' => (
-    is => 'rw',
-    isa => 'Bool',
-    lazy => 1,
-    default => sub {
-        my $self = shift;
 
         my @c;
         for my $field (@{ $self->fields }) {
             push @c, $field->get_constraints();
         }
 
-        $self->_fvl->check(@c);
-        $self->_fvl->is_valid() ? 1 : 0;
-    },
+        my $fvl = FormValidator::Lite->new($self);
+        $fvl->check(@c);
+        return $fvl;
+    }
 );
 
 has instance => (
