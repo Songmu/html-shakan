@@ -3,6 +3,8 @@ name 'HTML-Shakan';
 all_from 'lib/HTML/Shakan.pm';
 
 requires 'FormValidator::Lite';
+requires 'Any::Moose'      => 0.05;
+requires 'Mouse'           => 0.18;
 requires 'List::MoreUtils' => 0.22;
 
 recommends 'Lingua::JA::Regular::Unicode';
