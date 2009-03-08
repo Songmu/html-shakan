@@ -135,3 +135,23 @@ sub field_filter {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+HTML::Shakan::Widgets::Simple - simple default html widgets
+
+=head1 DESCRIPTION
+
+This is basic default widgets class.
+
+This module generates basic XHTML.
+
+=head1 AUTHORS
+
+Tokuhiro Matsuno
+
+=head1 SEE ALSO
+
+L<HTML::Shakan>
+

@@ -108,21 +108,39 @@ HTML::Shakan::Field - base class for field object
 
 =item id
 
+the 'id' attribute for the html elements.
+
 =item name
+
+the 'name' attribute for the html elements.
 
 =item value
 
+the 'value' attribute for the html elements.
+
 =item filters
+
+parameter filters.
 
 =item widget
 
+type of widget.
+
 =item attr
+
+hashref about the misc. attributes.
 
 =item label
 
+label for this field.
+
 =item required
 
+is this field's value required?
+
 =item constraints
+
+constraints for FormValidator::Lite.
 
 =back
 

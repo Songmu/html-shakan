@@ -33,6 +33,10 @@ no Any::Moose;
 __PACKAGE__->meta->make_immutable;
 __END__
 
+=head1 NAME
+
+HTML::Shakan::Model::DataModel - Data::Model bindings for Shakan
+
 =head1 SYNOPSIS
 
     # in edit form
@@ -59,4 +63,30 @@ __END__
         $form->model->fill( $row );
         render_template({form => $form, row => $row});
     }
+
+=head1 DESCRIPTION
+
+wrapper class for Data::Model & HTML::Shakan
+
+=head1 METHODS
+
+=over 4
+
+=item $form->model->fill($row)
+
+fill this row to form
+
+=item $form->model->create($model => $name);
+
+insert new row.
+
+=item $form->model->update($row);
+
+update thhis row
+
+=back
+
+=head1 SEE ALSO
+
+L<Data::Model>
 

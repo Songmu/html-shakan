@@ -16,3 +16,20 @@ sub field_filter {
 
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
+__END__
+
+=head1 NAME
+
+HTML::Shakan::Field::File - file uploader field
+
+=head1 DESCRIPTION
+
+file uploader field
+
+=head1 AUTHOR
+
+Tokuhiro Matsuno
+
+=head1 SEE ALSO
+
+L<HTML::Shakan>

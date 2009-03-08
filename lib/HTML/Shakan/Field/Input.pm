@@ -18,3 +18,27 @@ sub BUILD {
 
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
+__END__
+
+=head1 NAME
+
+HTML::Shakan::Field::Input - <input /> field
+
+=head1 DESCRIPTION
+
+This module provides the <input /> field object.
+
+=head1 ATTRIBUTE
+
+=over 4
+
+=item type
+
+<input type="XXX" /> attribute.
+
+=back
+
+=head1 SEE ALSO
+
+L<HTML::Shakan>
+

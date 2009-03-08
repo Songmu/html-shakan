@@ -23,3 +23,17 @@ sub filter {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+HTML::Shakan::Filters - filter class manager
+
+=head1 DESCRIPTION
+
+INTERNAL USE ONLY
+
+=head1 SEE ALSO
+
+L<HTML::Shakan>
+

@@ -13,3 +13,22 @@ sub filter {
 
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
+
+__END__
+
+=head1 NAME
+
+HTML::Shakan::Filter::WhiteSpace - remove white space
+
+=head1 SYNOPSIS
+
+    TextField(name => 'body', filters => [qw/WhiteSpace/])
+
+=head1 DESCRIPTION
+
+remove trailing whitespaces.
+
+=head1 AUTHORS
+
+Tokuhiro Matsuno
+

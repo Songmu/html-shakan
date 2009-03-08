@@ -19,3 +19,17 @@ sub BUILD {
 
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
+__END__
+
+=head1 NAME
+
+HTML::Shakan::Field::Date - date field
+
+=head1 DESCRIPTION
+
+date field specfic class.
+
+=head1 SEE ALSO
+
+L<HTML::Shakan>
+

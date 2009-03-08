@@ -71,3 +71,71 @@ sub DateField {
 }
 
 1;
+__END__
+
+=head1 NAME
+
+HTML::Shakan::Fields - fields
+
+=head1 DESCRIPTION
+
+This module exports some functions, that generates a instance of HTML::Field::*.
+
+If you want to know the details, please look the source :)
+
+=head1 FUNCTIONS 
+
+=over 4
+
+=item TextField(name => 'foo')
+
+create a instance of HTML::Shakan::Input.
+
+This is same as HTML::Shakan::Input->new(name => 'foo', type => 'text', @_);
+
+=item EmailField(name => 'email')
+
+TextField() + EMAIL_LOOSE constraint.
+
+=item URLField(name => 'url')
+
+TextField() + HTTP_URL constraint
+
+=item UIntField(name => 'i')
+
+TextField() + UINT constraint
+
+=item IntField(name => 'i')
+
+TextField() + INT constraint
+
+=item PasswordField(name => 'pw')
+
+define <input type="password" /> field
+
+=item FileField(name => 'file')
+
+define <input type="fiel" /> field
+
+=item ImageField(name => 'image')
+
+FileField + FILE_MIME=image/* constraint
+
+=item ChoiceField(name => 'interest', choices => [qw/moose mouse exporter/])
+
+selector field.
+
+=item DateField(name => 'birthdate')
+
+date input field.
+
+=back
+
+=head1 AUTHORS
+
+tokuhiro matsuno(tokuhirom)
+
+=head1 SEE ALSO
+
+L<HTML::Shakan>
+

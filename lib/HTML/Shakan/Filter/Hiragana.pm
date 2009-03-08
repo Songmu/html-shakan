@@ -12,3 +12,22 @@ sub filter {
 
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
+__END__
+
+=head1 NAME
+
+HTML::Shakan::Filter::Hiragana - convert katakana to hiragana
+
+=head1 SYNOPSIS
+
+    TextField(name => 'body', filters => [qw/Hiragana/])
+
+=head1 DESCRIPTION
+
+This module converts katakana chars to hiragana chars.
+(for japenese)
+
+=head1 SEE ALSO
+
+L<Lingua::JA::Regular::Unicode>
+

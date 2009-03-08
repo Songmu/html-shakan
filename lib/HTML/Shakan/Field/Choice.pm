@@ -26,3 +26,42 @@ override 'get_constraints' => sub {
 
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
+__END__
+
+=head1 NAME
+
+HTML::Shakan::Field::Choice - choice field
+
+=head1 SYNOPSIS
+
+    use HTML::Shakan::Field::Choice;
+    HTML::Shakan::Field::Choice->new(
+        name => 'pref',
+        choices => [qw/tokyo osaka kyoto/],
+    );
+
+    # or shortcut
+    use HTML::Shakan::Fields;
+    ChoiceField(
+        name => 'pref',
+        choices => [qw/tokyo osaka kyoto/],
+    );
+
+    # if you want radio button
+    ChoiceField(
+        name => 'pref',
+        choices => [qw/tokyo osaka kyoto/],
+        widget => 'radio',
+    );
+
+=head1 DESCRIPTION
+
+Choice field implementation.
+
+=head1 base class
+
+HTML::Shakan::Field
+
+=head1 SEE ALSO
+
+L<HTML::Shakan>
