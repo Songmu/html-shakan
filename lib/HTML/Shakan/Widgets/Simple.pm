@@ -48,9 +48,9 @@ sub widget_select {
     while (my ($a, $b) = splice @$choices, 0, 2) {
         push @t, sprintf(
             q{<option value="%s"%s>%s</option>},
-            $a,
+            encode_entities($a),
             ($value && $value eq $a ? ' selected="selected"' : ''),
-            $b);
+            encode_entities($b));
     }
     push @t, q{</select>};
     return join "\n", @t;
@@ -68,9 +68,9 @@ sub widget_radio {
     while (my ($a, $b) = splice @$choices, 0, 2) {
         push @t, sprintf(
             q{<li><label><input type="radio" value="%s"%s />%s</label></li>},
-            $a,
+            encode_entities($a),
             ($value && $value eq $a ? ' checked="checked"' : ''),
-            $b
+            encode_entities($b)
         );
     }
     push @t, "</ul>";
