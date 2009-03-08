@@ -1,6 +1,5 @@
 - bind model(Data::Model)
 - ImageField - validation
-- TimeField - validation
 - FileField - validation
 - inflate datetime
 - apply filter before run validators
