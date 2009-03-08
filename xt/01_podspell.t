@@ -25,3 +25,6 @@ attr
 DateTime
 jQueryUI
 datepicker
+google
+newforms
+Django
