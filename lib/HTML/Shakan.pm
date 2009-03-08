@@ -4,10 +4,11 @@ our $VERSION = '0.01';
 use Carp ();
 use Storable 'dclone';
 
+use FormValidator::Lite 'Email', 'URL';
+
 use HTML::Shakan::Renderer::HTML;
 use HTML::Shakan::Filters;
 use HTML::Shakan::Widgets::Simple;
-use HTML::Shakan::Validator;
 use HTML::Shakan::Fields;
 use HTML::Shakan::Field::Input;
 use HTML::Shakan::Field::Date;
@@ -17,22 +18,37 @@ sub import {
     HTML::Shakan::Fields->export_to_level(1);
 }
 
-has validator => (
-    is => 'rw',
-    isa => 'Object',
+has '_fvl' => (
+    is => 'ro',
+    isa => 'FormValidator::Lite',
     lazy => 1,
     default => sub {
         my $self = shift;
-        HTML::Shakan::Validator->new(form => $self);
-    },
+        $self->params(); # build laziness data
+        FormValidator::Lite->new($self);
+    }
 );
+
 has 'is_valid' => (
     is => 'rw',
     isa => 'Bool',
     lazy => 1,
     default => sub {
         my $self = shift;
-        $self->validator->is_valid($self);
+
+        my @c;
+        for my $field (@{ $self->fields }) {
+            my $rule = $field->{constraints};
+            if ($field->required) {
+                push @$rule, 'NOT_NULL';
+            }
+            push @c, (
+                $field->name => $rule,
+            );
+        }
+
+        $self->_fvl->check(@c);
+        $self->_fvl->is_valid() ? 1 : 0;
     },
 );
 
@@ -89,38 +105,61 @@ has 'widgets' => (
     },
 );
 
-has '_filtered_param' => (
-    is => 'ro',
+has 'params' => (
+    is => 'rw',
     isa => 'HashRef',
     lazy => 1,
-    default => sub {
-        my $self = shift;
-        my $req = dclone($self->request);
-        for my $field (@{$self->fields}) {
+    builder => '_build_params',
+);
+
+# code taken from MooseX::Param
+sub param {
+    my $self = shift;
+
+    # if they want the list of keys ...
+    return keys %{ $self->params } if scalar @_ == 0;
+
+    # if they want to fetch a particular key ...
+    return $self->params->{ $_[0] } if scalar @_ == 1;
+
+    ( ( scalar @_ % 2 ) == 0 )
+      || confess "parameter assignment must be an even numbered list";
+
+    my %new = @_;
+    while ( my ( $key, $value ) = each %new ) {
+        $self->params->{$key} = $value;
+    }
+
+    return;
+}
+
+sub _build_params {
+    my $self = shift;
+    my $params = {};
+    for my $field (@{$self->fields}) {
+        my $name = $field->name;
+
+        my @val = $self->request->param($name);
+        if (@val!=0) {
+            $params->{$name} = @val==1 ? $val[0] : \@val;
+
             if (my $filters = $field->{filters}) {
                 for my $filter (@{$filters}) {
-                    my $name = $field->name;
-                    my @param = $req->param($name);
-                    $req->param(
-                        $name,
-                        (map {
-                                HTML::Shakan::Filters->filter(
-                                    $filter, $_
-                                )
-                            }
-                            $req->param($name))
-                    );
+                    my @val =
+                        ( map { HTML::Shakan::Filters->filter( $filter, $_ ) }
+                            $self->request->param($name) );
+                    $params->{$name} = @val==1 ? $val[0] : \@val;
                 }
             }
         }
-        $req;
-    },
-);
+    }
+    $params;
+}
 
 sub cleaned_param {
     my $self = shift;
     if ($self->is_valid) {
-        $self->_filtered_param->param(@_);
+        $self->param(@_);
     } else {
         return;
     }
