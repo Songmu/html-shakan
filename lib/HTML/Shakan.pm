@@ -43,10 +43,24 @@ has '_fvl' => (
         $fvl->check(@c);
         if ($fvl->is_valid) {
             $self->_inflate_values();
+        } else {
+            $fvl->set_param_message(
+                $self->_set_error_messages()
+            );
         }
         return $fvl;
     }
 );
+
+sub _set_error_messages {
+    my ($self, ) = @_;
+
+    my %x;
+    for my $field ($self->fields) {
+        $x{$field->name} = $field->label || $field->name;
+    }
+    %x;
+}
 
 sub _inflate_values {
     my $self = shift;
@@ -111,6 +125,7 @@ has fields => (
     is       => 'ro',
     isa      => 'ArrayRef',
     required => 1,
+    auto_deref => 1,
 );
 
 has request => (
