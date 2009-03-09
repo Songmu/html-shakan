@@ -8,3 +8,4 @@ MANIFEST
 Makefile.old
 nytprof.out
 *.sw[po]
+*.bak
