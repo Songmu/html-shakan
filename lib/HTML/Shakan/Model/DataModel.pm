@@ -82,7 +82,7 @@ insert new row.
 
 =item $form->model->update($row);
 
-update thhis row
+update this row
 
 =back
 

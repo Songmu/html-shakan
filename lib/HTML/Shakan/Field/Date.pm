@@ -27,7 +27,7 @@ HTML::Shakan::Field::Date - date field
 
 =head1 DESCRIPTION
 
-date field specfic class.
+date field specific class.
 
 =head1 SEE ALSO
 

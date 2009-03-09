@@ -28,3 +28,12 @@ datepicker
 google
 newforms
 Django
+Katakana
+Hiragana
+XHTML
+url
+pw
+birthdate
+UINT
+FileField
+foo

@@ -128,7 +128,7 @@ type of widget.
 
 =item attr
 
-hashref about the misc. attributes.
+hashref about the miscellaneous attributes.
 
 =item label
 

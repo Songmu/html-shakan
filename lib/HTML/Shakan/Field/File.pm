@@ -20,11 +20,11 @@ __END__
 
 =head1 NAME
 
-HTML::Shakan::Field::File - file uploader field
+HTML::Shakan::Field::File - file upload field
 
 =head1 DESCRIPTION
 
-file uploader field
+file upload field
 
 =head1 AUTHOR
 

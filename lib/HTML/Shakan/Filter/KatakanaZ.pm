@@ -17,7 +17,7 @@ __END__
 
 =head1 NAME
 
-HTML::Shakan::Filter::Katakana - convert hiragana to katakana
+HTML::Shakan::Filter::Katakana - convert Hiragana to Katakana
 
 =head1 SYNOPSIS
 
@@ -25,8 +25,8 @@ HTML::Shakan::Filter::Katakana - convert hiragana to katakana
 
 =head1 DESCRIPTION
 
-This module converts hiragana chars to katakana chars.
-(for japenese)
+This module converts Hiragana chars to Katakana chars.
+(for Japanese)
 
 =head1 SEE ALSO
 

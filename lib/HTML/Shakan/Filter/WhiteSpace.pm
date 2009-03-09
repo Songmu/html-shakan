@@ -26,7 +26,7 @@ HTML::Shakan::Filter::WhiteSpace - remove white space
 
 =head1 DESCRIPTION
 
-remove trailing whitespaces.
+remove trailing white spaces.
 
 =head1 AUTHORS
 

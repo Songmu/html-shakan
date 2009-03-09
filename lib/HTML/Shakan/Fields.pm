@@ -133,7 +133,7 @@ date input field.
 
 =head1 AUTHORS
 
-tokuhiro matsuno(tokuhirom)
+Tokuhiro Matsuno(tokuhirom)
 
 =head1 SEE ALSO
 
