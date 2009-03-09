@@ -13,6 +13,7 @@ use HTML::Shakan::Field::Input;
 use HTML::Shakan::Field::Date;
 use HTML::Shakan::Field::Choice;
 use HTML::Shakan::Field::File;
+use List::MoreUtils 'uniq';
 BEGIN {
     if ($ENV{SHAKAN_DEBUG}) {
         require Smart::Comments;
@@ -75,6 +76,31 @@ sub _inflate_values {
             }
         }
     }
+}
+
+has 'submitted' => (
+    is => 'ro',
+    isa => 'Bool',
+    lazy => 1,
+    builder => '_build_submitted',
+);
+sub _build_submitted {
+    my ($self, ) = @_;
+
+    my $r = $self->request;
+    my $submitted_field = (
+        scalar
+          grep { defined $r->param($_) }
+          uniq
+          map  { $_->name }
+                 $self->fields
+    );
+    return $submitted_field > 0 ? 1 : 0;
+}
+
+sub submitted_and_valid {
+    my $self = shift;
+    $self->submitted && $self->is_valid;
 }
 
 has model => (
@@ -282,6 +308,25 @@ HTML::Shakan - form html generator/validator
 HTML::Shakan is yet another form generator.
 
 THIS IS BETA.API WILL CHANGE.
+
+=head1 ATTRIBUTES
+
+=over 4
+
+=item submitted
+
+Returns true if the form has been submitted.
+
+This attribute will return true if a value for any known fieldname was submitted.
+
+=item has_error
+
+Return true if request has an error.
+
+=item submitted_and_valid
+                                                                      Shorthand for C<< $form->submitted && !$form->has_error >>
+
+=back
 
 =head1 benchmarking
 
