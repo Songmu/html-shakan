@@ -21,6 +21,7 @@ sub form ($@) { ## no critic.
 
 sub get {
     my ($class, $name, %args) = @_;
+    $class = ref $class || $class;
     return HTML::Shakan->new(
         fields => $FORMS->{$class}->{$name},
         %args,
