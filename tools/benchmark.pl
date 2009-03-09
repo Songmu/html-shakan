@@ -6,6 +6,12 @@ use CGI;
 use Benchmark ':all';
 
 my $q = CGI->new;
+my $formfu = HTML::FormFu->new();
+$formfu->populate({
+    elements => [
+        {type => 'Text', name => 'foo'}
+    ],
+});
 
 {
     package B::D;
@@ -15,8 +21,8 @@ my $q = CGI->new;
     );
 }
 
-cmpthese(
-    10000 => {
+timethese(
+    5000 => {
         shakan_declare => sub {
             my $form = B::D->get('foo' => (
                 request => $q,
@@ -31,6 +37,9 @@ cmpthese(
                 ],
             );
             '<form method="post">'.$form->render.'</form>';
+        },
+        formfu_populate => sub {
+            $formfu->render;
         },
         formfu => sub {
             my $form = HTML::FormFu->new({
