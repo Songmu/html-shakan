@@ -317,7 +317,7 @@ THIS IS BETA.API WILL CHANGE.
 
 Returns true if the form has been submitted.
 
-This attribute will return true if a value for any known fieldname was submitted.
+This attribute will return true if a value for any known field name was submitted.
 
 =item has_error
 
