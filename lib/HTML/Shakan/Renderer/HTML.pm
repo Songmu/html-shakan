@@ -1,6 +1,6 @@
 package HTML::Shakan::Renderer::HTML;
 use Any::Moose;
-use HTML::Entities 'encode_entities';
+use HTML::Shakan::Utils;
 
 has 'id_tmpl' => (
     is => 'ro',

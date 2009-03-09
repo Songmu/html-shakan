@@ -1,7 +1,7 @@
 package HTML::Shakan::Widgets::Simple;
 use strict;
 use warnings;
-use HTML::Entities 'encode_entities';
+use HTML::Shakan::Utils;
 use List::MoreUtils qw/zip/;
 
 sub render {

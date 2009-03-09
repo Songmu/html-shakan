@@ -1,6 +1,6 @@
 package HTML::Shakan::Field;
 use Any::Moose;
-use HTML::Entities 'encode_entities';
+use HTML::Shakan::Utils;
 
 has id => (
     is => 'rw',
