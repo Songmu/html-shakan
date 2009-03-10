@@ -1,5 +1,11 @@
 Revision history for Perl extension HTML::Shakan
 
+0.01_02
+
+        - added custom_validation for field & form
+        - added submitted & submitted_and_valid(thanks to lestrrat++)
+        - don't use HTML::Entities. this is too slow
+
 0.01_01
 
         - initial dev. release to cpan
