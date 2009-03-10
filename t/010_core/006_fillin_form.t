@@ -17,7 +17,7 @@ do {
             TextField(name => 'yay')
         ],
     );
-    is $form->render, '<input id="id_yay" name="yay" type="text" value="3" />';
+    is $form->render, '<label for="id_yay">yay</label><input id="id_yay" name="yay" type="text" value="3" />';
 };
 
 do {
@@ -31,7 +31,7 @@ do {
         ],
     );
     is $form->render, trim(<<'...');
-<select id="id_yay" name="yay">
+<label for="id_yay">yay</label><select id="id_yay" name="yay">
 <option value="a">1</option>
 <option value="b" selected="selected">2</option>
 </select>
@@ -53,7 +53,7 @@ do {
         ],
     );
     is $form->render, trim(<<'...');
-<ul>
+<label for="id_yay">yay</label><ul>
 <li><label><input type="radio" value="a" />1</label></li>
 <li><label><input type="radio" value="b" checked="checked" />2</label></li>
 </ul>

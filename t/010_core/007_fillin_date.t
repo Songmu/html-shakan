@@ -10,7 +10,7 @@ my $form = HTML::Shakan->new(
 );
 
 is $form->render(), trim(<<'...');
-<span>
+<label for="id_yay">yay</label><span>
 <select name="yay_year">
 <option value="2000">2000</option>
 <option value="2001">2001</option>

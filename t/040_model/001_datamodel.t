@@ -41,7 +41,7 @@ my $dm = MyModel->new();
     );
     $form->model->fill($user);
     is $form->render, trim(<<'...');
-<input id="id_foo" name="foo" type="text" value="bar" />
+<label for="id_foo">foo</label><input id="id_foo" name="foo" type="text" value="bar" />
 ...
 }
 

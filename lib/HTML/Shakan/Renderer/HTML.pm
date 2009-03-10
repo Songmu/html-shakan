@@ -11,18 +11,18 @@ has 'id_tmpl' => (
 sub render {
     my ($self, $form) = @_;
 
-    my $res = '';
+    my @res;
     for my $field ($form->fields) {
         unless ($field->id) {
             $field->id(sprintf($self->id_tmpl(), $field->{name}));
         }
         if ($field->label) {
-            $res .= sprintf( q{<label for="%s">%s</label>},
+            push @res, sprintf( q{<label for="%s">%s</label>},
                 $field->{id}, encode_entities( $field->{label} ) );
         }
-        $res .= $form->widgets->render( $form, $field );
+        push @res, $form->widgets->render( $form, $field );
     }
-    $res;
+    join '', @res;
 }
 
 no Any::Moose;
