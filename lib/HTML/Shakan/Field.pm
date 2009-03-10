@@ -87,6 +87,18 @@ sub add_constraint {
     $self; # method chain
 }
 
+has complex_constraints => (
+    is => 'ro',
+    isa => 'ArrayRef',
+    default => sub { +[] },
+);
+
+sub add_complex_constraint {
+    my ($self, @constraints) = @_;
+    push @{$self->{complex_constraints}}, @constraints;
+    $self; # method chain
+}
+
 sub get_constraints {
     my $self = shift;
 
@@ -96,6 +108,7 @@ sub get_constraints {
     }
     return (
         $self->name => \@rule,
+        @{ $self->complex_constraints },
     );
 }
 
