@@ -17,7 +17,7 @@ __END__
 
 =head1 NAME
 
-HTML::Shakan::Filter::Katakana - convert Hiragana to Katakana
+HTML::Shakan::Filter::KatakanaZ - convert Hiragana to Katakana
 
 =head1 SYNOPSIS
 
