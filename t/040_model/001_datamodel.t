@@ -3,11 +3,12 @@ use Test::More;
 use HTML::Shakan;
 use CGI;
 
-plan skip_all => 'this test requires Data::Mode' unless eval 'use Data::Model; 1;';
+plan skip_all => 'this test requires Data::Model' unless eval 'use Data::Model; 1;';
 plan tests => 7;
 require HTML::Shakan::Model::DataModel;
 
-{
+# evaluate at run time
+eval <<'...';
     package MyModel;
     use base 'Data::Model';
     use Data::Model::Schema;
@@ -22,7 +23,8 @@ require HTML::Shakan::Model::DataModel;
             type => 'varchar',
         };
     };
-}
+...
+die $@ if $@;
 
 my $dm = MyModel->new();
 # fill
