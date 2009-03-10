@@ -7,7 +7,7 @@ use HTML::Shakan::Filters;
 is(HTML::Shakan::Filters->filter('WhiteSpace', 'foo '), 'foo');
 
 SKIP: {
-    skip 'L::JA::Regular::Unicode is requird', 3 unless eval 'use Lingua::JA::Regular::Unicode; 1;';
+    skip 'L::JA::Regular::Unicode is requird', 2 unless eval 'use Lingua::JA::Regular::Unicode; 1;';
     is(HTML::Shakan::Filters->filter('KatakanaZ', 'あこてぃえ'), 'アコティエ');
     is(HTML::Shakan::Filters->filter('Hiragana', 'アコティエ'), 'あこてぃえ');
 };
