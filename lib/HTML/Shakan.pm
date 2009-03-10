@@ -29,28 +29,47 @@ has '_fvl' => (
     is => 'ro',
     isa => 'FormValidator::Lite',
     lazy => 1,
-    handles => [qw/has_error load_function_message get_error_messages is_error is_valid/],
+    handles => [qw/has_error load_function_message get_error_messages is_error is_valid set_error/],
     weak_ref => 1,
     default => sub {
         my $self = shift;
         $self->params(); # build laziness data
 
+        FormValidator::Lite->new($self);
+    }
+);
+
+sub BUILD {
+    my $self = shift;
+
+    my $fvl = $self->_fvl;
+
+    # simple check
+    $fvl->check(do {
         my @c;
         for my $field (@{ $self->fields }) {
             push @c, $field->get_constraints();
         }
+        @c;
+    });
 
-        my $fvl = FormValidator::Lite->new($self);
-        $fvl->check(@c);
-        if ($fvl->is_valid) {
-            $self->_inflate_values();
-        } else {
-            $fvl->set_param_message(
-                $self->_set_error_messages()
-            );
-        }
-        return $fvl;
+    # run custom validation
+    if (my $cv = $self->custom_validation) {
+        $cv->( $self );
     }
+
+    if ($fvl->is_valid) {
+        $self->_inflate_values();
+    } else {
+        $fvl->set_param_message(
+            $self->_set_error_messages()
+        );
+    }
+}
+
+has custom_validation => (
+    is => 'ro',
+    isa => 'CodeRef',
 );
 
 sub _set_error_messages {
@@ -312,6 +331,23 @@ THIS IS BETA.API WILL CHANGE.
 =head1 ATTRIBUTES
 
 =over 4
+
+=item custom_validation
+
+    form 'login' => (
+        fields => [
+            TextField(name => 'login_id'),
+            PasswordField(name => 'login_pw'),
+        ],
+        custom_validation => sub {
+            my $form = shift;
+            if ($form->is_valid && !MyDB->retrieve($form->param('login_id'), $form->param('login_pw'))) {
+                $form->set_error('login' => 'failed');
+            }
+        }
+    );
+
+You can set custom validation callback, validates the field set in the form. For example, this is useful for login form.
 
 =item submitted
 
