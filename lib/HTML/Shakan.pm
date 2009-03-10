@@ -57,6 +57,11 @@ sub BUILD {
     if (my $cv = $self->custom_validation) {
         $cv->( $self );
     }
+    for my $field ($self->fields) {
+        if (my $cv = $field->custom_validation) {
+            $cv->($self, $field);
+        }
+    }
 
     if ($fvl->is_valid) {
         $self->_inflate_values();
