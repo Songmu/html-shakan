@@ -1,5 +1,12 @@
 Revision history for Perl extension HTML::Shakan
 
+0.01_03
+
+        - fixed test count
+        - fixed mojibake
+        - fixed test skipping
+        - added Duplication() function
+
 0.01_02
 
         - added custom_validation for field & form
