@@ -74,6 +74,7 @@ sub DateField {
 
 sub Duplication {
     my ($name, $f1, $f2) = @_;
+    Carp::croak('missing args. Usage: Duplication(name, field1, field2)') unless @_ == 3;
     $f1->add_complex_constraint(
         +{ $name => [ $f1->name(), $f2->name() ] } => [ 'DUPLICATION' ]
     );
