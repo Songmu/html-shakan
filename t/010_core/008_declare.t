@@ -25,7 +25,7 @@ my $form = My::Form->get(
 );
 isa_ok $form, 'HTML::Shakan';
 is $form->render, trim(<<'...');
-<input id="id_name" name="name" type="text" /><input id="id_email" name="email" type="text" />
+<label for="id_name">name</label><input id="id_name" name="name" type="text" /><label for="id_email">email</label><input id="id_email" name="email" type="text" />
 ...
 
 
