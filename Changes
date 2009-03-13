@@ -1,5 +1,10 @@
 Revision history for Perl extension HTML::Shakan
 
+0.01_04
+
+        - fixed mojibake in docs!
+        - this module requires Email::Valid::Loose
+
 0.01_03
 
         - fixed test count
