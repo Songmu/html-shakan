@@ -6,6 +6,7 @@ requires 'FormValidator::Lite' => 0.02;
 requires 'Any::Moose'          => 0.05;
 requires 'Mouse'               => 0.19;
 requires 'List::MoreUtils'     => 0.22;
+requires 'Email::Valid::Loose' => 0.05;
 
 recommends 'Lingua::JA::Regular::Unicode';
 
