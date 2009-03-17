@@ -1,5 +1,9 @@
 Revision history for Perl extension HTML::Shakan
 
+0.01_05
+
+        - depend to latest FV::L
+
 0.01_04
 
         - fixed mojibake in docs!
