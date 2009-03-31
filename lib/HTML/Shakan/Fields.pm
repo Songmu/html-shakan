@@ -2,7 +2,6 @@ package HTML::Shakan::Fields;
 use strict;
 use warnings;
 use base 'Exporter';
-use Params::Validate ':all';
 use Carp ();
 
 our @EXPORT = qw(
@@ -154,3 +153,4 @@ Tokuhiro Matsuno(tokuhirom)
 
 L<HTML::Shakan>
 
+use Params::Validate ':all';

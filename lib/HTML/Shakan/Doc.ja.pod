@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-HTML::Shakan::Doc.ja.pod - japanese doc.
+HTML::Shakan::Doc.ja.pod - Japanese doc.
 
 =head1 CONCEPT
 
