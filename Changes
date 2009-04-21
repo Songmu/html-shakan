@@ -1,5 +1,9 @@
 Revision history for Perl extension HTML::Shakan
 
+0.01_07
+
+        - fixed deps
+
 0.01_06
 
         - this project doesn't use P::Validate
