@@ -3,6 +3,7 @@ use Test::More;
 use HTML::Shakan::Inflator::DateTime;
 
 plan skip_all => 'this test requires DT' unless eval 'use DateTime;1;';
+plan skip_all => 'this test requires DT::Format::HTTP' unless eval 'use DateTime::Format::HTTP;1;';
 plan tests => 4;
 
 {
