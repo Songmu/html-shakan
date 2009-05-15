@@ -1,5 +1,9 @@
 Revision history for Perl extension HTML::Shakan
 
+0.02
+
+        - oops... fixed bug in test
+
 0.01_07
 
         - fixed deps

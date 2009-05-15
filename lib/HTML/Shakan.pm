@@ -1,6 +1,6 @@
 package HTML::Shakan;
 use Any::Moose;
-our $VERSION = '0.01_07';
+our $VERSION = '0.02';
 use Carp ();
 
 use FormValidator::Lite 'Email', 'URL', 'Date', 'File';
