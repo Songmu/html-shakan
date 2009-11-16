@@ -38,3 +38,5 @@ UINT
 FileField
 foo
 callback
+login
+renderer
