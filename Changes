@@ -1,5 +1,9 @@
 Revision history for Perl extension HTML::Shakan
 
+0.03
+
+    - fixed wrong weak_ref(gfx++)
+
 0.02
 
         - oops... fixed bug in test
