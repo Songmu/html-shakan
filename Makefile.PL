@@ -4,7 +4,7 @@ all_from 'lib/HTML/Shakan.pm';
 
 requires 'FormValidator::Lite' => 0.03;
 requires 'Any::Moose'          => 0.05;
-requires 'Mouse'               => 0.19;
+requires 'Mouse'               => 0.46;
 requires 'List::MoreUtils'     => 0.22;
 requires 'Email::Valid::Loose' => 0.05;
 
