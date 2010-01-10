@@ -320,7 +320,7 @@ HTML::Shakan - form html generator/validator
     }
 
     # in your template
-    <? if ($form->has_error) ?><div class="error"><?= $form->error_message ?></div><? } ?>
+    <? if ($form->has_error) { ?><div class="error"><?= $form->error_message() ?></div><? } ?>
     <form method="post" action="add">
     <?= $form->render() ?>
     <p><input type="submit" value="add" /></p>
