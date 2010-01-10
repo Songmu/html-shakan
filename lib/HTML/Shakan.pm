@@ -364,7 +364,8 @@ This attribute will return true if a value for any known field name was submitte
 Return true if request has an error.
 
 =item submitted_and_valid
-                                                                      Shorthand for C<< $form->submitted && !$form->has_error >>
+
+Shorthand for C<< $form->submitted && !$form->has_error >>
 
 =back
 
