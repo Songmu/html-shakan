@@ -1,5 +1,9 @@
 Revision history for Perl extension HTML::Shakan
 
+0.04
+
+    - added HTML::Shakan::Model::DBIxSkinny
+
 0.03
 
     - fixed wrong weak_ref(gfx++)
