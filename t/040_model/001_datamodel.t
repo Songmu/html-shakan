@@ -2,8 +2,8 @@ use t::Util;
 use Test::More;
 use HTML::Shakan;
 use CGI;
+use Test::Requires 'Data::Model';
 
-plan skip_all => 'this test requires Data::Model' unless eval 'use Data::Model; 1;';
 plan tests => 7;
 require HTML::Shakan::Model::DataModel;
 
