@@ -1,5 +1,9 @@
 Revision history for Perl extension HTML::Shakan
 
+0.05
+
+    - added $shakan->render_field($name), suggested by nekokak++
+
 0.04
 
     - added HTML::Shakan::Model::DBIxSkinny
