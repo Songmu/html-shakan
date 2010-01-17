@@ -149,6 +149,13 @@ sub render {
     $self->renderer()->render($self);
 }
 
+sub render_field {
+    my ( $self, $name ) = @_;
+    my ( $field, ) = grep { $_->name eq $name } $self->fields;
+    return unless $field;
+    return $self->widgets->render( $self, $field );
+}
+
 sub fillin_param {
     my ($self, $key) = @_;
     $self->fillin_params->{$key};
@@ -385,6 +392,20 @@ Shakan is 左官 in Japanese.
 If you want to know about shakan, please see L<http://www.konuma-sakan.com/index2.html>
 
 左官 should pronounce 'sakan', formally. but, edokko pronounce 左官 as shakan.
+
+=head1 METHODS
+
+=over 4
+
+=item $shakan->render();
+
+render form.
+
+=item $shakan->render_field($name);
+
+render partial form named $name.
+
+=back
 
 =head1 AUTHOR
 
