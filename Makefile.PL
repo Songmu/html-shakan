@@ -3,8 +3,8 @@ name 'HTML-Shakan';
 all_from 'lib/HTML/Shakan.pm';
 
 requires 'FormValidator::Lite' => 0.03;
-requires 'Any::Moose'          => 0.11;
-requires 'Mouse'               => 0.47;
+requires 'Any::Moose'          => 0.13;
+requires 'Mouse'               => 0.62;
 requires 'List::MoreUtils'     => 0.22;
 requires 'Email::Valid::Loose' => 0.05;
 
