@@ -11,11 +11,11 @@ requires 'Email::Valid::Loose' => 0.05;
 recommends 'Lingua::JA::Regular::Unicode';
 
 test_requires 'Test::Requires';
+test_requires 'Test::More' => 0.94;
 
 tests 't/*.t t/*/*.t';
 author_tests 'xt';
 
-build_requires 'Test::More';
 use_test_base;
 auto_include;
 WriteAll;

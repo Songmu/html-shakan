@@ -40,9 +40,9 @@ sub widget_textarea {
     my ($self, $form, $field) = @_;
 
     my $value = $form->fillin_param($field->{name}) || '';
-    my $attr = $field->attr;
+    my $attr = {%{$field->attr}}; # shallow copy
     delete $attr->{type}; # textarea tag doesn't need this
-    return '<textarea ' . _attr($field->attr) . ">${value}</textarea>";
+    return '<textarea ' . _attr($attr) . ">${value}</textarea>";
 }
 
 sub widget_select {
@@ -54,7 +54,8 @@ sub widget_select {
 
     my @t;
     push @t, sprintf(q{<select %s>}, _attr($field->attr));
-    while (my ($a, $b) = splice @$choices, 0, 2) {
+    for (my $i=0; $i<@$choices; $i+=2) {
+        my ($a, $b) = ($choices->[$i], $choices->[$i+1]);
         push @t, sprintf(
             q{<option value="%s"%s>%s</option>},
             encode_entities($a),
@@ -68,13 +69,14 @@ sub widget_select {
 sub widget_radio {
     my ($self, $form, $field) = @_;
 
-    my $choices = delete $field->{choices};
+    my $choices = $field->{choices};
 
     my $value = $form->fillin_param($field->{name});
 
     my @t;
     push @t, "<ul>";
-    while (my ($a, $b) = splice @$choices, 0, 2) {
+    for (my $i=0; $i<@$choices; $i+=2) {
+        my ($a, $b) = ($choices->[$i], $choices->[$i+1]);
         push @t, sprintf(
             q{<li><label><input type="radio" value="%s"%s />%s</label></li>},
             encode_entities($a),
