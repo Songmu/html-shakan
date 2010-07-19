@@ -1,5 +1,10 @@
 Revision history for Perl extension HTML::Shakan
 
+0.06
+
+    - do not modify form information in ::Widgets::*(reported by id:libkenta)
+    - depend to latest Mouse/Any::Moose
+
 0.05
 
     - added $shakan->render_field($name), suggested by nekokak++
