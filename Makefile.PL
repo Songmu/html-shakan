@@ -11,7 +11,7 @@ requires 'Email::Valid::Loose' => 0.05;
 recommends 'Lingua::JA::Regular::Unicode';
 
 test_requires 'Test::Requires';
-test_requires 'Test::More' => 0.94;
+test_requires 'Test::More' => 0.96;
 
 tests 't/*.t t/*/*.t';
 author_tests 'xt';

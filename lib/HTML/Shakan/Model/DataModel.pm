@@ -13,8 +13,10 @@ sub fill {
 sub create {
     my ($self, $model, $name) = @_;
     my $row = {};
+    my $params = $self->form->params();
     for my $column ($model->get_schema($name)->column_names) {
-        $row->{$column} = $self->form->param($column);
+        next unless exists $params->{$column};
+        $row->{$column} = $params->{$column};
     }
     $model->set($name => $row);
 }
@@ -22,9 +24,11 @@ sub create {
 sub update {
     my ($self, $row) = @_;
     my $dat = {};
+    my $params = $self->form->params();
     my $columns = $row->get_columns;
     for my $column (keys %$columns) {
-        $row->$column($self->form->param($column));
+        next unless exists $params->{$column};
+        $row->$column($params->{$column});
     }
     $row->update();
 }

@@ -4,7 +4,6 @@ use HTML::Shakan;
 use CGI;
 use Test::Requires 'Data::Model';
 
-plan tests => 7;
 require HTML::Shakan::Model::DataModel;
 
 # evaluate at run time
@@ -22,13 +21,17 @@ eval <<'...';
             auto_increment => 1 ,
             type => 'varchar',
         };
+        column 'bar' => {
+            auto_increment => 1 ,
+            type => 'varchar',
+        };
     };
 ...
 die $@ if $@;
 
 my $dm = MyModel->new();
-# fill
-{
+
+subtest 'fill' => sub {
     my $user = $dm->set('user' => {
         foo => 'bar'
     });
@@ -45,12 +48,11 @@ my $dm = MyModel->new();
     is $form->render, trim(<<'...');
 <label for="id_foo">foo</label><input id="id_foo" name="foo" type="text" value="bar" />
 ...
-}
+};
 
-# create
-{
+subtest 'create' => sub {
     my $form = HTML::Shakan->new(
-        request => CGI->new({'foo'=> 'gay'}),
+        request => CGI->new({'foo'=> 'gay', bar => 'ATTACK'}),
         fields => [
             TextField(
                 name => 'foo',
@@ -60,16 +62,17 @@ my $dm = MyModel->new();
     );
     is $form->is_valid, 1;
     $form->model->create($dm => 'user');
-    my $user = $dm->get(user => 'gay');
+    my ($user) = $dm->get(user => 'gay');
     ok $user;
-}
+    is $user->foo, 'gay';
+    is $user->bar, undef;
+};
 
-# update
-{
+subtest 'update' => sub {
     my $user = $dm->lookup(user => 'gay');
     ok $user;
     my $form = HTML::Shakan->new(
-        request => CGI->new({'foo'=> 'way'}),
+        request => CGI->new({'foo'=> 'way', bar => 'ATTACK'}),
         fields => [
             TextField(
                 name => 'foo',
@@ -82,4 +85,11 @@ my $dm = MyModel->new();
 
     ok !$dm->get(user => 'gay');
     ok $dm->get(user => 'way');
-}
+    {
+        my ($u) = $dm->get(user => 'way');
+        is $u->bar, undef;
+    }
+};
+
+done_testing;
+
