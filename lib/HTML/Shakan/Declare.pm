@@ -1,7 +1,7 @@
 package HTML::Shakan::Declare;
 use strict;
 use warnings;
-use base 'Exporter';
+use parent 'Exporter';
 use HTML::Shakan ();
 
 our @EXPORT = qw(form get);

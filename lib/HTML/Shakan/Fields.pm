@@ -1,7 +1,7 @@
 package HTML::Shakan::Fields;
 use strict;
 use warnings;
-use base 'Exporter';
+use parent 'Exporter';
 use Carp ();
 
 our @EXPORT = qw(

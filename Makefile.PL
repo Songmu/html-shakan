@@ -7,6 +7,7 @@ requires 'Any::Moose'          => 0.13;
 requires 'Mouse'               => 0.62;
 requires 'List::MoreUtils'     => 0.22;
 requires 'Email::Valid::Loose' => 0.05;
+requires 'parent';
 
 recommends 'Lingua::JA::Regular::Unicode';
 
