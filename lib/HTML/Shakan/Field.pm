@@ -120,6 +120,10 @@ __END__
 
 HTML::Shakan::Field - base class for field object
 
+=head1 DESCRIPTION
+
+This is a base class for filed object.
+
 =head1 ATTRIBUTES
 
 =over 4
@@ -168,7 +172,21 @@ is this field's value required?
         }
     )
 
-custom validation callback
+You can register custom validation callback.
+
+The callback function takes two arguments.
+
+=over 4
+
+=item $form
+
+This is a instance of L<HTML::Shakan>. You can take query parameter value by this object.
+
+=item $field
+
+The field object itself.
+
+=back
 
 =item constraints
 

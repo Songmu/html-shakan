@@ -56,7 +56,7 @@ HTML::Shakan::Field::Choice - choice field
 
 =head1 DESCRIPTION
 
-Choice field implementation.
+Choice field implementation. This field may show in html as C<< <select></select> >> tag.
 
 =head1 base class
 

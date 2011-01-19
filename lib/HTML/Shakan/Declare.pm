@@ -70,9 +70,13 @@ This module supports to generate form using declare style.
 
 =head1 FUNCTIONS
 
+This module exports L<HTML::Shakan::Fields>'s exported functions and following functions.
+
 =over 4
 
-=item form
+=item form($name, \@fields)
+
+Register new form named I<$name> with C<<\@fields>>.
 
 =back
 
