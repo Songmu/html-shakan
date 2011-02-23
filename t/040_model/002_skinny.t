@@ -12,6 +12,12 @@ use HTML::Shakan::Model::DBIxSkinny;
     package MyModel;
     use DBIx::Skinny;
 
+    package MyModel::Row;
+    use base qw/DBIx::Skinny::Row/;
+
+    package MyModel::Row::User;
+    use base qw/MyModel::Row/;
+
     package MyModel::Schema;
     use DBIx::Skinny::Schema;
 

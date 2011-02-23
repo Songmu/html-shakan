@@ -1,5 +1,10 @@
 Revision history for Perl extension HTML::Shakan
 
+0.08
+
+    - fixed some testing issues.
+    - depended on some latest modules.
+
 0.07
 
     - tuneup model::*
