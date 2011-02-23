@@ -1,7 +1,10 @@
 use t::Util;
 use HTML::Shakan;
 use CGI;
-use Test::Requires 'DBIx::Skinny', 'DBD::SQLite';
+use Test::Requires {
+    'DBIx::Skinny' => 0.0740,
+    'DBD::SQLite'  => 1.31,
+};
 use Test::More;
 use HTML::Shakan::Model::DBIxSkinny;
 
