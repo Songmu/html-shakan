@@ -1,14 +1,14 @@
 package HTML::Shakan::Declare;
 use strict;
 use warnings;
-use base 'Exporter';
+use parent 'Exporter';
 use HTML::Shakan ();
 
 our @EXPORT = qw(form get);
 
 sub import {
     my $class = shift;
-    $class->export_to_level(1);
+    __PACKAGE__->export_to_level(1);
     HTML::Shakan::Fields->export_to_level(1);
 }
 
@@ -67,6 +67,28 @@ HTML::Shakan::Declare - declare the form
 =head1 DESCRIPTION
 
 This module supports to generate form using declare style.
+
+=head1 FUNCTIONS
+
+This module exports L<HTML::Shakan::Fields>'s exported functions and following functions.
+
+=over 4
+
+=item form($name, \@fields)
+
+Register new form named I<$name> with C<<\@fields>>.
+
+=back
+
+=head1 EXPORTED METHODS
+
+=over 4
+
+=item Your::Form::Class->get($name[, %args])
+
+Now, your form class provides I< get > method. This method returns instance of L<HTML::Shakan>.
+
+=back
 
 =head1 AUTHORS
 

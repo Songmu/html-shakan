@@ -1,7 +1,7 @@
 package HTML::Shakan::Utils;
 use strict;
 use warnings;
-use base qw/Exporter/;
+use parent qw/Exporter/;
 
 our @EXPORT = qw/encode_entities/;
 

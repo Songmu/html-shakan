@@ -1,7 +1,7 @@
 package HTML::Shakan::Widgets::jQueryUI;
 use strict;
 use warnings;
-use base 'HTML::Shakan::Widgets::Simple';
+use parent 'HTML::Shakan::Widgets::Simple';
 
 BEGIN {
 die 'this module is under construction';

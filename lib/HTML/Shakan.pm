@@ -397,13 +397,13 @@ If you want to know about shakan, please see L<http://www.konuma-sakan.com/index
 
 =over 4
 
-=item $shakan->render();
+=item my $html = $shakan->render(); :Str
 
-render form.
+Render form.
 
-=item $shakan->render_field($name);
+=item $shakan->render_field($name); :Str
 
-render partial form named $name.
+Render partial form named C<<$name>>.
 
 =back
 
