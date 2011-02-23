@@ -12,6 +12,12 @@ has choices => (
     required => 1,
 );
 
+has 'id_tmpl' => (
+    is      => 'ro',
+    isa     => 'Str',
+    default => 'id_%s_%s',
+);
+
 override 'get_constraints' => sub {
     my $self = shift;
     my ($name, $constraints) = super();

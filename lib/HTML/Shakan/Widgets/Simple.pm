@@ -78,7 +78,11 @@ sub widget_radio {
     for (my $i=0; $i<@$choices; $i+=2) {
         my ($a, $b) = ($choices->[$i], $choices->[$i+1]);
         push @t, sprintf(
-            q{<li><label><input type="radio" value="%s"%s />%s</label></li>},
+            q{<li><label><input %s type="radio" value="%s"%s />%s</label></li>},
+            _attr({
+                %{ $field->attr },
+                id => sprintf( $field->id_tmpl, $field->{name}, $i / 2 ),
+            }),
             encode_entities($a),
             ($value && $value eq $a ? ' checked="checked"' : ''),
             encode_entities($b)
