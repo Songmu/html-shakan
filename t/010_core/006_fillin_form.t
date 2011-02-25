@@ -54,8 +54,8 @@ do {
     );
     is $form->render, trim(<<'...');
 <label for="id_yay">yay</label><ul>
-<li><label><input type="radio" value="a" />1</label></li>
-<li><label><input type="radio" value="b" checked="checked" />2</label></li>
+<li><label><input id="id_yay_0" name="yay" type="radio" value="a" />1</label></li>
+<li><label><input id="id_yay_1" name="yay" type="radio" value="b" checked="checked" />2</label></li>
 </ul>
 ...
 };
