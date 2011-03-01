@@ -1,5 +1,12 @@
 Revision history for Perl extension HTML::Shakan
 
+0.10
+
+    - remove auto_include() in Makefile.PL
+    - depend to latest FV::L(0.23 was broken)
+    - do not depend on Test::Base.
+    - specify the required perl version
+
 0.09
 
     [BUG FIX]
