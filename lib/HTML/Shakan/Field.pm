@@ -33,7 +33,7 @@ has value => (
 
 has filters => (
     is => 'rw',
-    isa => 'ArrayRef',
+    isa => 'ArrayRef[Str]',
     default => sub { +[] }
 );
 
@@ -140,9 +140,17 @@ the 'name' attribute for the html elements.
 
 the 'value' attribute for the html elements.
 
-=item filters
+=item filters: ArrayRef[Str]
 
-parameter filters.
+This is parameter filters in arrayref.
+
+For example, following field removes white space from parameter value in head and end.
+
+	TextField(
+		name     => 'f',
+		required => 1,
+		filters  => [qw'WhiteSpace']
+	),
 
 =item widget
 

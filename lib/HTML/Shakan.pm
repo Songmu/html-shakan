@@ -260,16 +260,11 @@ sub _build_params {
 
         my @val = $self->request->param($name);
         if (@val!=0) {
-            $params->{$name} = @val==1 ? $val[0] : \@val;
-
-            if (my $filters = $field->{filters}) {
-                for my $filter (@{$filters}) {
-                    my @val =
-                        ( map { HTML::Shakan::Filters->filter( $filter, $_ ) }
-                            $self->request->param($name) );
-                    $params->{$name} = @val==1 ? $val[0] : \@val;
-                }
+            if ( my $filters = $field->{filters} ) {
+                @val =
+                  map { HTML::Shakan::Filters->filter( $filters, $_ ) } @val;
             }
+			$params->{$name} = @val==1 ? $val[0] : \@val;
         }
     }
     $params;
