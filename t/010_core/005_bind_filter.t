@@ -10,7 +10,7 @@ my $form = HTML::Shakan->new(
         TextField(
             name     => 'f',
             required => 1,
-            filters  => ['WhiteSpace']
+            filters  => [qw/WhiteSpace Hiragana/]
         )
     ],
 );
