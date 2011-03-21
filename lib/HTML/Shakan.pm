@@ -1,6 +1,6 @@
 package HTML::Shakan;
 use Any::Moose;
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 use Carp ();
 use 5.008001;
 

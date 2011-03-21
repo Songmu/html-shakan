@@ -1,5 +1,10 @@
 Revision history for Perl extension HTML::Shakan
 
+0.11
+
+    - [BUG] Apply multiple field filters correctly(hirobanex)
+      https://github.com/tokuhirom/html-shakan/pull/2
+
 0.10
 
     - remove auto_include() in Makefile.PL
