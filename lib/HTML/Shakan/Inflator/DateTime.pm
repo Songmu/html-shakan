@@ -1,4 +1,6 @@
 package HTML::Shakan::Inflator::DateTime;
+use strict;
+use warnings;
 use Any::Moose;
 use DateTime;
 use DateTime::Format::HTTP;

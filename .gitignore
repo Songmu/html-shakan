@@ -9,3 +9,16 @@ Makefile.old
 nytprof.out
 *.sw[po]
 *.bak
+inc/
+ppport.h
+*.old
+Build
+_build/
+xshelper.h
+tags
+blib/
+MYMETA.*
+META.json
+README
+^inc/
+HTML-Shakan-*/

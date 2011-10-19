@@ -1,4 +1,6 @@
 package HTML::Shakan::Renderer::HTML;
+use strict;
+use warnings;
 use Any::Moose;
 use HTML::Shakan::Utils;
 

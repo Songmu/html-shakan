@@ -1,4 +1,6 @@
 package HTML::Shakan::Field;
+use strict;
+use warnings;
 use Any::Moose;
 use HTML::Shakan::Utils;
 

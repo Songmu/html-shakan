@@ -1,4 +1,6 @@
 package HTML::Shakan::Filter::HTMLScrubber;
+use strict;
+use warnings;
 use Any::Moose;
 use HTML::Scrubber;
 

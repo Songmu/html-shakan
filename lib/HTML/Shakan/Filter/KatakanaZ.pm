@@ -1,4 +1,6 @@
 package HTML::Shakan::Filter::KatakanaZ;
+use strict;
+use warnings;
 use Any::Moose;
 with 'HTML::Shakan::Role::Filter';
 use Lingua::JA::Regular::Unicode qw(

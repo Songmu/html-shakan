@@ -1,4 +1,6 @@
 package HTML::Shakan::Model::DBIxSkinny;
+use strict;
+use warnings;
 use Any::Moose;
 with 'HTML::Shakan::Role::Model';
 

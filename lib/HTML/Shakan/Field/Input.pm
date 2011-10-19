@@ -1,4 +1,6 @@
 package HTML::Shakan::Field::Input;
+use strict;
+use warnings;
 use Any::Moose;
 extends 'HTML::Shakan::Field';
 

@@ -1,4 +1,6 @@
 package HTML::Shakan::Filter::WhiteSpace;
+use strict;
+use warnings;
 use Any::Moose;
 with 'HTML::Shakan::Role::Filter';
 
