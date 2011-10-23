@@ -1,5 +1,10 @@
 Revision history for Perl extension HTML::Shakan
 
+0.13
+
+    - submit check with form including one file field, and with plack request
+      (lopnor++)
+
 0.12
 
     - switch to M::B
