@@ -116,7 +116,7 @@ sub _build_submitted {
     my $r = $self->request;
     my $submitted_field = (
         scalar
-          grep { defined $r->param($_) }
+          grep { defined $r->param($_) || defined $r->upload($_) }
           uniq
           map  { $_->name }
                  $self->fields
