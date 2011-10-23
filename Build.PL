@@ -8,7 +8,7 @@ my $build = Module::Build->new(
     dynamic_config       => 0,
     build_requires       => {
         'Test::Requires' => '0.06',
-        'Test::More'     => '0.96'
+        'Test::More'     => '0.98'
     },
     configure_requires => { 'Module::Build' => '0.38' },
     test_requires      => undef,

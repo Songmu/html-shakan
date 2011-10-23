@@ -37,3 +37,4 @@ perltidy.ERR$
 \.bak$
 ^inc/
 ^HTML-Shakan-
+^[^/]+\.gz$
