@@ -1,5 +1,9 @@
 Revision history for Perl extension HTML::Shakan
 
+0.14
+
+    - fixed testing issue
+
 0.13
 
     - submit check with form including one file field, and with plack request
