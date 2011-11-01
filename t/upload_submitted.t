@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use HTML::Shakan;
-use Test::Requires 'Plack::Test';
+use Test::Requires 'Plack::Test', 'Hash::MultiValue';
 use Test::More;
 use Plack::Test;
 use Plack::Request;
