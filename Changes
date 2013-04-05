@@ -2,6 +2,14 @@ Revision history for Perl extension HTML::Shakan
 
 {{$NEXT}}
 
+0.16 2013-04-05T06:35:26Z
+
+    - use Mouse; remove Any::Moose
+      (Masayuki Matsuki)
+    - widget checkbox
+      (Masayuki Matsuki)
+      
+
 0.15
 
     - fixed testing issue

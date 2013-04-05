@@ -32,9 +32,6 @@
          }
       },
       "develop" : {
-         "recommends" : {
-            "HTML::FormFu" : "0"
-         },
          "requires" : {
             "Pod::Wordlist::hanekomu" : "0",
             "Test::CPAN::Meta" : "0",
@@ -48,7 +45,6 @@
             "CGI" : "0",
             "DateTime" : "0",
             "DateTime::Format::HTTP" : "0",
-            "HTML::FormFu" : "0",
             "HTML::Scrubber" : "0",
             "Lingua::JA::Regular::Unicode" : "0",
             "Mouse::Role" : "0",
@@ -90,7 +86,7 @@
          "web" : "https://github.com/tokuhirom/html-shakan"
       }
    },
-   "version" : "0.15",
+   "version" : "0.16",
    "x_contributors" : [
       "gfx <gfuji@cpan.org>",
       "Yoshihiro Sasaki <aloelight@gmail.com>",

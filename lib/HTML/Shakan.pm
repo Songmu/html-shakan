@@ -2,7 +2,7 @@ package HTML::Shakan;
 use strict;
 use warnings;
 use Mouse;
-our $VERSION = '0.15';
+our $VERSION = '0.16';
 use Carp ();
 use 5.008001;
 
@@ -275,6 +275,8 @@ sub _build_params {
 no Mouse;
 __PACKAGE__->meta->make_immutable;
 __END__
+
+=encoding utf-8
 
 =head1 NAME
 

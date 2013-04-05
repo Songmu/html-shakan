@@ -8,7 +8,6 @@ requires 'perl', '5.008001';
 recommends 'CGI';
 recommends 'DateTime';
 recommends 'DateTime::Format::HTTP';
-recommends 'HTML::FormFu';
 recommends 'HTML::Scrubber';
 recommends 'Lingua::JA::Regular::Unicode';
 recommends 'Mouse::Role';
@@ -26,5 +25,5 @@ on test => sub {
 };
 
 on develop => sub {
-    recommends 'HTML::FormFu';
+    # recommends 'HTML::FormFu';
 };
