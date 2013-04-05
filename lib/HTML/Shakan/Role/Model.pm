@@ -1,7 +1,7 @@
 package HTML::Shakan::Role::Model;
 use strict;
 use warnings;
-use Any::Moose '::Role';
+use Mouse::Role;
 
 requires 'create', 'update', 'fill';
 

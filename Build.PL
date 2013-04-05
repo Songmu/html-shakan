@@ -16,7 +16,6 @@ my $build = Module::Build->new(
         'perl'                => '5.008001',
         'parent'              => '0',
         'Mouse'               => '0.9',
-        'Any::Moose'          => '0.13',
         'List::MoreUtils'     => '0.22',
         'FormValidator::Lite' => '0.24',
         'Email::Valid::Loose' => '0.05'

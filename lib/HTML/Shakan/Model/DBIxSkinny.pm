@@ -1,7 +1,7 @@
 package HTML::Shakan::Model::DBIxSkinny;
 use strict;
 use warnings;
-use Any::Moose;
+use Mouse;
 with 'HTML::Shakan::Role::Model';
 
 sub fill {
@@ -37,7 +37,7 @@ sub update {
     $row->update($dat);
 }
 
-no Any::Moose;
+no Mouse;
 __PACKAGE__->meta->make_immutable;
 __END__
 

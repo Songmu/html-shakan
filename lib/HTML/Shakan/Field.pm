@@ -1,7 +1,7 @@
 package HTML::Shakan::Field;
 use strict;
 use warnings;
-use Any::Moose;
+use Mouse;
 use HTML::Shakan::Utils;
 
 has id => (
@@ -114,7 +114,7 @@ sub get_constraints {
     );
 }
 
-no Any::Moose;
+no Mouse;
 __PACKAGE__->meta->make_immutable;
 __END__
 

@@ -1,7 +1,7 @@
 package HTML::Shakan;
 use strict;
 use warnings;
-use Any::Moose;
+use Mouse;
 our $VERSION = '0.15';
 use Carp ();
 use 5.008001;
@@ -272,7 +272,7 @@ sub _build_params {
     $params;
 }
 
-no Any::Moose;
+no Mouse;
 __PACKAGE__->meta->make_immutable;
 __END__
 
