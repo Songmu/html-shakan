@@ -18,7 +18,12 @@ xshelper.h
 tags
 blib/
 MYMETA.*
-META.json
 README
 ^inc/
 HTML-Shakan-*/
+/HTML-Shakan-*
+/.build
+/_build_params
+/Build
+!Build/
+!META.json

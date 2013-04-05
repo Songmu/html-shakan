@@ -1,0 +1,80 @@
+{
+   "abstract" : "form html generator/validator",
+   "author" : [
+      "Tokuhiro Matsuno <tokuhirom  slkjfd@ gmail.com>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Minilla/v0.0.49, CPAN::Meta::Converter version 2.120921",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "HTML-Shakan",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "xt",
+         "inc",
+         "share",
+         "eg",
+         "examples"
+      ]
+   },
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::More" : "0.98",
+            "Test::Requires" : "0.06"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "CPAN::Meta" : "0",
+            "CPAN::Meta::Prereqs" : "0",
+            "Module::Build" : "0.38"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Pod::Wordlist::hanekomu" : "0",
+            "Test::CPAN::Meta" : "0",
+            "Test::MinimumVersion" : "0.10108",
+            "Test::Pod" : "1.41",
+            "Test::Spelling" : "0"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Email::Valid::Loose" : "0.05",
+            "FormValidator::Lite" : "0.24",
+            "List::MoreUtils" : "0.22",
+            "Mouse" : "0.9",
+            "parent" : "0",
+            "perl" : "5.008001"
+         }
+      }
+   },
+   "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/tokuhirom/html-shakan/issues"
+      },
+      "homepage" : "https://github.com/tokuhirom/html-shakan",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/tokuhirom/html-shakan.git",
+         "web" : "https://github.com/tokuhirom/html-shakan"
+      }
+   },
+   "version" : "0.15",
+   "x_contributors" : [
+      "gfx <gfuji@cpan.org>",
+      "Yoshihiro Sasaki <aloelight@gmail.com>",
+      "Nobuo Danjou <nobuo.danjou@gmail.com>",
+      "Masayuki Matsuki <y.songmu@gmail.com>",
+      "Tokuhiro Matsuno <tokuhirom@gmail.com>"
+   ]
+}
