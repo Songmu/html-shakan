@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use CGI;
 use HTML::Shakan;
-use Test::More tests => 13;
+use Test::More tests => 14;
 
 sub trim {
     local $_ = shift;
@@ -40,6 +40,15 @@ is $form->widgets->render( $form, ChoiceField( widget => 'radio', name => 'foo',
 <li><label><input id="id_foo_0" name="foo" type="radio" value="a" />1</label></li>
 <li><label><input id="id_foo_1" name="foo" type="radio" value="b" />2</label></li>
 <li><label><input id="id_foo_2" name="foo" type="radio" value="c" />3</label></li>
+</ul>
+...
+
+# choices-field + checkbox-widgets
+is $form->widgets->render( $form, ChoiceField( widget => 'checkbox', name => 'bar', id => 'name_field', choices => ['a' => 1, 'b' => 2, 'c' => 3] ) ), trim(<<'...');
+<ul>
+<li><label><input id="id_bar_0" name="bar" type="checkbox" value="a" />1</label></li>
+<li><label><input id="id_bar_1" name="bar" type="checkbox" value="b" />2</label></li>
+<li><label><input id="id_bar_2" name="bar" type="checkbox" value="c" />3</label></li>
 </ul>
 ...
 

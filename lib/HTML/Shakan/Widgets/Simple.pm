@@ -92,6 +92,36 @@ sub widget_radio {
     join "\n", @t;
 }
 
+sub widget_checkbox {
+    my ($self, $form, $field) = @_;
+
+    my $choices = $field->{choices};
+
+    my $values = $form->fillin_param($field->{name});
+    unless (ref $values) {
+        $values = defined $values ? [$values] : [];
+    }
+    my @t;
+    push @t, "<ul>";
+    for (my $i=0; $i<@$choices; $i+=2) {
+        my ($val, $label) = ($choices->[$i], $choices->[$i+1]);
+        my $checked = grep /^$val$/, @$values;
+
+       push @t, sprintf(
+            '<li><label><input %s type="checkbox" value="%s"%s />%s</label></li>',
+            _attr({
+                %{ $field->attr },
+                id => sprintf( $field->id_tmpl, $field->{name}, $i / 2 ),
+            }),
+            encode_entities($val),
+            ($checked ? ' checked="checked"' : ''),
+            encode_entities($label),
+        );
+    }
+    push @t, "</ul>";
+    join "\n", @t;
+}
+
 sub widget_date {
     my ($self, $form, $field) = @_;
     my $name = $field->{name} or die "missing name";
