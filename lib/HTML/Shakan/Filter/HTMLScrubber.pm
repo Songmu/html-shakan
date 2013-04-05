@@ -1,7 +1,7 @@
 package HTML::Shakan::Filter::HTMLScrubber;
 use strict;
 use warnings;
-use Any::Moose;
+use Mouse;
 use HTML::Scrubber;
 
 has scrubber => (
@@ -15,7 +15,7 @@ sub filter {
     $self->scrubber->scrub($val);
 }
 
-no Any::Moose;
+no Mouse;
 __PACKAGE__->meta->make_immutable;
 
 __END__

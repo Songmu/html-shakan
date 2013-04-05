@@ -1,7 +1,7 @@
 package HTML::Shakan::Field::Choice;
 use strict;
 use warnings;
-use Any::Moose;
+use Mouse;
 extends 'HTML::Shakan::Field';
 
 has '+widget' => (
@@ -32,7 +32,7 @@ override 'get_constraints' => sub {
     );
 };
 
-no Any::Moose;
+no Mouse;
 __PACKAGE__->meta->make_immutable;
 __END__
 

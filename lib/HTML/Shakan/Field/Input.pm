@@ -1,7 +1,7 @@
 package HTML::Shakan::Field::Input;
 use strict;
 use warnings;
-use Any::Moose;
+use Mouse;
 extends 'HTML::Shakan::Field';
 
 has '+widget' => (
@@ -18,7 +18,7 @@ sub BUILD {
     $self->attr->{type} = $self->type;
 }
 
-no Any::Moose;
+no Mouse;
 __PACKAGE__->meta->make_immutable;
 __END__
 

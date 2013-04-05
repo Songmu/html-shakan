@@ -1,7 +1,7 @@
 package HTML::Shakan::Model::DataModel;
 use strict;
 use warnings;
-use Any::Moose;
+use Mouse;
 with 'HTML::Shakan::Role::Model';
 
 sub fill {
@@ -35,7 +35,7 @@ sub update {
     $row->update();
 }
 
-no Any::Moose;
+no Mouse;
 __PACKAGE__->meta->make_immutable;
 __END__
 

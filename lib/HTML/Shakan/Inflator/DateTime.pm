@@ -1,7 +1,7 @@
 package HTML::Shakan::Inflator::DateTime;
 use strict;
 use warnings;
-use Any::Moose;
+use Mouse;
 use DateTime;
 use DateTime::Format::HTTP;
 
@@ -20,7 +20,7 @@ sub inflate {
     return $dt;
 }
 
-no Any::Moose;
+no Mouse;
 __PACKAGE__->meta->make_immutable;
 __END__
 

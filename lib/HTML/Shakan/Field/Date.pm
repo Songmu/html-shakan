@@ -1,7 +1,7 @@
 package HTML::Shakan::Field::Date;
 use strict;
 use warnings;
-use Any::Moose;
+use Mouse;
 extends 'HTML::Shakan::Field';
 
 has '+widget' => (
@@ -19,7 +19,7 @@ sub BUILD {
     $self->add_constraint('DATE');
 }
 
-no Any::Moose;
+no Mouse;
 __PACKAGE__->meta->make_immutable;
 __END__
 

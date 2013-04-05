@@ -6,7 +6,7 @@ use Scalar::Util 'blessed';
 sub _get_filter {
     my $pkg = shift;
     $pkg = $pkg =~ s/^\+// ? $pkg : "HTML::Shakan::Filter::$pkg";
-    Any::Moose::load_class($pkg);
+    Mouse::load_class($pkg);
     return $pkg->new();
 }
 

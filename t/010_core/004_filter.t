@@ -1,5 +1,5 @@
 package t::004;
-use Any::Moose;
+use Mouse;
 use utf8;
 use Test::More tests => 5;
 use HTML::Shakan::Filters;
