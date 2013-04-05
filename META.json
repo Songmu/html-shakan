@@ -24,12 +24,6 @@
       ]
    },
    "prereqs" : {
-      "build" : {
-         "requires" : {
-            "Test::More" : "0.98",
-            "Test::Requires" : "0.06"
-         }
-      },
       "configure" : {
          "requires" : {
             "CPAN::Meta" : "0",
@@ -38,6 +32,9 @@
          }
       },
       "develop" : {
+         "recommends" : {
+            "HTML::FormFu" : "0"
+         },
          "requires" : {
             "Pod::Wordlist::hanekomu" : "0",
             "Test::CPAN::Meta" : "0",
@@ -47,6 +44,16 @@
          }
       },
       "runtime" : {
+         "recommends" : {
+            "CGI" : "0",
+            "DateTime" : "0",
+            "DateTime::Format::HTTP" : "0",
+            "HTML::FormFu" : "0",
+            "HTML::Scrubber" : "0",
+            "Lingua::JA::Regular::Unicode" : "0",
+            "Mouse::Role" : "0",
+            "Scalar::Util" : "0"
+         },
          "requires" : {
             "Email::Valid::Loose" : "0.05",
             "FormValidator::Lite" : "0.24",
@@ -54,6 +61,20 @@
             "Mouse" : "0.9",
             "parent" : "0",
             "perl" : "5.008001"
+         }
+      },
+      "test" : {
+         "recommends" : {
+            "DBIx::Skinny" : "0",
+            "DBIx::Skinny::Row" : "0",
+            "DBIx::Skinny::Schema" : "0",
+            "HTTP::Request::Common" : "0",
+            "Plack::Request" : "0",
+            "Plack::Test" : "0"
+         },
+         "requires" : {
+            "Test::More" : "0.98",
+            "Test::Requires" : "0.06"
          }
       }
    },
@@ -75,6 +96,6 @@
       "Yoshihiro Sasaki <aloelight@gmail.com>",
       "Nobuo Danjou <nobuo.danjou@gmail.com>",
       "Masayuki Matsuki <y.songmu@gmail.com>",
-      "Tokuhiro Matsuno <tokuhirom@gmail.com>"
+      "tokuhirom <tokuhirom@gmail.com>"
    ]
 }
