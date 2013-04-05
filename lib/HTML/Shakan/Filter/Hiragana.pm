@@ -1,7 +1,7 @@
 package HTML::Shakan::Filter::Hiragana;
 use strict;
 use warnings;
-use Any::Moose;
+use Mouse;
 with 'HTML::Shakan::Role::Filter';
 use Lingua::JA::Regular::Unicode qw(
     katakana2hiragana
@@ -12,7 +12,7 @@ sub filter {
     katakana2hiragana($val);
 }
 
-no Any::Moose;
+no Mouse;
 __PACKAGE__->meta->make_immutable;
 __END__
 

@@ -1,7 +1,7 @@
 package HTML::Shakan::Role::Filter;
 use strict;
 use warnings;
-use Any::Moose '::Role';
+use Mouse::Role;
 
 requires 'filter';
 

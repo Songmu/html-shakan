@@ -1,7 +1,7 @@
 package HTML::Shakan::Renderer::HTML;
 use strict;
 use warnings;
-use Any::Moose;
+use Mouse;
 use HTML::Shakan::Utils;
 
 has 'id_tmpl' => (
@@ -27,7 +27,7 @@ sub render {
     join '', @res;
 }
 
-no Any::Moose;
+no Mouse;
 __PACKAGE__->meta->make_immutable;
 __END__
 

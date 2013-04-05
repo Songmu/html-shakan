@@ -1,7 +1,7 @@
 package HTML::Shakan::Filter::WhiteSpace;
 use strict;
 use warnings;
-use Any::Moose;
+use Mouse;
 with 'HTML::Shakan::Role::Filter';
 
 sub filter {
@@ -13,7 +13,7 @@ sub filter {
     $_;
 }
 
-no Any::Moose;
+no Mouse;
 __PACKAGE__->meta->make_immutable;
 
 __END__

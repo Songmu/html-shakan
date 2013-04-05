@@ -1,7 +1,7 @@
 package HTML::Shakan::Field::File;
 use strict;
 use warnings;
-use Any::Moose;
+use Mouse;
 extends 'HTML::Shakan::Field::Input';
 
 has '+type' => (
@@ -16,7 +16,7 @@ sub field_filter {
     $params;
 }
 
-no Any::Moose;
+no Mouse;
 __PACKAGE__->meta->make_immutable;
 __END__
 
