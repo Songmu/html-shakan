@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use CGI;
 use HTML::Shakan;
-use Test::More tests => 14;
+use Test::More tests => 16;
 
 sub trim {
     local $_ = shift;
@@ -111,3 +111,34 @@ is $form->widgets->render( $form, DateField( name => 'birthdate', years => [2000
 </span>
 ...
 
+# choices-field + select-widgets + zero value
+my $q_choice = CGI->new;
+$q_choice->param(foo => 0);
+my $form_choice = HTML::Shakan->new(
+    request => $q_choice,
+    fields => [ ],
+);
+is $form_choice->widgets->render( $form_choice, ChoiceField( name => 'foo', id => 'name_field', choices => ['0' => 'zero', '1' => 'a', '2' => 'b', '3' => 'c'] ) ), trim(<<'...');
+<select id="name_field" name="foo">
+<option value="0" selected="selected">zero</option>
+<option value="1">a</option>
+<option value="2">b</option>
+<option value="3">c</option>
+</select>
+...
+
+# choices-field + radio-widgets + zero value
+my $q_radio = CGI->new;
+$q_radio->param(foo => 0);
+my $form_radio = HTML::Shakan->new(
+    request => $q_radio,
+    fields => [ ],
+);
+is $form_radio->widgets->render( $form_radio, ChoiceField( widget => 'radio', name => 'foo', id => 'name_field', choices => ['0' => 'zero', '1' => 'a', '2' => 'b', '3' => 'c'] ) ), trim(<<'...');
+<ul>
+<li><label><input id="id_foo_0" name="foo" type="radio" value="0" checked="checked" />zero</label></li>
+<li><label><input id="id_foo_1" name="foo" type="radio" value="1" />a</label></li>
+<li><label><input id="id_foo_2" name="foo" type="radio" value="2" />b</label></li>
+<li><label><input id="id_foo_3" name="foo" type="radio" value="3" />c</label></li>
+</ul>
+...
