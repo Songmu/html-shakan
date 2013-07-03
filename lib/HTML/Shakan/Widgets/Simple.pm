@@ -59,7 +59,7 @@ sub widget_select {
         push @t, sprintf(
             q{<option value="%s"%s>%s</option>},
             encode_entities($a),
-            ($value && $value eq $a ? ' selected="selected"' : ''),
+            (defined $value && $value eq $a ? ' selected="selected"' : ''),
             encode_entities($b));
     }
     push @t, q{</select>};
@@ -84,7 +84,7 @@ sub widget_radio {
                 id => sprintf( $field->id_tmpl, $field->{name}, $i / 2 ),
             }),
             encode_entities($a),
-            ($value && $value eq $a ? ' checked="checked"' : ''),
+            (defined $value && $value eq $a ? ' checked="checked"' : ''),
             encode_entities($b)
         );
     }
