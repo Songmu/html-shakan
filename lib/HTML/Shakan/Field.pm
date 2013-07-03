@@ -118,6 +118,10 @@ no Mouse;
 __PACKAGE__->meta->make_immutable;
 __END__
 
+=encoding utf8
+
+=for stopwords attr
+
 =head1 NAME
 
 HTML::Shakan::Field - base class for field object
@@ -132,15 +136,15 @@ This is a base class for filed object.
 
 =item id
 
-the 'id' attribute for the html elements.
+the 'id' attribute for the HTML elements.
 
 =item name
 
-the 'name' attribute for the html elements.
+the 'name' attribute for the HTML elements.
 
 =item value
 
-the 'value' attribute for the html elements.
+the 'value' attribute for the HTML elements.
 
 =item filters: ArrayRef[Str]
 

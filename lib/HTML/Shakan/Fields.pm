@@ -83,6 +83,8 @@ sub Duplication {
 1;
 __END__
 
+=encoding utf8
+
 =head1 NAME
 
 HTML::Shakan::Fields - fields
@@ -97,49 +99,49 @@ If you want to know the details, please look the source :)
 
 =over 4
 
-=item TextField(name => 'foo')
+=item C<< TextField(name => 'foo') >>
 
 create a instance of HTML::Shakan::Input.
 
 This is same as HTML::Shakan::Input->new(name => 'foo', type => 'text', @_);
 
-=item EmailField(name => 'email')
+=item C<< EmailField(name => 'email') >>
 
 TextField() + EMAIL_LOOSE constraint.
 
-=item URLField(name => 'url')
+=item C<< URLField(name => 'url') >>
 
 TextField() + HTTP_URL constraint
 
-=item UIntField(name => 'i')
+=item C<< UIntField(name => 'i') >>
 
 TextField() + UINT constraint
 
-=item IntField(name => 'i')
+=item C<< IntField(name => 'i') >>
 
 TextField() + INT constraint
 
-=item PasswordField(name => 'pw')
+=item C<< PasswordField(name => 'pw') >>
 
 define <input type="password" /> field
 
-=item FileField(name => 'file')
+=item C<< FileField(name => 'file') >>
 
-define <input type="fiel" /> field
+define <input type="file" /> field
 
-=item ImageField(name => 'image')
+=item C<< ImageField(name => 'image') >>
 
 FileField + FILE_MIME=image/* constraint
 
-=item ChoiceField(name => 'interest', choices => [qw/moose mouse exporter/])
+=item C<< ChoiceField(name => 'interest', choices => [qw/moose mouse exporter/]) >>
 
 selector field.
 
-=item DateField(name => 'birthdate')
+=item C<< DateField(name => 'birthdate') >>
 
 date input field.
 
-=item Duplication('mail' => EmailField(), EmailField())
+=item C<< Duplication('mail' => EmailField(), EmailField()) >>
 
 both field contains same value?
 

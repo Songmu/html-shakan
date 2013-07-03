@@ -1,5 +1,7 @@
 =encoding utf-8
 
+=for stopwords HTML::Shakan::Doc.ja.pod newforms
+
 =head1 NAME
 
 HTML::Shakan::Doc.ja.pod - Japanese doc.
@@ -7,7 +9,7 @@ HTML::Shakan::Doc.ja.pod - Japanese doc.
 =head1 CONCEPT
 
 I cannot write long document in English.
-If you want to read this document, please use google-translate or other stuff.
+If you want to read this document, please use Google translate or other stuff.
 
 英語かくのがつらいので日本語でコンセプトをしるす。
 

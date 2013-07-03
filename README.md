@@ -1,6 +1,6 @@
 # NAME
 
-HTML::Shakan - form html generator/validator
+HTML::Shakan - Form HTML generator/validator
 
 # SYNOPSIS
 
@@ -111,17 +111,17 @@ If you want to know about shakan, please see [http://www.konuma-sakan.com/index2
 
 # METHODS
 
-- my $html = $shakan->render(); :Str
+- `my $html = $shakan->render(); :Str`
 
     Render form.
 
-- $shakan->render\_field($name); :Str
+- `$shakan->render_field($name); :Str`
 
     Render partial form named `<$name`\>.
 
 # AUTHOR
 
-Tokuhiro Matsuno <tokuhirom  slkjfd@ gmail.com>
+Tokuhiro Matsuno <tokuhirom  @ gmail.com>
 
 # SEE ALSO
 

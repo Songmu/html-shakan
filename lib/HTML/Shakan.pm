@@ -2,7 +2,7 @@ package HTML::Shakan;
 use strict;
 use warnings;
 use Mouse;
-our $VERSION = '0.16';
+our $VERSION = '0.17';
 use Carp ();
 use 5.008001;
 
@@ -278,9 +278,11 @@ __END__
 
 =encoding utf-8
 
+=for stopwords shakan edokko login sakan
+
 =head1 NAME
 
-HTML::Shakan - form html generator/validator
+HTML::Shakan - Form HTML generator/validator
 
 =head1 SYNOPSIS
 
@@ -397,11 +399,11 @@ If you want to know about shakan, please see L<http://www.konuma-sakan.com/index
 
 =over 4
 
-=item my $html = $shakan->render(); :Str
+=item C<< my $html = $shakan->render(); :Str >>
 
 Render form.
 
-=item $shakan->render_field($name); :Str
+=item C<< $shakan->render_field($name); :Str >>
 
 Render partial form named C<<$name>>.
 
@@ -409,7 +411,7 @@ Render partial form named C<<$name>>.
 
 =head1 AUTHOR
 
-Tokuhiro Matsuno E<lt>tokuhirom  slkjfd@ gmail.comE<gt>
+Tokuhiro Matsuno E<lt>tokuhirom  @ gmail.comE<gt>
 
 =head1 SEE ALSO
 

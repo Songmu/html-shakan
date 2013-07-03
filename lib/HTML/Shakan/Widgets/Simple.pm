@@ -175,7 +175,7 @@ __END__
 
 =head1 NAME
 
-HTML::Shakan::Widgets::Simple - simple default html widgets
+HTML::Shakan::Widgets::Simple - simple default HTML widgets
 
 =head1 DESCRIPTION
 

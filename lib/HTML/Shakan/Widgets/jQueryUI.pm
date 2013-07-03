@@ -43,6 +43,8 @@ sub field_filter {
 1;
 __END__
 
+=for stopwords jQueryUI datepicker
+
 =head1 NAME
 
 HTML::Shakan::Widgets::jQueryUI - jQueryUI
