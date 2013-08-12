@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use CGI;
 use HTML::Shakan;
-use Test::More tests => 16;
+use Test::More;
 
 sub trim {
     local $_ = shift;
@@ -142,3 +142,22 @@ is $form_radio->widgets->render( $form_radio, ChoiceField( widget => 'radio', na
 <li><label><input id="id_foo_3" name="foo" type="radio" value="3" />c</label></li>
 </ul>
 ...
+
+subtest 'widget_input' => sub {
+    my $form_with_value = HTML::Shakan->new(
+        request => CGI->new({
+            foo_1 => 'foo_1',
+            foo_2 => '0',
+            foo_3 => 0,
+        }),
+        fields => [ ],
+    );
+    is $form->widgets->widget_input($form_with_value, TextField( name => 'foo_1', id => 'name_field' )),
+          '<input id="name_field" name="foo_1" type="text" value="foo_1" />';
+    is $form->widgets->widget_input($form_with_value, TextField( name => 'foo_2', id => 'name_field' )),
+          '<input id="name_field" name="foo_2" type="text" value="0" />';
+    is $form->widgets->widget_input($form_with_value, TextField( name => 'foo_3', id => 'name_field' )),
+          '<input id="name_field" name="foo_3" type="text" value="0" />';
+};
+
+done_testing;
