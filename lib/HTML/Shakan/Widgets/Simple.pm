@@ -30,7 +30,7 @@ sub widget_input {
     my ($self, $form, $field) = @_;
 
     my $value = $form->fillin_param($field->{name});
-    if ($value || (defined ($value) && $value eq '0')) {
+    if (defined $value) {
         $field->value($value);
     }
 
