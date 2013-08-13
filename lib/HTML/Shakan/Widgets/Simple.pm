@@ -29,7 +29,8 @@ sub _attr {
 sub widget_input {
     my ($self, $form, $field) = @_;
 
-    if (my $value = $form->fillin_param($field->{name})) {
+    my $value = $form->fillin_param($field->{name});
+    if (defined $value) {
         $field->value($value);
     }
 
