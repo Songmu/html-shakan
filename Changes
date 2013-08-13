@@ -2,6 +2,11 @@ Revision history for Perl extension HTML::Shakan
 
 {{$NEXT}}
 
+0.18 2013-08-13T01:07:41Z
+
+    - changed to show numerical zero value in the text box.
+      (moznion)
+
 0.17 2013-07-03T19:21:48Z
 
     - zero value support
@@ -13,7 +18,7 @@ Revision history for Perl extension HTML::Shakan
       (Masayuki Matsuki)
     - widget checkbox
       (Masayuki Matsuki)
-      
+
 
 0.15
 
