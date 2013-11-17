@@ -1,6 +1,8 @@
 Revision history for Perl extension HTML::Shakan
 
 {{$NEXT}}
+    - depends on HTML::Escape for more performance and security
+      (Masayuki Matsuki)
 
 0.18 2013-08-13T01:07:41Z
 

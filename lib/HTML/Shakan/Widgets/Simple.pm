@@ -1,7 +1,7 @@
 package HTML::Shakan::Widgets::Simple;
 use strict;
 use warnings;
-use HTML::Shakan::Utils;
+use HTML::Escape;
 use List::MoreUtils qw/zip/;
 
 sub render {
@@ -20,7 +20,7 @@ sub _attr {
     my @ret;
 
     for my $key (sort keys %$attr) {
-        push @ret, sprintf(q{%s="%s"}, encode_entities($key), encode_entities($attr->{$key}));
+        push @ret, sprintf(q{%s="%s"}, HTML::Escape::escape_html($key), HTML::Escape::escape_html($attr->{$key}));
     }
     join ' ', @ret;
 }
@@ -59,9 +59,9 @@ sub widget_select {
         my ($a, $b) = ($choices->[$i], $choices->[$i+1]);
         push @t, sprintf(
             q{<option value="%s"%s>%s</option>},
-            encode_entities($a),
+            HTML::Escape::escape_html($a),
             (defined $value && $value eq $a ? ' selected="selected"' : ''),
-            encode_entities($b));
+            HTML::Escape::escape_html($b));
     }
     push @t, q{</select>};
     return join "\n", @t;
@@ -84,9 +84,9 @@ sub widget_radio {
                 %{ $field->attr },
                 id => sprintf( $field->id_tmpl, $field->{name}, $i / 2 ),
             }),
-            encode_entities($a),
+            HTML::Escape::escape_html($a),
             (defined $value && $value eq $a ? ' checked="checked"' : ''),
-            encode_entities($b)
+            HTML::Escape::escape_html($b)
         );
     }
     push @t, "</ul>";
@@ -114,9 +114,9 @@ sub widget_checkbox {
                 %{ $field->attr },
                 id => sprintf( $field->id_tmpl, $field->{name}, $i / 2 ),
             }),
-            encode_entities($val),
+            HTML::Escape::escape_html($val),
             ($checked ? ' checked="checked"' : ''),
-            encode_entities($label),
+            HTML::Escape::escape_html($label),
         );
     }
     push @t, "</ul>";

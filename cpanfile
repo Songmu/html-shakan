@@ -1,5 +1,6 @@
 requires 'Email::Valid::Loose', '0.05';
 requires 'FormValidator::Lite', '0.24';
+requires 'HTML::Escape';
 requires 'List::MoreUtils', '0.22';
 requires 'Mouse', '0.9';
 requires 'parent';

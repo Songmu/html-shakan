@@ -2,7 +2,7 @@ package HTML::Shakan::Renderer::HTML;
 use strict;
 use warnings;
 use Mouse;
-use HTML::Shakan::Utils;
+use HTML::Escape ();
 
 has 'id_tmpl' => (
     is => 'ro',
@@ -20,7 +20,7 @@ sub render {
         }
         if ($field->label) {
             push @res, sprintf( q{<label for="%s">%s</label>},
-                $field->{id}, encode_entities( $field->{label} ) );
+                $field->{id}, HTML::Escape::escape_html( $field->{label} ) );
         }
         push @res, $form->widgets->render( $form, $field );
     }
