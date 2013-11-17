@@ -5,15 +5,12 @@ use parent qw/Exporter/;
 
 our @EXPORT = qw/encode_entities/;
 
+use HTML::Escape ();
+
+# backward compatible
 sub encode_entities {
-    local $_ = shift;
-    return $_ unless $_;
-    s/&/&amp;/g;
-    s/>/&gt;/g;
-    s/</&lt;/g;
-    s/"/&quot;/g;
-    s/'/&#39;/g;
-    return $_;
+    warn "HTML::Shakan::Utils::encode_entities() is deprecated. use HTML::Escape::escape_html() instead.\n";
+    HTML::Escape::escape_html(@_);
 }
 
 1;
