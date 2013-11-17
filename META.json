@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom  @ gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.5.6, CPAN::Meta::Converter version 2.131560",
+   "generated_by" : "Minilla/v0.8.4, CPAN::Meta::Converter version 2.132830",
    "license" : [
       "perl_5"
    ],
@@ -21,7 +21,8 @@
          "share",
          "eg",
          "examples",
-         "author"
+         "author",
+         "builder"
       ]
    },
    "prereqs" : {
@@ -53,6 +54,7 @@
          "requires" : {
             "Email::Valid::Loose" : "0.05",
             "FormValidator::Lite" : "0.24",
+            "HTML::Escape" : "0",
             "List::MoreUtils" : "0.22",
             "Mouse" : "0.9",
             "parent" : "0",
@@ -86,14 +88,14 @@
          "web" : "https://github.com/tokuhirom/html-shakan"
       }
    },
-   "version" : "0.18",
+   "version" : "1.00",
    "x_contributors" : [
       "gfx <gfuji@cpan.org>",
       "Yoshihiro Sasaki <aloelight@gmail.com>",
       "Nobuo Danjou <nobuo.danjou@gmail.com>",
-      "Masayuki Matsuki <y.songmu@gmail.com>",
       "toritori0318 <toritori0318@gmail.com>",
       "moznion <moznion@gmail.com>",
+      "Songmu <y.songmu@gmail.com>",
       "Tokuhiro Matsuno <tokuhirom@gmail.com>"
    ]
 }

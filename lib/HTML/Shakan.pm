@@ -2,7 +2,7 @@ package HTML::Shakan;
 use strict;
 use warnings;
 use Mouse;
-our $VERSION = '0.18';
+our $VERSION = '1.00';
 use Carp ();
 use 5.008001;
 

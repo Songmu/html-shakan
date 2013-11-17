@@ -1,7 +1,14 @@
 Revision history for Perl extension HTML::Shakan
 
 {{$NEXT}}
-    - depends on HTML::Escape for more performance and security
+
+1.00 2013-11-17T09:18:48Z
+
+    - Use HTML::Escape while escaping HTML chars.
+      It makes HTML::Shakan faster.
+
+      You need to care while updating this module. 
+      HTML::Escape escapes more characters by default.
       (Masayuki Matsuki)
 
 0.18 2013-08-13T01:07:41Z
