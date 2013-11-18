@@ -70,6 +70,14 @@ check(
 );
 
 check(
+    'ChoiceField',
+    [ ChoiceField( name => 'u', choices => [a => 'a', b => 'b'] ) ],
+    [ CGI->new( { u => 'a' } ), 1 ],
+    [ CGI->new( { u => [qw/a b/] } ), 1 ],
+    [ CGI->new( { u => [qw/a c/] } ), 0 ],
+);
+
+check(
     'DateField',
     [ DateField( name => 'birthdate', years => [2000..2004], required => 1 ) ],
     [ CGI->new( { } ), 0 ],

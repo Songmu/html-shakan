@@ -228,7 +228,12 @@ sub param {
     # if they want to fetch a particular key ...
     if (scalar @_ == 1) {
         if (exists $params->{$_[0]}) {
-            return $params->{$_[0]};
+            my $val = $params->{$_[0]};
+            if (ref $val && ref $val eq 'ARRAY') {
+                return wantarray ? @$val : $val->[-1];
+            } else {
+                return $val;
+            }
         } else {
             return; # this behavior is same as cgi.pm(iirc)
         }
@@ -266,7 +271,7 @@ sub _build_params {
                 @val =
                   map { HTML::Shakan::Filters->filter( $filters, $_ ) } @val;
             }
-			$params->{$name} = @val==1 ? $val[0] : \@val;
+            $params->{$name} = @val==1 ? $val[0] : \@val;
         }
     }
     $params;
