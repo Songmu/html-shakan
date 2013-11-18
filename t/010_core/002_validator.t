@@ -63,7 +63,7 @@ check(
 
 check(
     'ChoiceField',
-    [ ChoiceField( name => 'u', choices => [qw/a b c/] ) ],
+    [ ChoiceField( name => 'u', choices => [a => 'b', c => 'd'] ) ],
     [ CGI->new( { u => 'a' } ), 1 ],
     [ CGI->new( { u => 'd' } ), 0 ],
     [ CGI->new( { u => 'ad' } ), 0 ],
