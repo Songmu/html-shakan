@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use HTML::Shakan;
-use Test::More tests => 18;
+use Test::More;
 use CGI;
 
 diag "FVL: $FormValidator::Lite::VERSION";
@@ -87,3 +87,5 @@ check(
         'birthdate_day'     => 3,
     } ), 1 ],
 );
+
+done_testing;
