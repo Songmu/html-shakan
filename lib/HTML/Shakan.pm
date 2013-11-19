@@ -7,6 +7,7 @@ use Carp ();
 use 5.008001;
 
 use FormValidator::Lite 'Email', 'URL', 'Date', 'File';
+use Hash::MultiValue;
 
 use HTML::Shakan::Renderer::HTML;
 use HTML::Shakan::Filters;
@@ -201,7 +202,7 @@ has 'widgets' => (
 
 has 'params' => (
     is => 'rw',
-    isa => 'HashRef',
+    isa => 'Hash::MultiValue',
     lazy => 1,
     builder => '_build_params',
 );
@@ -216,37 +217,27 @@ sub upload {
     $self->uploads->{$name};
 }
 
-# code taken from MooseX::Param
+# code taken from MooseX::Param and changed a bit
 sub param {
     my $self = shift;
 
     my $params = $self->params;
 
     # if they want the list of keys ...
-    return keys %{ $params } if scalar @_ == 0;
+    return $params->keys if scalar @_ == 0;
 
     # if they want to fetch a particular key ...
     if (scalar @_ == 1) {
-        if (exists $params->{$_[0]}) {
-            my $val = $params->{$_[0]};
-            if (ref $val && ref $val eq 'ARRAY') {
-                return wantarray ? @$val : $val->[-1];
-            } else {
-                return $val;
-            }
-        } else {
-            return; # this behavior is same as cgi.pm(iirc)
-        }
+        return wantarray ? $params->get_all($_[0]) : $params->get($_[0]);
     }
 
-    ( ( scalar @_ % 2 ) == 0 )
-      || confess "parameter assignment must be an even numbered list";
+    ( ( scalar @_ % 2 ) == 0 ) || confess "parameter assignment must be an even numbered list";
 
     my %new = @_;
     while ( my ( $key, $value ) = each %new ) {
-        $self->params->{$key} = $value;
+        my @values = ref $value eq 'ARRAY' ? @$value : ($value);
+        $self->param->set($key, @values);
     }
-
     return;
 }
 
@@ -266,15 +257,15 @@ sub _build_params {
         my $name = $field->name;
 
         my @val = $self->request->param($name);
-        if (@val!=0) {
+        if (@val != 0) {
             if ( my $filters = $field->{filters} ) {
-                @val =
-                  map { HTML::Shakan::Filters->filter( $filters, $_ ) } @val;
+                @val = map { HTML::Shakan::Filters->filter( $filters, $_ ) } @val;
             }
             $params->{$name} = @val==1 ? $val[0] : \@val;
         }
     }
-    $params;
+
+    Hash::MultiValue->from_mixed($params);
 }
 
 no Mouse;
