@@ -61,7 +61,7 @@ THIS IS BETA.API WILL CHANGE.
 
 # ATTRIBUTES
 
-- custom\_validation
+- `custom_validation`
 
         form 'login' => (
             fields => [
@@ -78,19 +78,28 @@ THIS IS BETA.API WILL CHANGE.
 
     You can set custom validation callback, validates the field set in the form. For example, this is useful for login form.
 
-- submitted
+- `submitted`
 
     Returns true if the form has been submitted.
 
     This attribute will return true if a value for any known field name was submitted.
 
-- has\_error
+- `has_error`
 
     Return true if request has an error.
 
-- submitted\_and\_valid
+- `submitted_and_valid`
 
     Shorthand for `$form->submitted && !$form->has_error`
+
+- `params`
+
+    Returns form parameters. It is [Hash::MultiValue](http://search.cpan.org/perldoc?Hash::MultiValue) object.
+
+- `param($key:Str)`
+
+    Retrive the value of the key from parameters. It's behaviour is similar to traditional request objects. (ex. CGI, Plack::Request)
+    That is, it returns single scalar at scalar context and returns array at array context.
 
 # benchmarking
 

@@ -7,6 +7,7 @@ use Carp ();
 use 5.008001;
 
 use FormValidator::Lite 'Email', 'URL', 'Date', 'File';
+use Hash::MultiValue;
 
 use HTML::Shakan::Renderer::HTML;
 use HTML::Shakan::Filters;
@@ -195,7 +196,7 @@ has 'widgets' => (
 
 has 'params' => (
     is => 'rw',
-    isa => 'HashRef',
+    isa => 'Hash::MultiValue',
     lazy => 1,
     builder => '_build_params',
 );
@@ -210,32 +211,27 @@ sub upload {
     $self->uploads->{$name};
 }
 
-# code taken from MooseX::Param
+# code taken from MooseX::Param and changed a bit
 sub param {
     my $self = shift;
 
     my $params = $self->params;
 
     # if they want the list of keys ...
-    return keys %{ $params } if scalar @_ == 0;
+    return $params->keys if scalar @_ == 0;
 
     # if they want to fetch a particular key ...
     if (scalar @_ == 1) {
-        if (exists $params->{$_[0]}) {
-            return $params->{$_[0]};
-        } else {
-            return; # this behavior is same as cgi.pm(iirc)
-        }
+        return wantarray ? $params->get_all($_[0]) : $params->get($_[0]);
     }
 
-    ( ( scalar @_ % 2 ) == 0 )
-      || confess "parameter assignment must be an even numbered list";
+    ( ( scalar @_ % 2 ) == 0 ) || confess "parameter assignment must be an even numbered list";
 
     my %new = @_;
     while ( my ( $key, $value ) = each %new ) {
-        $self->params->{$key} = $value;
+        my @values = ref $value eq 'ARRAY' ? @$value : ($value);
+        $self->params->set($key, @values);
     }
-
     return;
 }
 
@@ -255,15 +251,15 @@ sub _build_params {
         my $name = $field->name;
 
         my @val = $self->request->param($name);
-        if (@val!=0) {
+        if (@val != 0) {
             if ( my $filters = $field->{filters} ) {
-                @val =
-                  map { HTML::Shakan::Filters->filter( $filters, $_ ) } @val;
+                @val = map { HTML::Shakan::Filters->filter( $filters, $_ ) } @val;
             }
-			$params->{$name} = @val==1 ? $val[0] : \@val;
+            $params->{$name} = @val==1 ? $val[0] : \@val;
         }
     }
-    $params;
+
+    Hash::MultiValue->from_mixed($params);
 }
 
 no Mouse;
@@ -339,7 +335,7 @@ THIS IS BETA.API WILL CHANGE.
 
 =over 4
 
-=item custom_validation
+=item C<custom_validation>
 
     form 'login' => (
         fields => [
@@ -356,19 +352,28 @@ THIS IS BETA.API WILL CHANGE.
 
 You can set custom validation callback, validates the field set in the form. For example, this is useful for login form.
 
-=item submitted
+=item C<submitted>
 
 Returns true if the form has been submitted.
 
 This attribute will return true if a value for any known field name was submitted.
 
-=item has_error
+=item C<has_error>
 
 Return true if request has an error.
 
-=item submitted_and_valid
+=item C<submitted_and_valid>
 
 Shorthand for C<< $form->submitted && !$form->has_error >>
+
+=item C<params>
+
+Returns form parameters. It is L<Hash::MultiValue> object.
+
+=item C<param($key:Str)>
+
+Retrive the value of the key from parameters. It's behaviour is similar to traditional request objects. (ex. CGI, Plack::Request)
+That is, it returns single scalar at scalar context and returns array at array context.
 
 =back
 
