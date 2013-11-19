@@ -236,7 +236,7 @@ sub param {
     my %new = @_;
     while ( my ( $key, $value ) = each %new ) {
         my @values = ref $value eq 'ARRAY' ? @$value : ($value);
-        $self->param->set($key, @values);
+        $self->params->set($key, @values);
     }
     return;
 }
