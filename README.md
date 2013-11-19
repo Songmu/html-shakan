@@ -115,7 +115,7 @@ form generation
 
 Shakan is 左官 in Japanese.
 
-If you want to know about shakan, please see [http://www.konuma-sakan.com/index2.html](http://www.konuma-sakan.com/index2.html)
+If you want to know about shakan, please see [http://ja.wikipedia.org/wiki/%E5%B7%A6%E5%AE%98](http://ja.wikipedia.org/wiki/%E5%B7%A6%E5%AE%98)
 
 左官 should pronounce 'sakan', formally. but, edokko pronounce 左官 as shakan.
 
