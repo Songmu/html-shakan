@@ -341,7 +341,7 @@ THIS IS BETA.API WILL CHANGE.
 
 =over 4
 
-=item custom_validation
+=item C<custom_validation>
 
     form 'login' => (
         fields => [
@@ -358,28 +358,28 @@ THIS IS BETA.API WILL CHANGE.
 
 You can set custom validation callback, validates the field set in the form. For example, this is useful for login form.
 
-=item submitted
+=item C<submitted>
 
 Returns true if the form has been submitted.
 
 This attribute will return true if a value for any known field name was submitted.
 
-=item has_error
+=item C<has_error>
 
 Return true if request has an error.
 
-=item submitted_and_valid
+=item C<submitted_and_valid>
 
 Shorthand for C<< $form->submitted && !$form->has_error >>
 
-=item params
+=item C<params>
 
 Returns form parameters. It is L<Hash::MultiValue> object.
 
-=item param($key:Str)
+=item C<param($key:Str)>
 
-Retrive the value of the key from params. It's behaviour is similar to traditional request objects. (eg. CGI, Plack::Request)
-That is, it returns sigle scalar at scalar context and returns array at array context.
+Retrive the value of the key from parameters. It's behaviour is similar to traditional request objects. (ex. CGI, Plack::Request)
+That is, it returns single scalar at scalar context and returns array at array context.
 
 =back
 
