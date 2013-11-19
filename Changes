@@ -1,6 +1,8 @@
 Revision history for Perl extension HTML::Shakan
 
 {{$NEXT}}
+    - fix documents and tests
+      (HTML::Shakan::Field::Choice#choices accepts array ref of key-value pairs only)
 
 1.00 2013-11-17T09:18:48Z
 
