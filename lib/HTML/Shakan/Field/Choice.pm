@@ -1,6 +1,9 @@
 package HTML::Shakan::Field::Choice;
 use strict;
 use warnings;
+
+use List::Util qw/pairmap/;
+
 use Mouse;
 extends 'HTML::Shakan::Field';
 
@@ -27,7 +30,7 @@ override 'get_constraints' => sub {
     return (
         $name => [
             @$constraints,
-            ['CHOICE' => $self->choices]
+            ['CHOICE' => [ pairmap { $a } @{$self->choices} ] ]
         ]
     );
 };
@@ -45,21 +48,45 @@ HTML::Shakan::Field::Choice - choice field
     use HTML::Shakan::Field::Choice;
     HTML::Shakan::Field::Choice->new(
         name => 'pref',
-        choices => [qw/tokyo osaka kyoto/],
+        choices => [
+            #value=> label
+            tokyo => 'tokyo',
+            osaka => 'osaka',
+            kyoto => 'kyoto',
+        ],
     );
 
     # or shortcut
     use HTML::Shakan::Fields;
     ChoiceField(
         name => 'pref',
-        choices => [qw/tokyo osaka kyoto/],
+        choices => [
+            tokyo => 'tokyo',
+            osaka => 'osaka',
+            kyoto => 'kyoto',
+        ],
     );
 
     # if you want radio button
     ChoiceField(
         name => 'pref',
-        choices => [qw/tokyo osaka kyoto/],
+        choices => [
+            tokyo => 'tokyo',
+            osaka => 'osaka',
+            kyoto => 'kyoto',
+        ],
         widget => 'radio',
+    );
+
+    # if you want checkbox
+    ChoiceField(
+        name => 'pref',
+        choices => [
+            tokyo => 'tokyo',
+            osaka => 'osaka',
+            kyoto => 'kyoto',
+        ],
+        widget => 'checkbox',
     );
 
 =head1 DESCRIPTION

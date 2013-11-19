@@ -133,7 +133,7 @@ define <input type="file" /> field
 
 FileField + FILE_MIME=image/* constraint
 
-=item C<< ChoiceField(name => 'interest', choices => [qw/moose mouse exporter/]) >>
+=item C<< ChoiceField(name => 'interest', choices => [1 => 'moose', 2 => 'mouse', 3 => 'exporter']) >>
 
 selector field.
 
