@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Songmu/html-shakan.png?branch=master)](https://travis-ci.org/Songmu/html-shakan) [![Coverage Status](https://coveralls.io/repos/Songmu/html-shakan/badge.png?branch=master)](https://coveralls.io/r/Songmu/html-shakan?branch=master)
 # NAME
 
 HTML::Shakan - Form HTML generator/validator
