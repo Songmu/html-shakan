@@ -26,6 +26,14 @@ on test => sub {
     recommends 'Plack::Test';
 };
 
+on configure => sub {
+    requires 'CPAN::Meta';
+    requires 'CPAN::Meta::Prereqs';
+    requires 'Module::Build';
+};
+
 on develop => sub {
-    # recommends 'HTML::FormFu';
+    requires 'Perl::Critic', '1.105';
+    requires 'Test::Perl::Critic', '1.02';
+    suggests 'HTML::FormFu';
 };
