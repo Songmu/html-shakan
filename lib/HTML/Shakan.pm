@@ -372,6 +372,15 @@ Return true if request has an error.
 
 Shorthand for C<< $form->submitted && !$form->has_error >>
 
+=item params
+
+Returns form parameters. It is L<Hash::MultiValue> object.
+
+=item param($key:Str)
+
+Retrive the value of the key from params. It's behaviour is similar to traditional request objects. (eg. CGI, Plack::Request)
+That is, it returns sigle scalar at scalar context and returns array at array context.
+
 =back
 
 =head1 benchmarking
