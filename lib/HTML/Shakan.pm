@@ -17,12 +17,6 @@ use HTML::Shakan::Field::Date;
 use HTML::Shakan::Field::Choice;
 use HTML::Shakan::Field::File;
 use List::MoreUtils 'uniq';
-BEGIN {
-    if ($ENV{SHAKAN_DEBUG}) {
-#       require Smart::Comments;
-#       Smart::Comments->import;
-    }
-};
 
 sub import {
     HTML::Shakan::Fields->export_to_level(1);
