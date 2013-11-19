@@ -1,1 +1,2 @@
-name="HTML-Shakan"
+name = "HTML-Shakan"
+badges = ["travis", "coveralls"]
