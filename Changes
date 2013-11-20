@@ -1,8 +1,10 @@
 Revision history for Perl extension HTML::Shakan
 
 {{$NEXT}}
+    - Bump up major version
 
 1.999 2013-11-19T06:25:46Z
+    - TRIAL release
     - fix documents and tests about HTML::Shakan::Field::Choice#choices
       (HTML::Shakan::Field::Choice#choices accepts array ref of key-value pairs only)
     - add documentation of `param` and `params`.

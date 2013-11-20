@@ -2,7 +2,6 @@ package HTML::Shakan::Field;
 use strict;
 use warnings;
 use Mouse;
-use HTML::Shakan::Utils;
 
 has id => (
     is => 'rw',
