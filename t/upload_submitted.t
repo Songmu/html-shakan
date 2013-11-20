@@ -1,12 +1,8 @@
 use strict;
 use warnings;
 use HTML::Shakan;
-use t::Util;
-use Test::Requires 'Plack::Test', 'Hash::MultiValue';
+use Test::Requires 'Plack::Test', 'Plack::Request', 'HTTP::Request::Common';
 use Test::More;
-use Plack::Test;
-use Plack::Request;
-use HTTP::Request::Common;
 
 my $app = sub {
     my $env = shift;
