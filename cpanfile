@@ -8,7 +8,6 @@ requires 'Mouse', '0.9';
 requires 'parent';
 requires 'perl', '5.008001';
 
-recommends 'CGI';
 recommends 'DateTime';
 recommends 'DateTime::Format::HTTP';
 recommends 'HTML::Scrubber';
@@ -17,6 +16,7 @@ recommends 'Mouse::Role';
 recommends 'Scalar::Util';
 
 on test => sub {
+    requires 'CGI';
     requires 'Test::More', '0.98';
     requires 'Test::Requires', '0.06';
     recommends 'DBIx::Skinny';
