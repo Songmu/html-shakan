@@ -1,8 +1,8 @@
 use strict;
 use warnings;
 use HTML::Shakan;
+use t::Util;
 use Test::More;
-use CGI;
 
 diag "FVL: $FormValidator::Lite::VERSION";
 
@@ -26,62 +26,62 @@ check(
             required => 1,
         ),
     ],
-    [ CGI->new(), 0 ],
-    [ CGI->new( { name => 'oo' } ), 1 ]
+    [ query(), 0 ],
+    [ query( { name => 'oo' } ), 1 ]
 );
 
 check(
     'EmailField',
     [ EmailField( name => 'email' ) ],
-    [ CGI->new( { email => 'oo' } ),             0 ],
-    [ CGI->new( { email => 'oo@example.com' } ), 1 ]
+    [ query( { email => 'oo' } ),             0 ],
+    [ query( { email => 'oo@example.com' } ), 1 ]
 );
 
 check(
     'URLField',
     [ URLField( name => 'u' ) ],
-    [ CGI->new( { u => 'm' } ), 0 ],
-    [ CGI->new( { u => 'http://mixi.jp' } ), 1 ]
+    [ query( { u => 'm' } ), 0 ],
+    [ query( { u => 'http://mixi.jp' } ), 1 ]
 );
 
 check(
     'UIntField',
     [ UIntField( name => 'u' ) ],
-    [ CGI->new( { u => '-1' } ), 0 ],
-    [ CGI->new( { u => 'abc' } ), 0 ],
-    [ CGI->new( { u => '3' } ), 1 ]
+    [ query( { u => '-1' } ), 0 ],
+    [ query( { u => 'abc' } ), 0 ],
+    [ query( { u => '3' } ), 1 ]
 );
 
 check(
     'IntField',
     [ IntField( name => 'u' ) ],
-    [ CGI->new( { u => '1.2' } ), 0 ],
-    [ CGI->new( { u => '-1' } ), 1 ],
-    [ CGI->new( { u => 'abc' } ), 0 ],
-    [ CGI->new( { u => '3' } ), 1 ]
+    [ query( { u => '1.2' } ), 0 ],
+    [ query( { u => '-1' } ), 1 ],
+    [ query( { u => 'abc' } ), 0 ],
+    [ query( { u => '3' } ), 1 ]
 );
 
 check(
     'ChoiceField',
     [ ChoiceField( name => 'u', choices => [a => 'b', c => 'd'] ) ],
-    [ CGI->new( { u => 'a' } ), 1 ],
-    [ CGI->new( { u => 'd' } ), 0 ],
-    [ CGI->new( { u => 'ad' } ), 0 ],
+    [ query( { u => 'a' } ), 1 ],
+    [ query( { u => 'd' } ), 0 ],
+    [ query( { u => 'ad' } ), 0 ],
 );
 
 check(
     'ChoiceField',
     [ ChoiceField( name => 'u', choices => [a => 'a', b => 'b'] ) ],
-    [ CGI->new( { u => 'a' } ), 1 ],
-    [ CGI->new( { u => [qw/a b/] } ), 1 ],
-    [ CGI->new( { u => [qw/a c/] } ), 0 ],
+    [ query( { u => 'a' } ), 1 ],
+    [ query( { u => [qw/a b/] } ), 1 ],
+    [ query( { u => [qw/a c/] } ), 0 ],
 );
 
 check(
     'DateField',
     [ DateField( name => 'birthdate', years => [2000..2004], required => 1 ) ],
-    [ CGI->new( { } ), 0 ],
-    [ CGI->new( {
+    [ query( { } ), 0 ],
+    [ query( {
         'birthdate_year'    => 2004,
         'birthdate_month'   => 10,
         'birthdate_day'     => 3,

@@ -1,18 +1,12 @@
 use strict;
 use warnings;
 use HTML::Shakan;
+use t::Util;
 use Test::More tests => 3;
-use CGI;
-
-sub trim {
-    local $_ = shift;
-    s/\n$//;
-    $_;
-}
 
 do {
     my $form = HTML::Shakan->new(
-        request => CGI->new({yay => 3}),
+        request => query({yay => 3}),
         fields => [
             TextField(name => 'yay')
         ],
@@ -22,7 +16,7 @@ do {
 
 do {
     my $form = HTML::Shakan->new(
-        request => CGI->new({yay => 'b'}),
+        request => query({yay => 'b'}),
         fields => [
             ChoiceField(name => 'yay', choices => [
                 a => 1,
@@ -40,7 +34,7 @@ do {
 
 do {
     my $form = HTML::Shakan->new(
-        request => CGI->new({yay => 'b'}),
+        request => query({yay => 'b'}),
         fields => [
             ChoiceField(
                 widget => 'radio',

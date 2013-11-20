@@ -1,6 +1,6 @@
-use t::Util;
+
 use HTML::Shakan;
-use CGI;
+use t::Util;
 use Test::Requires {
     'DBIx::Skinny' => 0.0740,
     'DBD::SQLite'  => 1.31,
@@ -43,7 +43,7 @@ subtest 'fill' => sub {
         bar => 'baz',
     });
     my $form = HTML::Shakan->new(
-        request => CGI->new(),
+        request => query(),
         fields => [
             TextField(
                 name => 'foo',
@@ -59,7 +59,7 @@ subtest 'fill' => sub {
 
 subtest 'create' => sub {
     my $form = HTML::Shakan->new(
-        request => CGI->new({'foo'=> 'gay', 'bar' => 'ATTACK!'}),
+        request => query({'foo'=> 'gay', 'bar' => 'ATTACK!'}),
         fields => [
             TextField(
                 name => 'foo',
@@ -80,7 +80,7 @@ subtest 'update' => sub {
     $user->update({bar => "origin"});
     ok $user, 'fetch user';
     my $form = HTML::Shakan->new(
-        request => CGI->new({'foo'=> 'way', 'bar' => 'ATTACK!'}),
+        request => query({'foo'=> 'way', 'bar' => 'ATTACK!'}),
         fields => [
             TextField(
                 name => 'foo',

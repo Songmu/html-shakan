@@ -1,8 +1,8 @@
 use strict;
 use warnings;
 use HTML::Shakan;
+use t::Util;
 use Test::More tests => 2;
-use CGI;
 
 sub check {
     my $q = shift;
@@ -20,6 +20,6 @@ sub check {
     $form->is_valid;
 }
 
-is check(CGI->new({a => 1, b => 1})), 1;
-is check(CGI->new({a => 1, b => 2})), 0;
+is check(query({a => 1, b => 1})), 1;
+is check(query({a => 1, b => 2})), 0;
 

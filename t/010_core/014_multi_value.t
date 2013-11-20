@@ -3,11 +3,11 @@ use warnings;
 use utf8;
 use Test::More;
 
-use CGI;
 use HTML::Shakan;
+use t::Util;
 
 my $form = HTML::Shakan->new(
-    request => CGI->new({
+    request => query({
         p => [qw/bar baz/],
     }),
     fields => [ChoiceField(

@@ -1,8 +1,8 @@
 use strict;
 use warnings;
 use HTML::Shakan;
+use t::Util;
 use Test::More tests => 4;
-use CGI;
 
 diag "FVL: $FormValidator::Lite::VERSION";
 
@@ -39,7 +39,7 @@ my $q = do {
     local *STDIN;
     open STDIN, "<", $file or die "missing test file $file";
     binmode STDIN;
-    CGI->new();
+    query();
 };
 
 my $form = HTML::Shakan->new(

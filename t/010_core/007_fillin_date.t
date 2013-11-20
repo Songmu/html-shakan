@@ -1,6 +1,7 @@
-use t::Util;
+
 use Test::More tests => 1;
 use HTML::Shakan;
+use t::Util;
 
 my $form = HTML::Shakan->new(
     request => query({yay_year => 2002, yay_month => 1, yay_day => 19}),

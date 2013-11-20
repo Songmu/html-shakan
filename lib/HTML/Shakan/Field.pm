@@ -151,11 +151,11 @@ This is parameter filters in arrayref.
 
 For example, following field removes white space from parameter value in head and end.
 
-	TextField(
-		name     => 'f',
-		required => 1,
-		filters  => [qw'WhiteSpace']
-	),
+    TextField(
+        name     => 'f',
+        required => 1,
+        filters  => [qw'WhiteSpace']
+    ),
 
 =item widget
 

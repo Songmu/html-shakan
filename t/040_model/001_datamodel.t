@@ -1,7 +1,7 @@
-use t::Util;
+
 use Test::More;
 use HTML::Shakan;
-use CGI;
+use t::Util;
 use Test::Requires 'Data::Model';
 
 require HTML::Shakan::Model::DataModel;
@@ -36,7 +36,7 @@ subtest 'fill' => sub {
         foo => 'bar'
     });
     my $form = HTML::Shakan->new(
-        request => CGI->new(),
+        request => query(),
         fields => [
             TextField(
                 name => 'foo',
@@ -52,7 +52,7 @@ subtest 'fill' => sub {
 
 subtest 'create' => sub {
     my $form = HTML::Shakan->new(
-        request => CGI->new({'foo'=> 'gay', bar => 'ATTACK'}),
+        request => query({'foo'=> 'gay', bar => 'ATTACK'}),
         fields => [
             TextField(
                 name => 'foo',
@@ -72,7 +72,7 @@ subtest 'update' => sub {
     my $user = $dm->lookup(user => 'gay');
     ok $user;
     my $form = HTML::Shakan->new(
-        request => CGI->new({'foo'=> 'way', bar => 'ATTACK'}),
+        request => query({'foo'=> 'way', bar => 'ATTACK'}),
         fields => [
             TextField(
                 name => 'foo',

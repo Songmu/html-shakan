@@ -19,8 +19,8 @@
     package main;
     use strict;
     use warnings;
-    use CGI;
     use Test::More;
+    use t::Util;
 
     my $first = form('my_form')->render();
     my $second = form('my_form')->render();
@@ -30,7 +30,7 @@
         my $name = shift;
         return My::Form->get(
             $name => (
-                request => CGI->new(),
+                request => query(),
             ),
         );
     }

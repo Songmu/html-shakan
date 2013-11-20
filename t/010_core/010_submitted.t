@@ -1,14 +1,14 @@
 use strict;
 use warnings;
 use HTML::Shakan;
+use t::Util;
 use Test::More tests => 8;
-use CGI;
 
 # -------------------------------------------------------------------------
 # submitted
 do {
     my $form = HTML::Shakan->new(
-        request => CGI->new,
+        request => query,
         fields => [
             TextField(name => 'yay')
         ],
@@ -17,7 +17,7 @@ do {
 };
 do {
     my $form = HTML::Shakan->new(
-        request => CGI->new({yay => 1}),
+        request => query({yay => 1}),
         fields => [
             TextField(name => 'yay')
         ],
@@ -29,7 +29,7 @@ do {
 # submitted_and_valid
 do {
     my $form = HTML::Shakan->new(
-        request => CGI->new({yay => 1}),
+        request => query({yay => 1}),
         fields => [
             TextField(name => 'yay'),
             TextField(required => 1, name => 'bay'),
@@ -42,7 +42,7 @@ do {
 
 do {
     my $form = HTML::Shakan->new(
-        request => CGI->new({yay => 1, bay => 1}),
+        request => query({yay => 1, bay => 1}),
         fields => [
             TextField(name => 'yay'),
             TextField(required => 1, name => 'bay'),

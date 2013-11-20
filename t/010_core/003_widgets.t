@@ -1,17 +1,11 @@
 use strict;
 use warnings;
-use CGI;
 use HTML::Shakan;
+use t::Util;
 use Test::More;
 
-sub trim {
-    local $_ = shift;
-    $_ =~ s/\n$//;
-    $_;
-}
-
 my $form = HTML::Shakan->new(
-    request => CGI->new({}),
+    request => query({}),
     fields => [ ],
 );
 is $form->widgets->render( $form, EmailField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
@@ -112,7 +106,7 @@ is $form->widgets->render( $form, DateField( name => 'birthdate', years => [2000
 ...
 
 # choices-field + select-widgets + zero value
-my $q_choice = CGI->new;
+my $q_choice = query;
 $q_choice->param(foo => 0);
 my $form_choice = HTML::Shakan->new(
     request => $q_choice,
@@ -128,7 +122,7 @@ is $form_choice->widgets->render( $form_choice, ChoiceField( name => 'foo', id =
 ...
 
 # choices-field + radio-widgets + zero value
-my $q_radio = CGI->new;
+my $q_radio = query;
 $q_radio->param(foo => 0);
 my $form_radio = HTML::Shakan->new(
     request => $q_radio,
@@ -145,7 +139,7 @@ is $form_radio->widgets->render( $form_radio, ChoiceField( widget => 'radio', na
 
 subtest 'widget_input' => sub {
     my $form_with_value = HTML::Shakan->new(
-        request => CGI->new({
+        request => query({
             foo_1 => 'foo_1',
             foo_2 => '0',
             foo_3 => 0,

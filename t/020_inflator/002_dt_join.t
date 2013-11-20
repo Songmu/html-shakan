@@ -1,13 +1,14 @@
-use t::Util;
+
 use Test::More;
 use HTML::Shakan;
+use t::Util;
 
 use Test::Requires 'DateTime', 'DateTime::Format::HTTP';
 plan tests => 5;
 require HTML::Shakan::Inflator::DateTime;
 
 my $form = HTML::Shakan->new(
-    request => CGI->new({
+    request => query({
         birthdate_year => 2009,
         birthdate_month=> 9,
         birthdate_day => 2,

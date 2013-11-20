@@ -1,8 +1,8 @@
 use strict;
 use warnings;
 use HTML::Shakan;
+use t::Util;
 use Test::More tests => 2;
-use CGI;
 
 my $DB = {
     'foo' => {
@@ -28,7 +28,7 @@ sub gen_form {
 }
 
 my $f1 = gen_form(
-    CGI->new({
+    query({
         id => 'foo',
         pw => 'VALID_PASSWORD',
     })
@@ -36,7 +36,7 @@ my $f1 = gen_form(
 ok $f1->is_valid(), 'valid';
 
 my $f2 = gen_form(
-    CGI->new({
+    query({
         id => 'foo',
         pw => 'INVALID_PASSWORD',
     })
