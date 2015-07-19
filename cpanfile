@@ -25,6 +25,7 @@ on test => sub {
     recommends 'HTTP::Request::Common';
     recommends 'Plack::Request';
     recommends 'Plack::Test';
+    recommends 'Teng';
 };
 
 on configure => sub {
