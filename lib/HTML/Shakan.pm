@@ -166,6 +166,7 @@ has fillin_params => (
         my $self = shift;
         my $fp = {};
         for my $name ($self->request->param) {
+            local $CGI::LIST_CONTEXT_WARN = 0;
             my @v = $self->request->param($name);
             if (@v) {
                 $fp->{$name} = @v==1 ? $v[0] : \@v;
@@ -250,6 +251,7 @@ sub _build_params {
 
         my $name = $field->name;
 
+        local $CGI::LIST_CONTEXT_WARN = 0;
         my @val = $self->request->param($name);
         if (@val != 0) {
             if ( my $filters = $field->{filters} ) {
