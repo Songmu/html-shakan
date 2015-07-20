@@ -1,10 +1,11 @@
 requires 'Email::Valid::Loose', '0.05';
 requires 'FormValidator::Lite', '0.24';
-requires 'Hash::MultiValue';
 requires 'HTML::Escape';
+requires 'Hash::MultiValue';
 requires 'List::MoreUtils', '0.22';
 requires 'List::Util', '1.32';
 requires 'Mouse', '0.9';
+requires 'Scalar::Util';
 requires 'parent';
 requires 'perl', '5.008001';
 
@@ -12,8 +13,11 @@ recommends 'DateTime';
 recommends 'DateTime::Format::HTTP';
 recommends 'HTML::Scrubber';
 recommends 'Lingua::JA::Regular::Unicode';
-recommends 'Mouse::Role';
-recommends 'Scalar::Util';
+
+
+on configure => sub {
+    requires 'Module::Build';
+};
 
 on test => sub {
     requires 'CGI';
@@ -22,20 +26,23 @@ on test => sub {
     recommends 'DBIx::Skinny';
     recommends 'DBIx::Skinny::Row';
     recommends 'DBIx::Skinny::Schema';
-    recommends 'HTTP::Request::Common';
-    recommends 'Plack::Request';
-    recommends 'Plack::Test';
     recommends 'Teng';
-};
-
-on configure => sub {
-    requires 'CPAN::Meta';
-    requires 'CPAN::Meta::Prereqs';
-    requires 'Module::Build';
+    recommends 'Teng::Row';
+    recommends 'Teng::Schema::Declare';
 };
 
 on develop => sub {
-    requires 'Perl::Critic', '1.105';
-    requires 'Test::Perl::Critic', '1.02';
+    requires 'DBD::SQLite', '1.31';
+    requires 'DBIx::Skinny', '0.0740';
+    requires 'Data::Model';
+    requires 'DateTime';
+    requires 'DateTime::Format::HTTP';
+    requires 'HTTP::Request::Common';
+    requires 'Lingua::JA::Regular::Unicode';
+    requires 'Plack::Request';
+    requires 'Plack::Test';
+    requires 'Teng', '0.28';
+    recommends 'Perl::Critic', '1.105';
+    recommends 'Test::Perl::Critic', '1.02';
     suggests 'HTML::FormFu';
 };

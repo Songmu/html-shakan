@@ -1,12 +1,12 @@
 package HTML::Shakan;
 use strict;
 use warnings;
-use Mouse;
-our $VERSION = '2.00';
+use Mouse 0.9;
+our $VERSION = '2.01';
 use Carp ();
 use 5.008001;
 
-use FormValidator::Lite 'Email', 'URL', 'Date', 'File';
+use FormValidator::Lite 0.24 'Email', 'URL', 'Date', 'File';
 use Hash::MultiValue;
 
 use HTML::Shakan::Renderer::HTML;
@@ -17,7 +17,7 @@ use HTML::Shakan::Field::Input;
 use HTML::Shakan::Field::Date;
 use HTML::Shakan::Field::Choice;
 use HTML::Shakan::Field::File;
-use List::MoreUtils 'uniq';
+use List::MoreUtils 0.22 'uniq';
 
 sub import {
     HTML::Shakan::Fields->export_to_level(1);

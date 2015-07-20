@@ -2,6 +2,9 @@ Revision history for Perl extension HTML::Shakan
 
 {{$NEXT}}
 
+2.01 2015-07-20T15:40:39Z
+    - Introduce Model::Teng (GeJ++)
+
 2.00 2013-11-20T07:22:24Z
     - Bump up major version
 
@@ -18,7 +21,7 @@ Revision history for Perl extension HTML::Shakan
     - Use HTML::Escape while escaping HTML chars.
       It makes HTML::Shakan faster.
 
-      You need to care while updating this module. 
+      You need to care while updating this module.
       HTML::Escape escapes more characters by default.
       (Masayuki Matsuki)
 

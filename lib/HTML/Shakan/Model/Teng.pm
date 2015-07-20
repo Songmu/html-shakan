@@ -76,21 +76,21 @@ insert/fill/update by L<HTML::Shakan>.
 
 =over 4
 
-=item $form->model->fill($row);
+=item C<< $form->model->fill($row); >>
 
 fill the $row data to form.$row is instance of row class of Teng.
 
-=item my $row = $form->model->create($teng, $table);
+=item C<< my $row = $form->model->create($teng, $table); >>
 
 insert form data to $table.
 
-=item my $row = $form->model->insert($teng, $table);
+=item C<< my $row = $form->model->insert($teng, $table); >>
 
 insert method is synonym of create method.
 
-=item $form->model->update($row);
+=item C<< $form->model->update($row); >>
 
-update $row by form data.
+update C<$row> by form data.
 
 =back
 

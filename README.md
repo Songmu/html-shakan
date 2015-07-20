@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Songmu/html-shakan.png?branch=master)](https://travis-ci.org/Songmu/html-shakan) [![Coverage Status](https://coveralls.io/repos/Songmu/html-shakan/badge.png?branch=master)](https://coveralls.io/r/Songmu/html-shakan?branch=master)
+[![Build Status](https://travis-ci.org/Songmu/html-shakan.svg?branch=master)](https://travis-ci.org/Songmu/html-shakan) [![Coverage Status](https://img.shields.io/coveralls/Songmu/html-shakan/master.svg)](https://coveralls.io/r/Songmu/html-shakan?branch=master)
 # NAME
 
 HTML::Shakan - Form HTML generator/validator
@@ -95,7 +95,7 @@ THIS IS BETA.API WILL CHANGE.
 
 - `params`
 
-    Returns form parameters. It is [Hash::MultiValue](http://search.cpan.org/perldoc?Hash::MultiValue) object.
+    Returns form parameters. It is [Hash::MultiValue](https://metacpan.org/pod/Hash::MultiValue) object.
 
 # benchmarking
 
@@ -122,7 +122,7 @@ If you want to know about shakan, please see [http://ja.wikipedia.org/wiki/%E5%B
 
 - `$shakan->render_field($name); :Str`
 
-    Render partial form named `<$name`\>.
+    Render partial form named `<$name`>.
 
 - `$shakan->param($key:Str); :Value[s]`
 
@@ -135,7 +135,7 @@ Tokuhiro Matsuno <tokuhirom  @ gmail.com>
 
 # SEE ALSO
 
-[HTML::FormFu](http://search.cpan.org/perldoc?HTML::FormFu)
+[HTML::FormFu](https://metacpan.org/pod/HTML::FormFu)
 
 ToscaWidgets
 

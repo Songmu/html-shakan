@@ -2,7 +2,7 @@ package HTML::Shakan::Field::Choice;
 use strict;
 use warnings;
 
-use List::Util qw/pairmap/;
+use List::Util 1.32 qw/pairmap/;
 
 use Mouse;
 extends 'HTML::Shakan::Field';

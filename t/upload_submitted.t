@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use HTML::Shakan;
-use Test::Requires 'Plack::Test', 'Plack::Request', 'HTTP::Request::Common';
+use Test::Requires 0.06 'Plack::Test', 'Plack::Request', 'HTTP::Request::Common';
 use Test::More;
 
 my $app = sub {
