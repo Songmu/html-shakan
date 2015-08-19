@@ -154,4 +154,15 @@ subtest 'widget_input' => sub {
           '<input id="name_field" name="foo_3" type="text" value="0" />';
 };
 
+subtest 'widget_textarea' => sub {
+    my $form_with_value = HTML::Shakan->new(
+        request => query({
+            foo_1 => '</textarea><script>alert("XSS!");</script><textarea>',
+        }),
+        fields => [ ],
+    );
+    is $form->widgets->render($form_with_value, TextField( name => 'foo_1', id => 'name_field', widget => 'textarea')),
+        '<textarea id="name_field" name="foo_1">&lt;/textarea&gt;&lt;script&gt;alert(&quot;XSS!&quot;);&lt;/script&gt;&lt;textarea&gt;</textarea>';
+};
+
 done_testing;
