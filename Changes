@@ -2,6 +2,9 @@ Revision history for Perl extension HTML::Shakan
 
 {{$NEXT}}
 
+2.02 2015-08-19T04:42:04Z
+    - fix xss of textarea widget (shogo82148++)
+
 2.01 2015-07-20T15:40:39Z
     - Introduce Model::Teng (GeJ++)
 

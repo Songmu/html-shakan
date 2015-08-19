@@ -105,7 +105,7 @@
          "web" : "https://github.com/Songmu/html-shakan"
       }
    },
-   "version" : "2.01",
+   "version" : "2.02",
    "x_contributors" : [
       "gfx <gfuji@cpan.org>",
       "Yoshihiro Sasaki <aloelight@gmail.com>",
@@ -114,6 +114,7 @@
       "moznion <moznion@gmail.com>",
       "tokuhirom <tokuhirom@gmail.com>",
       "Geraud CONTINSOUZAS <geraud@scsi.nc>",
+      "Ichinose Shogo <shogo82148@gmail.com>",
       "Songmu <y.songmu@gmail.com>"
    ]
 }
