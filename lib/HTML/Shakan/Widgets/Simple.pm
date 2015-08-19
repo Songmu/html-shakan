@@ -43,7 +43,7 @@ sub widget_textarea {
     my $value = $form->fillin_param($field->{name}) || '';
     my $attr = {%{$field->attr}}; # shallow copy
     delete $attr->{type}; # textarea tag doesn't need this
-    return '<textarea ' . _attr($attr) . ">${value}</textarea>";
+    return '<textarea ' . _attr($attr) . ">" . HTML::Escape::escape_html($value) . "</textarea>";
 }
 
 sub widget_select {
