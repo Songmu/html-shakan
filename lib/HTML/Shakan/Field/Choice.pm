@@ -2,7 +2,7 @@ package HTML::Shakan::Field::Choice;
 use strict;
 use warnings;
 
-use List::Util 1.32 qw/pairmap/;
+use List::Util 1.32 qw/pairkeys/;
 
 use Mouse;
 extends 'HTML::Shakan::Field';
@@ -30,7 +30,7 @@ override 'get_constraints' => sub {
     return (
         $name => [
             @$constraints,
-            ['CHOICE' => [ pairmap { $a } @{$self->choices} ] ]
+            ['CHOICE' => [ pairkeys @{$self->choices} ] ]
         ]
     );
 };
