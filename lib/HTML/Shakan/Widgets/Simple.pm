@@ -74,12 +74,17 @@ sub widget_radio {
 
     my $value = $form->fillin_param($field->{name});
 
+    my $label_css = ($field->has_item_label_css() && $field->item_label_class ne '')
+        ? sprintf(q{ class="%s"}, $field->item_label_class)
+        : '';
+
     my @t;
     push @t, "<ul>";
     for (my $i=0; $i<@$choices; $i+=2) {
         my ($a, $b) = ($choices->[$i], $choices->[$i+1]);
         push @t, sprintf(
-            q{<li><label><input %s type="radio" value="%s"%s />%s</label></li>},
+            q{<li><label%s><input %s type="radio" value="%s"%s />%s</label></li>},
+            $label_css,
             _attr({
                 %{ $field->attr },
                 id => sprintf( $field->id_tmpl, $field->{name}, $i / 2 ),
@@ -102,6 +107,10 @@ sub widget_checkbox {
     unless (ref $values) {
         $values = defined $values ? [$values] : [];
     }
+    my $label_css = ($field->has_item_label_css() && $field->item_label_class ne '')
+        ? sprintf(q{ class="%s"}, $field->item_label_class)
+        : '';
+
     my @t;
     push @t, "<ul>";
     for (my $i=0; $i<@$choices; $i+=2) {
@@ -109,7 +118,8 @@ sub widget_checkbox {
         my $checked = grep /^$val$/, @$values;
 
        push @t, sprintf(
-            '<li><label><input %s type="checkbox" value="%s"%s />%s</label></li>',
+            '<li><label%s><input %s type="checkbox" value="%s"%s />%s</label></li>',
+            $label_css,
             _attr({
                 %{ $field->attr },
                 id => sprintf( $field->id_tmpl, $field->{name}, $i / 2 ),

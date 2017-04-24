@@ -46,6 +46,25 @@ is $form->widgets->render( $form, ChoiceField( widget => 'checkbox', name => 'ba
 </ul>
 ...
 
+# choices-field + radio-widgets + label css
+is $form->widgets->render( $form,
+    ChoiceField( widget => 'radio', name => 'foo', id => 'name_field', item_label_class => 'radio-inline', choices => ['a' => 1, 'b' => 2, 'c' => 3] ) ), trim(<<'...');
+<ul>
+<li><label class="radio-inline"><input id="id_foo_0" name="foo" type="radio" value="a" />1</label></li>
+<li><label class="radio-inline"><input id="id_foo_1" name="foo" type="radio" value="b" />2</label></li>
+<li><label class="radio-inline"><input id="id_foo_2" name="foo" type="radio" value="c" />3</label></li>
+</ul>
+...
+
+# choices-field + checkbox-widgets + label css
+is $form->widgets->render( $form,
+    ChoiceField( widget => 'checkbox', name => 'bar', id => 'name_field', item_label_class => 'checkbox-inline', choices => ['a' => 1, 'b' => 2, 'c' => 3] ) ), trim(<<'...');
+<ul>
+<li><label class="checkbox-inline"><input id="id_bar_0" name="bar" type="checkbox" value="a" />1</label></li>
+<li><label class="checkbox-inline"><input id="id_bar_1" name="bar" type="checkbox" value="b" />2</label></li>
+<li><label class="checkbox-inline"><input id="id_bar_2" name="bar" type="checkbox" value="c" />3</label></li>
+</ul>
+...
 # date field
 is $form->widgets->render( $form, DateField( name => 'birthdate', years => [2000..2003] ) ), trim(<<'...');
 <span>

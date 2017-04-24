@@ -23,6 +23,12 @@ has 'id_tmpl' => (
     default => 'id_%s_%s',
 );
 
+has item_label_class => (
+    is        => 'ro',
+    isa       => 'Str',
+    predicate => 'has_item_label_css',
+);
+
 override 'get_constraints' => sub {
     my $self = shift;
     my ($name, $constraints) = super();
