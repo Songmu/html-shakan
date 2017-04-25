@@ -2,7 +2,7 @@ package HTML::Shakan::Field::Choice;
 use strict;
 use warnings;
 
-use List::Util 1.32 qw/pairmap/;
+use List::Util 1.32 qw/pairkeys/;
 
 use Mouse;
 extends 'HTML::Shakan::Field';
@@ -23,6 +23,12 @@ has 'id_tmpl' => (
     default => 'id_%s_%s',
 );
 
+has item_label_class => (
+    is        => 'ro',
+    isa       => 'Str',
+    predicate => 'has_item_label_class',
+);
+
 override 'get_constraints' => sub {
     my $self = shift;
     my ($name, $constraints) = super();
@@ -30,7 +36,7 @@ override 'get_constraints' => sub {
     return (
         $name => [
             @$constraints,
-            ['CHOICE' => [ pairmap { $a } @{$self->choices} ] ]
+            ['CHOICE' => [ pairkeys @{$self->choices} ] ]
         ]
     );
 };

@@ -19,8 +19,11 @@ sub render {
             $field->id(sprintf($self->id_tmpl(), $field->{name}));
         }
         if ($field->label) {
-            push @res, sprintf( q{<label for="%s">%s</label>},
-                $field->{id}, HTML::Escape::escape_html( $field->{label} ) );
+            my $label_css = ($field->has_label_class() && $field->label_class ne '')
+                ? sprintf(q{ class="%s"}, $field->label_class)
+                : '';
+            push @res, sprintf( q{<label%s for="%s">%s</label>},
+                $label_css, $field->{id}, HTML::Escape::escape_html( $field->{label} ) );
         }
         push @res, $form->widgets->render( $form, $field );
     }

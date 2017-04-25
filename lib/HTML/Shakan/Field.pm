@@ -60,6 +60,12 @@ has label => (
     default => sub { shift->name }
 );
 
+has label_class => (
+    is      => 'ro',
+    isa     => 'Str',
+    predicate => 'has_label_class',
+);
+
 has required => (
     is      => 'ro',
     isa     => 'Bool',
@@ -168,6 +174,10 @@ hashref about the miscellaneous attributes.
 =item label
 
 label for this field.
+
+=item label_class
+
+class attribute for this field's label.
 
 =item required
 
