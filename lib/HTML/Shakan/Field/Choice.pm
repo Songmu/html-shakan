@@ -26,7 +26,7 @@ has 'id_tmpl' => (
 has item_label_class => (
     is        => 'ro',
     isa       => 'Str',
-    predicate => 'has_item_label_css',
+    predicate => 'has_item_label_class',
 );
 
 override 'get_constraints' => sub {

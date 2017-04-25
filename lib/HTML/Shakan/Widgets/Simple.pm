@@ -74,7 +74,7 @@ sub widget_radio {
 
     my $value = $form->fillin_param($field->{name});
 
-    my $label_css = ($field->has_item_label_css() && $field->item_label_class ne '')
+    my $label_css = ($field->has_item_label_class() && $field->item_label_class ne '')
         ? sprintf(q{ class="%s"}, $field->item_label_class)
         : '';
 
@@ -107,7 +107,7 @@ sub widget_checkbox {
     unless (ref $values) {
         $values = defined $values ? [$values] : [];
     }
-    my $label_css = ($field->has_item_label_css() && $field->item_label_class ne '')
+    my $label_css = ($field->has_item_label_class() && $field->item_label_class ne '')
         ? sprintf(q{ class="%s"}, $field->item_label_class)
         : '';
 

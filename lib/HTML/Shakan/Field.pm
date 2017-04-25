@@ -63,7 +63,7 @@ has label => (
 has label_class => (
     is      => 'ro',
     isa     => 'Str',
-    predicate => 'has_label_css',
+    predicate => 'has_label_class',
 );
 
 has required => (
