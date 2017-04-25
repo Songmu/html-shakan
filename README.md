@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Songmu/html-shakan.svg?branch=master)](https://travis-ci.org/Songmu/html-shakan) [![Coverage Status](https://img.shields.io/coveralls/Songmu/html-shakan/master.svg)](https://coveralls.io/r/Songmu/html-shakan?branch=master)
+[![Build Status](https://travis-ci.org/Songmu/html-shakan.svg?branch=master)](https://travis-ci.org/Songmu/html-shakan) [![Coverage Status](https://img.shields.io/coveralls/Songmu/html-shakan/master.svg?style=flat)](https://coveralls.io/r/Songmu/html-shakan?branch=master)
 # NAME
 
 HTML::Shakan - Form HTML generator/validator
@@ -131,7 +131,7 @@ If you want to know about shakan, please see [http://ja.wikipedia.org/wiki/%E5%B
 
 # AUTHOR
 
-Tokuhiro Matsuno <tokuhirom  @ gmail.com>
+Tokuhiro Matsuno &lt;tokuhirom  @ gmail.com>
 
 # SEE ALSO
 

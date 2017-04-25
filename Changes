@@ -2,6 +2,9 @@ Revision history for Perl extension HTML::Shakan
 
 {{$NEXT}}
 
+2.10 2017-04-25T07:37:58Z
+    - Allow simple customization of label's class attributes (GeJ++)
+
 2.02 2015-08-19T04:42:04Z
     - fix xss of textarea widget (shogo82148++)
 

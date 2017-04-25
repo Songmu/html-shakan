@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom  @ gmail.com>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v2.3.0, CPAN::Meta::Converter version 2.142060",
+   "generated_by" : "Minilla/v3.0.10, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "perl_5"
    ],
@@ -28,7 +28,8 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.38"
+            "Module::Build" : "0",
+            "Module::Build::Tiny" : "0.035"
          }
       },
       "develop" : {
@@ -105,7 +106,7 @@
          "web" : "https://github.com/Songmu/html-shakan"
       }
    },
-   "version" : "2.02",
+   "version" : "2.10",
    "x_contributors" : [
       "gfx <gfuji@cpan.org>",
       "Yoshihiro Sasaki <aloelight@gmail.com>",
@@ -115,6 +116,8 @@
       "tokuhirom <tokuhirom@gmail.com>",
       "Geraud CONTINSOUZAS <geraud@scsi.nc>",
       "Ichinose Shogo <shogo82148@gmail.com>",
-      "Songmu <y.songmu@gmail.com>"
-   ]
+      "Geraud CONTINSOUZAS <geraud.continsouzas@skazy.nc>",
+      "Masayuki Matsuki <y.songmu@gmail.com>"
+   ],
+   "x_serialization_backend" : "JSON::PP version 2.27300"
 }
