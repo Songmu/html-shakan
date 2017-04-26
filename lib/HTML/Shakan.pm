@@ -180,6 +180,11 @@ has fields => (
     isa      => 'ArrayRef',
     required => 1,
     auto_deref => 1,
+    traits   => ['Array'],
+    handles  => {
+        append_field  => 'push',
+        prepend_field => 'unshift',
+    },
 );
 
 has request => (

@@ -5,6 +5,7 @@ requires 'Hash::MultiValue';
 requires 'List::MoreUtils', '0.22';
 requires 'List::Util', '1.32';
 requires 'Mouse', '0.9';
+requires 'MouseX::NativeTraits', '1.09';
 requires 'Scalar::Util';
 requires 'parent';
 requires 'perl', '5.008001';
