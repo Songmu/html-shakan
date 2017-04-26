@@ -23,15 +23,20 @@ on test => sub {
     requires 'CGI';
     requires 'Test::More', '0.98';
     requires 'Test::Requires', '0.06';
+    recommends 'Aniki';
+    recommends 'Aniki::Row';
+    recommends 'Aniki::Schema';
     recommends 'DBIx::Skinny';
     recommends 'DBIx::Skinny::Row';
     recommends 'DBIx::Skinny::Schema';
     recommends 'Teng';
     recommends 'Teng::Row';
     recommends 'Teng::Schema::Declare';
+    recommends 'Aniki';
 };
 
 on develop => sub {
+    requires 'Aniki', '1.00';
     requires 'DBD::SQLite', '1.31';
     requires 'DBIx::Skinny', '0.0740';
     requires 'Data::Model';
