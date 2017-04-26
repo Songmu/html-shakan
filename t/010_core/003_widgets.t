@@ -14,6 +14,8 @@ is $form->widgets->render( $form, UIntField( name => 'foo', id => 'name_field' )
 is $form->widgets->render( $form, IntField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
 is $form->widgets->render( $form, URLField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="text" />';
 is $form->widgets->render( $form, PasswordField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="password" />';
+is $form->widgets->render( $form, HiddenField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="hidden" value="" />';
+is $form->widgets->render( $form, TextAreaField( name => 'foo', id => 'name_field' ) ), '<textarea id="name_field" name="foo"></textarea>';
 is $form->widgets->render( $form, FileField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="file" />';
 is $form->widgets->render( $form, ImageField( name => 'foo', id => 'name_field' ) ), '<input id="name_field" name="foo" type="file" />';
 is $form->widgets->render( $form, TextField( name => 'foo', id => 'name_field', widget => 'textarea' ) ), '<textarea id="name_field" name="foo"></textarea>';
@@ -180,7 +182,7 @@ subtest 'widget_textarea' => sub {
         }),
         fields => [ ],
     );
-    is $form->widgets->render($form_with_value, TextField( name => 'foo_1', id => 'name_field', widget => 'textarea')),
+    is $form->widgets->render($form_with_value, TextAreaField( name => 'foo_1', id => 'name_field')),
         '<textarea id="name_field" name="foo_1">&lt;/textarea&gt;&lt;script&gt;alert(&quot;XSS!&quot;);&lt;/script&gt;&lt;textarea&gt;</textarea>';
 };
 

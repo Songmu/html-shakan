@@ -13,6 +13,9 @@ our @EXPORT = qw(
 
     PasswordField
 
+    HiddenField
+    TextAreaField
+
     FileField
     ImageField
 
@@ -24,7 +27,6 @@ our @EXPORT = qw(
 );
 
 # DateTimeField
-# ImageField
 # TimeField
 
 sub _input {
@@ -53,6 +55,14 @@ sub IntField {
 
 sub PasswordField {
     _input(type => 'password', @_);
+}
+
+sub HiddenField {
+    _input(type => 'hidden', value => '', @_);
+}
+
+sub TextAreaField {
+    HTML::Shakan::Field->new(widget => 'textarea', @_);
 }
 
 sub FileField {
@@ -124,6 +134,14 @@ TextField() + INT constraint
 =item C<< PasswordField(name => 'pw') >>
 
 define <input type="password" /> field
+
+=item C<< HiddenField(name => 'pw') >>
+
+define <input type="hidden" /> field
+
+=item C<< TextAreaField(name => 'pw') >>
+
+define <textarea></textarea> field
 
 =item C<< FileField(name => 'file') >>
 
